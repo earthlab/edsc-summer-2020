@@ -117,6 +117,48 @@ len(months)
 
 ### Interactive Activity
 
+Create a list! Make a list called `multi_type_list` that has a length of 5, contains a string, a float, and an integer, and has a string at index `1`. 
+
+```python
+# Create your list below this line!
+```
+
+```python tags=["hide"]
+try:
+    if isinstance(multi_type_list, list):
+        print("mutli_type_list is a list!")
+        if len(multi_type_list) == 5:
+            print("mutli_type_list has the correct length!")
+            if isinstance(multi_type_list[1], str):
+                print("mutli_type_list contains a string value at index 1!")
+            else: 
+                print("mutli_type_list does not contain a string value at index 1.\n",
+                      "Make sure to add a string value at list index 1.\n", 
+                      "Remember python list indexing starts at 0!")
+        else:
+            print("multi_type_list does not have the correct length.\n",
+                  "Make sure that the list has exactly 5 values in it.")
+        if any([isinstance(i, str) for i in multi_type_list]):
+            print("mutli_type_list contains a string value!")
+        else:
+            print("mutli_type_list does not contain a string value.\n",
+                  "Make sure to make one of the values in your list a string.")
+        if any([isinstance(i, int) for i in multi_type_list]):
+            print("mutli_type_list contains an integer value!")
+        else:
+            print("mutli_type_list does not contain an integer value.\n",
+                  "Make sure to make one of the values in your list an integer.")
+        if any([isinstance(i, float) for i in multi_type_list]):
+            print("mutli_type_list contains a float value!")
+        else:
+            print("mutli_type_list does not contain a float value.\n",
+                  "Make sure to make one of the values in your list a float.")
+    else:
+        print("mutli_type_list is not a list. Make sure that you formatted the list\n",
+              "correctly and spelled the variable name right.")
+except NameError:
+    print("'multi_type_list' is not defined. Make sure you spelled the variable name right!")
+```
 
 ## Query List Items Using Index
 
@@ -234,3 +276,23 @@ months
 By using the `+` and `+=` syntax to add new values to a list, you have actually just used **Python** operators, which are symbols used in **Python** to execute specific operations on variables and data structures such as lists. 
 
 You will learn more about different operators in **Python** on the next page of this chapter. 
+
+
+### Interactive Activity
+
+Let's use these skills we just learned to modify an existing list. Below is a list called `modify_me`. Modify the list from what it is now, `[1, 3.2, 5, 9, "hi!"]`, to `["first!", 1, 3.2, 8, 9, "hello!", "last!"]`. There are a lot of ways to go about this, so don't be afraid to be creative! 
+
+```python
+# Use the operators we learned to modify the list below! 
+modify_me = [1, 3.2, 5, 9, "hi!"]
+# Add your code below this line. Don't modify line above, and don't manually type out the answer. 
+# Use the operators from the lesson! 
+```
+
+```python tags=["hide"]
+answer = ["first!", 1, 3.2, 8, 9, "hello!", "last!"]
+if modify_me == answer:
+    print("You correctly modified the list, good job!")
+else: 
+    print("Your list didn't match the expected list. Here is the list you produced: {}".format(modify_me))
+```
