@@ -103,6 +103,57 @@ city = "Boulder, CO is the home of the University of Colorado, Boulder campus."
 city
 ```
 
+### Interactive Activity
+
+Assign values to variables! In the cell below, create a variable called `int_var` that has an integer as its value. Then create another variable called `float_var` that has a float as its value, and another variable called `string_var` that has a string as its value. 
+
+```python
+# Assign your variable values below this line!
+
+int_var = 12
+float_var = 21.2
+string_var = 'hi'
+
+```
+
+```python tags=["hide"]
+try:
+    print("Variable int_var has been successfully assigned the value " +
+          str(int_var) + ".")
+    if isinstance(int_var, int):
+        print("Variable int_var is an integer, good job!")
+    else:
+        print("Variable int_var exists, but is not an integer.\n", 
+              "Make sure you assigned the value of int_var to be a whole number.")
+except NameError:
+    print("Can't find a variable named int_var, make sure you've\n",
+          "correctly spelled the variable name and assigned it a value!")
+
+try:
+    print("Variable float_var has been successfully assigned the value " +
+          str(float_var) + ".")
+    if isinstance(float_var, float):
+        print("Variable float_var is a float, good job!")
+    else:
+        print("Variable float_var exists, but is not a float.\n", 
+              "Make sure you assigned the value of float_var to be a number with a decimal value.")
+except NameError:
+    print("Can't find a variable named float_var, make sure you've\n",
+          "correctly spelled the variable name and assigned it a value!")
+    
+try:
+    print("Variable string_var has been successfully assigned the value " +
+          str(string_var) + ".")
+    if isinstance(string_var, str):
+        print("Variable string_var is a string, good job!")
+    else:
+        print("Variable string_var exists, but is not a string.\n", 
+              "Make sure you assigned the value of string_var to be a value surrounded by quotes.")
+except NameError:
+    print("Can't find a variable named string_var, make sure you've\n",
+          "correctly spelled the variable name and assigned it a value!")
+```
+
 ## Check Variable Type
 
 After you create a variable, you can check the type using the following syntax:
