@@ -115,6 +115,9 @@ months
 len(months)
 ```
 
+### Interactive Activity
+
+
 ## Query List Items Using Index
 
 As **Python** indexing begins at `[0]`, you can use the list index to query the value of the nth item in the list with `month[index]`, where index is equal to:
