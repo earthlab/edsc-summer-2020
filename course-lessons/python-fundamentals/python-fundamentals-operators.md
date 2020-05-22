@@ -176,6 +176,114 @@ Notice that the word `print` does not show up the output. Instead, you simply se
 You will learn more about functions later in this textbook, and you will use the `print` function a lot, as it can be very handy for viewing results and for communicating the status of your code. 
 
 
+## Relational Operators
+
+Often in python you need to compare two values against each other. For these checks, you can check a statement, such as `3 < 4` and get returned one of two values from python: `True` or `False`. These are called boolean values, and can be very powerful in scripts. A boolean is simply one bit of data that is either 1 (True), or 0 (False). Like strings or integers, booleans are there own data type.
+
+In **Python**, there are <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/#relational-operators" target="_blank">many relational operations</a> that can be completed, including operators for: 
+* equal (`==`)
+* not equal (`!=`)
+* greater than (`>`)
+* greater than or equal (`>=`)
+* less than (`<`)
+* less than or equal (`<=`)
+
+Review the cells below to see what these operations return in different circumstances.
+
+```python
+type(True)
+```
+
+Relational operations return a boolean value. 
+
+```python
+3 < 4
+```
+
+```python
+3 > 4
+```
+
+```python
+3 == 3
+```
+
+```python
+3 == 4
+```
+
+```python
+3 != 4
+```
+
+```python
+3 <= 4
+```
+
+```python
+3 <= 3
+```
+
+```python
+3 >= 4
+```
+
+## Identity Operators
+
+An identity operator, such as `is`, will check if two variables are referring to the same object. It is similar to the `==` operator, except that it will not only check that the values of two variables are identical, but it will check that they are referring to the exact same thing. It's a subtle distinction, but can be very useful. 
+
+```python
+list1 = [1, 2]
+list2 = [1, 2]
+list3 = list1
+
+list1 is list3
+```
+
+```python
+list1 == list3
+```
+
+```python
+list1 == list2
+```
+
+Here we can see the distinction. Even though `list1` and `list2` are identical to one another, they are technically not the same list. But, since `list3` was set to equal `list1`, they are the exact same object. 
+
+```python
+list1 is list2
+```
+
+`is` can be combined with `not` to check that two items are NOT the same
+
+```python
+list1 is not list2
+```
+
+## Membership Operators
+
+A membership operator, such as `in`, will check if one item contains another item. This can be useful with strings, lists, or other data storage objects such as dataframes. 
+
+```python
+precip = "Precipitation"
+
+
+'Precip' in precip
+```
+
+```python
+temps = [70, 68, 74]
+
+68 in temps
+```
+
+```python
+69 not in temps
+```
+
+<!-- #region -->
+
+
  <div class="notice--info" markdown="1">
 
 ## Additional Resources
@@ -185,7 +293,7 @@ You will learn more about functions later in this textbook, and you will use the
 * <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/" target="_blank">Reference docs on operators</a>
 
 </div>   
-
+<!-- #endregion -->
 
 <div class="notice--warning" markdown="1">
 
