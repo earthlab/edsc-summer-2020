@@ -17,6 +17,8 @@
 #
 # ## <i class="fa fa-graduation-cap" aria-hidden="true"></i> Learning Objectives
 #
+# At the end of this activity, you will be able to:
+#
 # * Explain how **Python** uses variables to store data.
 # * Write **Python** code to:
 #     * create variables that store single data values (e.g. numeric values, text strings). 
@@ -78,7 +80,7 @@ boulder_precip_in
 #
 # To create a variable containing a text string (`str`), you need to use quotations (`""`) around the value to identify the value as a text string (e.g. `variable_name = "text"`). 
 #
-# While in **Python** the single quote (`''`) and the double quote (`""`) are used interchangeably (see the official <a href="https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str" target="_blank">Python Docs</a> for more examples), it is good to choose one option and use it consistently. This textbook uses the double quote (`""`) for identifying text strings (`str`). 
+# While in **Python** the single quote (`''`) and the double quote (`""`) are used interchangeably (see the official <a href="https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str" target="_blank">Python Docs</a> for more examples), it is good to choose one option and use it consistently. The exercises and materials that you will explore use the double quote (`""`) for identifying text strings (`str`). 
 #
 # Using quotes, you can create `str` variables that contain a single word or many words, including punctuation.
 
@@ -101,28 +103,49 @@ city
 # ### Interactive Activity
 #
 # Assign values to variables! In the cell below, create a variable called `int_var` that has an integer as its value. Then create another variable called `float_var` that has a float as its value, and another variable called `string_var` that has a string as its value. 
+#
+# For these variables, let's use the [average annual precipitation in NYC](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. Assign this figure to a variable as an integer, a float, and a string! Notice that you will have to slightly modify the variable to assign it as an integer and as a string. 
 
-# +
 # Assign your variable values below this line!
 
+
+# The cell below is a set of automatic tests to see if you correctly assigned the variables in the cell above. They will provide you with feedback on each variable to ensure it was correctly assigned. Please do not modify the cell below! 
+
 # + tags=["hide"]
+# Automatic tests run to ensure variables were correctly assigned. 
+
+# Integer tests
 try:
     print("Variable int_var has been successfully assigned the value " +
           str(int_var) + ".")
     if isinstance(int_var, int):
         print("Variable int_var is an integer, good job!")
+        if int_var == 46:
+            print("Variable int_var equals 46, good job!")
+        else:
+            print("Variable int_var exists and is an integer, but has the wrong value.\n",
+                  "Make sure you assigned the value of int_var to be a whole number closest\n",
+                  "to the average annual rainfall in NYC.")
     else:
         print("Variable int_var exists, but is not an integer.\n",
               "Make sure you assigned the value of int_var to be a whole number.")
+    
 except NameError:
     print("Can't find a variable named int_var, make sure you've\n",
           "correctly spelled the variable name and assigned it a value!")
 
+# Float tests
 try:
     print("Variable float_var has been successfully assigned the value " +
           str(float_var) + ".")
     if isinstance(float_var, float):
         print("Variable float_var is a float, good job!")
+        if float_var == 46.23:
+            print("Variable float_var equals 46.23, good job!")
+        else:
+            print("Variable float_var exists and is a float, but has the wrong value.\n",
+                  "Make sure you assigned the value of float_var to be equivalant\n",
+                  "to the average annual rainfall in NYC.")
     else:
         print("Variable float_var exists, but is not a float.\n",
               "Make sure you assigned the value of float_var to be a number with a decimal value.")
@@ -130,11 +153,18 @@ except NameError:
     print("Can't find a variable named float_var, make sure you've\n",
           "correctly spelled the variable name and assigned it a value!")
 
+# String tests
 try:
     print("Variable string_var has been successfully assigned the value " +
           str(string_var) + ".")
     if isinstance(string_var, str):
         print("Variable string_var is a string, good job!")
+        if string_var == "46.23":
+            print("Variable string_var equals 46.23, good job!")
+        else:
+            print("Variable string_var exists and is a string, but has the wrong value.\n",
+                  "Make sure you assigned the value of string_var to be equivalant\n",
+                  "to the average annual rainfall in NYC, just as a string instead of a float.")
     else:
         print("Variable string_var exists, but is not a string.\n",
               "Make sure you assigned the value of string_var to be a value surrounded by quotes.")
@@ -190,3 +220,16 @@ type(city_precip)
 # Thus, the value itself is not important for determining whether the variable is a numeric or string type - the syntax does this. 
 #
 # A good reminder that it is important to make sure that you are defining variables with the appropriate syntax to distinguish between numeric and string types. 
+
+# ### Interactive Activity
+#
+# Let's check the type of the variables that you made previously! In the cells below, check each type of variable created previously, i.e. `int_var`, `float_var`, and `string_var`, to see what type of variable it is. Use the `type()` function to check this. 
+
+# +
+# Check your integer variable type here! The output below the cell should just be the word "int"
+
+# +
+# Check your float variable type here! The output below the cell should just be the word "float"
+
+# +
+# Check your string variable type here! The output below the cell should just be the word "string"
