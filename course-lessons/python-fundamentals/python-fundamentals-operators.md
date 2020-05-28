@@ -18,6 +18,8 @@ jupyter:
 
 ## <i class="fa fa-graduation-cap" aria-hidden="true"></i> Learning Objectives
 
+At the end of this activity, you will be able to:
+
 * Explain how operators are used in **Python** to execute a specific computation or operation.
 * Write **Python** code to run different operations on data (e.g. arithmetic calculations)
 
@@ -224,7 +226,7 @@ Notice that the word `print` does not show up the output. Instead, you simply se
 
 **You have now deliberately used your first Python function!** Functions in **Python** are commands that can take inputs that are used to produce output. 
 
-You will learn more about functions later in this textbook, and you will use the `print` function a lot, as it can be very handy for viewing results and for communicating the status of your code. 
+You will learn more about functions later in these exercises, and you will use the `print` function a lot, as it can be very handy for viewing results and for communicating the status of your code. 
 
 
 ## Relational Operators

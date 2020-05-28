@@ -18,6 +18,8 @@ jupyter:
 
 ## <i class="fa fa-graduation-cap" aria-hidden="true"></i> Learning Objectives
 
+At the end of this activity, you will be able to:
+
 * Explain how **Python** uses lists to store multiple data values.
 * Create new **Python** lists that contain `int`, `float` and `str` values.
 * Use the list index to update, add, and remove items in a **Python** list.
