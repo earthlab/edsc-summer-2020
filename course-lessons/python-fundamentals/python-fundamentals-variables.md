@@ -59,12 +59,12 @@ For more advanced math applications, you can also use variables to work with <a 
 
 As described previously, you do not need to define which numeric type you want to use to create a variable. 
 
-For example, you can create a `int` variable called `boulder_precip_in`, which contains the rounded up value for the average annual precipitation in inches (in) in Boulder, Colorado. 
+For example, you can create a `int` variable called `boulder_precip_in`, which contains the value for the [average annual precipitation in inches (in) in Boulder, Colorado](https://psl.noaa.gov/boulder/Boulder.mm.precip.html), rounded to the nearest integer.
 <!-- #endregion -->
 
 ```python
 # This is a comment line in Python
-boulder_precip_in = 21
+boulder_precip_in = 20
 
 # You can see the value of a variable by calling the variable name
 boulder_precip_in
@@ -73,7 +73,7 @@ boulder_precip_in
 You could also create a `float` variable to capture the data using decimal units. 
 
 ```python
-boulder_precip_in = 20.68
+boulder_precip_in = 20.23
 
 boulder_precip_in
 ```
@@ -113,7 +113,7 @@ Assign values to variables! In the cell below, create a variable called `int_var
 
 For these variables, let's use the [average annual precipitation in NYC](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
 
-Assign this value to a variable as an integer and a float. Then, assign the city name `NYC` to a string variable. 
+Assign this value to a variable as an integer and a float. Then, assign the city name `New York City` to a string variable. 
 
 ```python
 # Assign your variable values below this comment line!
@@ -172,12 +172,12 @@ try:
           str(string_var) + ".")
     if isinstance(string_var, str):
         print("Variable string_var is a string, good job!")
-        if string_var == "NYC":
-            print("Variable string_var equals NYC, good job!")
+        if string_var == "New York City":
+            print("Variable string_var equals New York City, good job!")
         else:
             print("Variable string_var exists and is a string, but has the wrong value.\n",
                   "Make sure you assigned the value of string_var to be \n",
-                  "a string of the word NYC.")
+                  "a string of the city name: New York City.")
     else:
         print("Variable string_var exists, but is not a string.\n",
               "Make sure you assigned the value of string_var to be a value surrounded by quotes.")
