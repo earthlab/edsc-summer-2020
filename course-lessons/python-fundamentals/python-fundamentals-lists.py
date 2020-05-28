@@ -113,8 +113,12 @@ len(months)
 
 # +
 # Create your list below this line!
+# -
+
+# The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
 
 # + tags=["hide"]
+# Tests to ensure the multi_type_list was created properly. 
 try:
     if isinstance(multi_type_list, list):
         print("mutli_type_list is a list!")
@@ -270,8 +274,12 @@ modify_me = [1, 3.2, 5, 9, "hi!"]
 # Add your code below this line. Don't modify line above, and don't manually type out the answer. 
 # Use the operators from the lesson! 
 
+# The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+
 # + tags=["hide"]
+# Tests to ensure the modify_me list was modified correctly
 answer = ["first!", 1, 3.2, 8, 9, "hello!", "last!"]
+
 if modify_me == answer:
     print("You correctly modified the list, good job!")
 else: 

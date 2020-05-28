@@ -86,6 +86,35 @@ jan_precip = 0.70
 jan_precip * 25.4
 ```
 
+### Interactive Activity
+
+Below, you are given two variables. 
+```
+a = 5
+b = 2
+```
+Create a thrid variable, `c`, which is equal to 8. To do this, only use the given variables (`a` and `b`) and arithmetic operators!
+
+```python
+a = 5
+b = 2
+# Using a and b, create a variable named c which is equal to 8
+
+```
+
+The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+
+```python
+# Test to make sure that the variable was assigned correctly
+try:
+    if c == 8:
+        print("Correctly assigned c to be 8!")
+    else:
+        print("c doesn't equal 8, it instead equals {}. Make sure your arithmetic operators are accurate and correctly assigned to the variable.".format(c))
+except NameError:
+    print("We couldn't find any variable named c, make sure that you correctly assigned the variable and ran the cell above.")
+```
+
 ## Assignment Operators
 
 While arithmetic operators are very useful for calculations, they do not change the original values. 
@@ -131,6 +160,28 @@ boulder_precip_in *= 25.4
 You can review the <a href="https://docs.python.org/3/library/stdtypes.html#" target="_blank">Python docs on types and operations</a> to see what kinds of operations can be run on different object types. 
 <!-- #endregion -->
 
+### Interactive Activity
+
+Below, you are given two variables, `total_precip_nyc` and `december_precip_nyc`. Add `december_precip_nyc` to `total_precip_nyc` using the `+=` operator.
+
+```python
+total_precip_nyc = 42.65
+december_precip_nyc = 3.5
+
+# Below this line, combine the two variables
+```
+
+The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+
+```python tags=["hide"]
+# Tests to ensure the lists were added correctly
+
+if total_precip_nyc == 46.15:
+    print("Variables added correctly!")
+else:
+    print("Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(total_precip_nyc))
+```
+
 ## Print Output
 
 Notice now that the output is not automatically printed.
@@ -171,7 +222,7 @@ print("January precipitation:", jan_precip)
 
 Notice that the word `print` does not show up the output. Instead, you simply see the result, without the parentheses or quotations for the text string. 
 
-**You have now deliberately used your first **Python** function!** Functions in **Python** are commands that can take inputs that are used to produce output. 
+**You have now deliberately used your first Python function!** Functions in **Python** are commands that can take inputs that are used to produce output. 
 
 You will learn more about functions later in this textbook, and you will use the `print` function a lot, as it can be very handy for viewing results and for communicating the status of your code. 
 
@@ -235,7 +286,7 @@ An identity operator, such as `is`, will check if two variables are referring to
 ```python
 temps1 = [70, 68, 74]
 temps2 = [70, 68, 74]
-temps3 = temps2
+temps3 = temps1
 
 temps1 is temps3
 ```
@@ -309,8 +360,40 @@ Both `False and False` and `False or False` will return `False`.
 68 in temps1 or 69 in temps1
 ```
 
-<!-- #region -->
+### Interactive Activity
 
+Below, there are variables assigned to the output of either relational, identity, membership, or logical operations. Currently, each operation is returning `False`. Modify the operations so that they will all return `True`.
+
+```python
+# Relational operation currently returning False, change the below operation so it returns True
+relational = 3 <= 2
+
+# Identity operation currently returning False, change the below operation so it returns True
+identity = 4 is 3
+
+# Membership operation currently returning False, change the below operation so it returns True
+membership = 72 in temps1
+
+# Logical operation currently returning False, change the below operation so it returns True
+logical = True and False
+```
+
+The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+
+```python tags=["hide"]
+# Tests to see if the operations have been modified correctly
+
+operations = [relational, identity, membership, logical]
+operation_names = ["relational", "identity", "membership", "logical"]
+
+if all(operations):
+    print("All operations are now returning True, good job!")
+else:
+    for i, operation in enumerate(operations):
+        if not operation:
+            print("Your {} operation is still returning False, check to see why that may be!".format(
+                operation_names[i]))
+```
 
  <div class="notice--info" markdown="1">
 
@@ -321,4 +404,3 @@ Both `False and False` and `False or False` will return `False`.
 * <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/" target="_blank">Reference docs on operators</a>
 
 </div>   
-<!-- #endregion -->
