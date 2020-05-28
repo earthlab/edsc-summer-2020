@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.4.2
+      jupytext_version: 1.3.2
   kernelspec:
     display_name: Python 3
     language: python
@@ -63,8 +63,10 @@ For example, you can create a `int` variable called `boulder_precip_in`, which c
 <!-- #endregion -->
 
 ```python
+# This is a comment line in Python
 boulder_precip_in = 21
 
+# You can see the value of a variable by calling the variable name
 boulder_precip_in
 ```
 
@@ -107,18 +109,22 @@ city
 
 ### Interactive Activity
 
-Assign values to variables! In the cell below, create a variable called `int_var` that has an integer as its value. Then create another variable called `float_var` that has a float as its value, and another variable called `string_var` that has a string as its value. 
+Assign values to variables! In the cell below, create a variable called `int_var` that has an integer as its value. Then, create another variable called `float_var` that has a float as its value. Last, create another variable called `string_var` that has a string as its value. 
 
-For these variables, let's use the [average annual precipitation in NYC](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. Assign this figure to a variable as an integer, a float, and a string! Notice that you will have to slightly modify the variable to assign it as an integer and as a string. 
+For these variables, let's use the [average annual precipitation in NYC](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
+
+Assign this value to a variable as an integer and a float. Then, assign the city name `NYC` to a string variable. 
 
 ```python
-# Assign your variable values below this line!
+# Assign your variable values below this comment line!
 
 ```
 
-The cell below is a set of automatic tests to see if you correctly assigned the variables in the cell above. They will provide you with feedback on each variable to ensure it was correctly assigned. Please do not modify the cell below! 
+The cell below includes a set of tests to see if you correctly assigned the variables in the cell above. They will provide you with feedback on each variable to ensure it was correctly assigned. 
 
-```python tags=["hide"]
+Be sure to run the cell below to check your variables (please do not modify the cell!).
+
+```python
 # Automatic tests run to ensure variables were correctly assigned. 
 
 # Integer tests
@@ -151,7 +157,7 @@ try:
             print("Variable float_var equals 46.23, good job!")
         else:
             print("Variable float_var exists and is a float, but has the wrong value.\n",
-                  "Make sure you assigned the value of float_var to be equivalant\n",
+                  "Make sure you assigned the value of float_var to be equivalent\n",
                   "to the average annual rainfall in NYC.")
     else:
         print("Variable float_var exists, but is not a float.\n",
@@ -166,12 +172,12 @@ try:
           str(string_var) + ".")
     if isinstance(string_var, str):
         print("Variable string_var is a string, good job!")
-        if string_var == "46.23":
-            print("Variable string_var equals 46.23, good job!")
+        if string_var == "NYC":
+            print("Variable string_var equals NYC, good job!")
         else:
             print("Variable string_var exists and is a string, but has the wrong value.\n",
-                  "Make sure you assigned the value of string_var to be equivalant\n",
-                  "to the average annual rainfall in NYC, just as a string instead of a float.")
+                  "Make sure you assigned the value of string_var to be \n",
+                  "a string of the word NYC.")
     else:
         print("Variable string_var exists, but is not a string.\n",
               "Make sure you assigned the value of string_var to be a value surrounded by quotes.")
@@ -236,13 +242,19 @@ A good reminder that it is important to make sure that you are defining variable
 Let's check the type of the variables that you made previously! In the cells below, check each type of variable created previously, i.e. `int_var`, `float_var`, and `string_var`, to see what type of variable it is. Use the `type()` function to check this. 
 
 ```python
-# Check your integer variable type here! The output below the cell should just be the word "int"
+# Check your integer variable type here! 
+# The output below the cell should be the word "int"
+
 ```
 
 ```python
-# Check your float variable type here! The output below the cell should just be the word "float"
+# Check your float variable type here! 
+# The output below the cell should be the word "float"
+
 ```
 
 ```python
-# Check your string variable type here! The output below the cell should just be the word "string"
+# Check your string variable type here! 
+# The output below the cell should be the word "str"
+
 ```
