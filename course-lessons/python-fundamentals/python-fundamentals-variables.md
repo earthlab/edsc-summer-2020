@@ -66,7 +66,7 @@ For example, you can create a `int` variable called `boulder_precip_in`, which c
 # This is a comment line in Python
 boulder_precip_in = 20
 
-# You can see the value of a variable by calling the variable name
+# You can see the value of any variable by calling the variable name
 boulder_precip_in
 ```
 
@@ -109,11 +109,11 @@ city
 
 ### Interactive Activity
 
-Assign values to variables! In the cell below, create a variable called `int_var` that has an integer as its value. Then, create another variable called `float_var` that has a float as its value. Last, create another variable called `string_var` that has a string as its value. 
+Assign values to variables! In the cell below, create a variable called `precip_int` that has an integer as its value. Then, create another variable called `precip_float` that has a float as its value. Last, create another variable called `location` that has a string as its value. 
 
-For these variables, let's use the [average annual precipitation in NYC](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
+For these variables, use the [average annual precipitation in New York City](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
 
-Assign this value to a variable as an integer and a float. Then, assign the city name `New York City` to a string variable. 
+Assign this precipitation value to variables as an integer (`precip_int`) and a float (`precip_float`). Then, assign the city name `New York City` to a string variable (`location`). 
 
 ```python
 # Assign your variable values below this comment line!
@@ -125,64 +125,64 @@ The cell below includes a set of tests to see if you correctly assigned the vari
 Be sure to run the cell below to check your variables (please do not modify the cell!).
 
 ```python
-# Automatic tests run to ensure variables were correctly assigned. 
+# Run this cell to ensure variables were correctly assigned 
 
 # Integer tests
 try:
-    print("Variable int_var has been successfully assigned the value " +
-          str(int_var) + ".")
-    if isinstance(int_var, int):
-        print("Variable int_var is an integer, good job!")
-        if int_var == 46:
-            print("Variable int_var equals 46, good job!")
+    print("Variable precip_int has been assigned the value " +
+          str(precip_int) + ".")
+    if isinstance(precip_int, int):
+        print("Variable precip_int is an integer, good job!")
+        if precip_int == 46:
+            print("Variable precip_int equals 46, good job!")
         else:
-            print("Variable int_var exists and is an integer, but has the wrong value.\n",
-                  "Make sure you assigned the value of int_var to be a whole number closest\n",
+            print("Variable precip_int exists and is an integer, but has the wrong value.\n",
+                  "Make sure you assigned the value of precip_int to be a whole number closest\n",
                   "to the average annual rainfall in NYC.")
     else:
-        print("Variable int_var exists, but is not an integer.\n",
-              "Make sure you assigned the value of int_var to be a whole number.")
+        print("Variable precip_int exists, but is not an integer.\n",
+              "Make sure you assigned the value of precip_int to be a whole number.")
     
 except NameError:
-    print("Can't find a variable named int_var, make sure you've\n",
+    print("Can't find a variable named precip_int, make sure you've\n",
           "correctly spelled the variable name and assigned it a value!")
 
 # Float tests
 try:
-    print("Variable float_var has been successfully assigned the value " +
-          str(float_var) + ".")
-    if isinstance(float_var, float):
-        print("Variable float_var is a float, good job!")
-        if float_var == 46.23:
-            print("Variable float_var equals 46.23, good job!")
+    print("Variable precip_float has been assigned the value " +
+          str(precip_float) + ".")
+    if isinstance(precip_float, float):
+        print("Variable precip_float is a float, good job!")
+        if precip_float == 46.23:
+            print("Variable precip_float equals 46.23, good job!")
         else:
-            print("Variable float_var exists and is a float, but has the wrong value.\n",
-                  "Make sure you assigned the value of float_var to be equivalent\n",
+            print("Variable precip_float exists and is a float, but has the wrong value.\n",
+                  "Make sure you assigned the value of precip_float to be equivalent\n",
                   "to the average annual rainfall in NYC.")
     else:
-        print("Variable float_var exists, but is not a float.\n",
-              "Make sure you assigned the value of float_var to be a number with a decimal value.")
+        print("Variable precip_float exists, but is not a float.\n",
+              "Make sure you assigned the value of precip_float to be a number with a decimal value.")
 except NameError:
-    print("Can't find a variable named float_var, make sure you've\n",
+    print("Can't find a variable named precip_float, make sure you've\n",
           "correctly spelled the variable name and assigned it a value!")
 
 # String tests
 try:
-    print("Variable string_var has been successfully assigned the value " +
-          str(string_var) + ".")
-    if isinstance(string_var, str):
-        print("Variable string_var is a string, good job!")
-        if string_var == "New York City":
-            print("Variable string_var equals New York City, good job!")
+    print("Variable location has been assigned the value " +
+          str(location) + ".")
+    if isinstance(location, str):
+        print("Variable location is a string, good job!")
+        if location == "New York City":
+            print("Variable location equals New York City, good job!")
         else:
-            print("Variable string_var exists and is a string, but has the wrong value.\n",
-                  "Make sure you assigned the value of string_var to be \n",
-                  "a string of the city name: New York City.")
+            print("Variable location exists and is a string, but has the wrong value.\n",
+                  "Make sure you assigned the value of location to be \n",
+                  "a string of the location: New York City.")
     else:
-        print("Variable string_var exists, but is not a string.\n",
-              "Make sure you assigned the value of string_var to be a value surrounded by quotes.")
+        print("Variable location exists, but is not a string.\n",
+              "Make sure you assigned the value of location to be a value surrounded by quotes.")
 except NameError:
-    print("Can't find a variable named string_var, make sure you've\n",
+    print("Can't find a variable named location, make sure you've\n",
           "correctly spelled the variable name and assigned it a value!")
 ```
 
@@ -239,7 +239,7 @@ A good reminder that it is important to make sure that you are defining variable
 
 ### Interactive Activity
 
-Let's check the type of the variables that you made previously! In the cells below, check each type of variable created previously, i.e. `int_var`, `float_var`, and `string_var`, to see what type of variable it is. Use the `type()` function to check this. 
+Check the type of the variables that you made previously! In the cells below, use the `type()` function to check the type for each variable you created previously, i.e. `precip_int`, `precip_float`, and `location`.
 
 ```python
 # Check your integer variable type here! 
