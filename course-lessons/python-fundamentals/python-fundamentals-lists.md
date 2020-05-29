@@ -213,7 +213,7 @@ For example, if you want to insert a value at the beginning of the list, you can
 
 `list_name.insert(0, value)`
 
-In the example below, the months list is incomplete and the value for January is inserted at the beginning of the list.  
+In the example below, the months list is incomplete, and the value for January is inserted at the beginning of the list. This automatically updates the index locations for the existing items, such as `February`, which began as index `0` and becomes index `1` when `January` is inserting at the beginning of the list.  
 
 ```python
 # Month list missing the first value for January
@@ -321,7 +321,9 @@ You will learn more about different operators in **Python** on the next page of 
 
 Use the skills you just learned to modify the list that you created previously. 
 
-Modify `precip_by_location` to look like this `[1, 20.23, 'inches', 'Boulder', 'Colorado']`.
+Modify `precip_by_location` to look like: 
+
+`[1, 20.23, 'inches', 'Boulder', 'Colorado']`
 
 There are a lot of ways to go about this, so don't be afraid to be creative! 
 
