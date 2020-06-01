@@ -132,7 +132,7 @@ The cell below includes a set of tests to see if you correctly completed the act
 Be sure to run the cell below to check your code (please do not modify the cell!).
 
 ```python
-# Run this cell to ensure precip_by_location was created correctly  
+# Run this cell to ensure precip_by_location was created correctly
 try:
     if isinstance(precip_by_location, list):
         print("precip_by_location is a list!")
@@ -140,9 +140,9 @@ try:
             print("precip_by_location has the correct length!")
             if isinstance(precip_by_location[2], str):
                 print("precip_by_location contains a string value at index 2!")
-            else: 
+            else:
                 print("precip_by_location does not contain a string value at index 2.\n",
-                      "Make sure to add a string value at list index 2.\n", 
+                      "Make sure to add a string value at list index 2.\n",
                       "Remember python list indexing starts at 0!")
         else:
             print("precip_by_location does not have the correct length.\n",
@@ -339,8 +339,13 @@ Be sure to run the cell below to check your code (please do not modify the cell!
 # Run this cell to ensure the list was modified correctly
 answer = [1, 20.23, 'inches', 'Boulder', 'Colorado']
 
-if precip_by_location == answer:
-    print("You correctly modified the list, good job!")
-else: 
-    print("Your list didn't match the expected list. Here is the list you produced: {}".format(precip_by_location))
+try:
+    if precip_by_location == answer:
+        print("You correctly modified the list, good job!")
+    else:
+        print("Your list didn't match the expected list. Here is the list you produced: {}".format(
+            precip_by_location))
+except NameError:
+    print("Couldn't find list named precip_by_location, make sure the cells where you assigned the \n",
+          "list have been run properly.")
 ```

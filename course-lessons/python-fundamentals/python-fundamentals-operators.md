@@ -97,8 +97,7 @@ In the cell below, create two variables:
 Using only these variables and arithmetic operators, create a third variable `march_precip_mm`, which contains the average March precipitation for Boulder converted to millimeters (mm). 
 
 ```python
-# Create march_precip_mm equal to March precip in millimeters 
-
+# Create march_precip_mm equal to March precip in millimeters
 ```
 
 The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
@@ -171,7 +170,6 @@ Using the `+=` operator, add `december_precip_nyc` to `annual_avg_precip_nyc`, s
 
 ```python
 # Add december_precip_nyc to annual_avg_precip_nyc using += operator
-
 ```
 
 The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
@@ -180,10 +178,14 @@ Be sure to run the cell below to check your code (please do not modify the cell!
 
 ```python
 # Tests to ensure the lists were added correctly
-if annual_avg_precip_nyc == 46.23:
-    print("Variables added correctly!")
-else:
-    print("Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(annual_avg_precip_nyc))
+try:
+    if annual_avg_precip_nyc == 46.23:
+        print("Variables added correctly!")
+    else:
+        print("Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(
+            annual_avg_precip_nyc))
+except NameError:
+    print("Could not find a variable named 'annual_avg_precip_nyc'. Check that your spelling is correct in your assignment of the variable!")
 ```
 
 ## Print Output
@@ -285,6 +287,14 @@ Relational operations return a boolean value.
 3 >= 4
 ```
 
+Similar to other types of variable types, `bool` values can be assigned to a variable. You do not need to put the operation in parenthesis, as is done below, but it helps with the legibility of the code.
+
+```python
+is_greater = (3 > 2)
+
+is_greater
+```
+
 ## Identity Operators
 
 An identity operator, such as `is`, will check if two variables are referring to the same object. 
@@ -326,6 +336,14 @@ You can also combine `is` with `not` to check that two variables are NOT the sam
 
 ```python
 temp_1 is not temp_2
+```
+
+Like all other types of boolean values, the outputs of these operations can be assigned to variables as well.
+
+```python
+is_the_same = (temp_1 is temp_2)
+
+is_the_same
 ```
 
 ## Membership Operators

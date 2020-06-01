@@ -39,45 +39,18 @@
 #
 # 2. Use the appropriate arithmetic operator to convert the monthly variables for `jan` to `dec` from inches to millimeters (1 inch = 25.4 mm).
 #
-# 3. Create a list that contains the converted monthly average precipitation values in millimeters. Print your list (hint: `print(list_name)`).
+# 3. Create a list that contains the converted monthly average precipitation values in millimeters. Name it `precip`. Print your list (hint: `print(list_name)`).
 #
-# 4. Create a list that contains the month names from the table above.
+# 4. Create a list that contains the month names from the table above. Name it `months`. 
 #
 # </div>
 
 # + tags=["hide"]
 # Create monthly variables
-jan = 0.70 
-feb = 0.75 
-mar = 1.85 
-apr = 2.93 
-may = 3.05 
-june = 2.02
-july = 1.93
-aug = 1.62
-sept = 1.84
-oct = 1.31
-nov = 1.39
-dec = 0.84
 
 # Convert to mm
-jan = jan * 25.4
-feb = feb * 25.4
-mar = mar * 25.4
-apr = apr * 25.4
-may = may * 25.4
-june = june * 25.4
-july = july * 25.4
-aug = aug * 25.4
-sept = sept * 25.4
-oct = oct * 25.4
-nov = nov * 25.4
-dec = dec * 25.4
 
-listname_months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
-listname_precip = [jan, feb, mar, apr, may, june, july, aug, sept, oct, nov, dec]
-
-print(listname_precip)
+# Assign lists, one list of monthly name variables and one with the converted measurment variables.
 # -
 
 # <div class="notice--warning" markdown="1">
@@ -98,7 +71,7 @@ print(listname_precip)
 # ```
 #
 # Customize this plot by:
-# 1. Replacing `listname_months` and `listname_precip` with the names of the lists that you created. 
+# 1. Replacing `listname_months` and `listname_precip` with the names of the lists that you created (`months` and `precip`) 
 # 2. Change the <a href="https://matplotlib.org/mpl_examples/color/named_colors.hires.png" target="_blank">color of the plot</a> to aqua.
 # 3. Update the text for the titles and axes labels. 
 # 4. Modifying the values in `figsize=(10, 10)` to change the size of your plot. 
@@ -113,11 +86,82 @@ print(listname_precip)
 # </div>
 
 # + caption="This plot displays monthly average precipitation values in millimeters for Boulder, CO." label="fig:bar_boulder_monthly_avg_precip" tags=["hide"]
-# Import necessary plot package
-import matplotlib.pyplot as plt
+# Copy and paste the code from the cell above here. Modify the values as instructed.
+# -
 
-# Plot monthly precipitation values
-fig, ax = plt.subplots(figsize=(10, 10))
-ax.bar(listname_months, listname_precip, color="blue")
-ax.set(title="Add plot title here.",
-       xlabel="Add x axis label here.", ylabel="Add y axis label here.");
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
+
+# +
+### DO NOT MODIFY THE CODE BELOW ###
+# This code is here to check your plot, please put your code for your plot above these comments
+import matplotcheck.base as mpc
+
+correct_month_names = ["Jan", "Feb", "Mar", "Apr", "May",
+                       "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+correct_month_precip = [17.779999999999998, 19.049999999999997, 46.99, 74.422,
+                        77.46999999999998, 51.308, 49.022, 41.148, 46.736, 33.274, 35.306, 21.336]
+
+try:
+    if months == correct_month_names:
+        print("List of month names successfully assigned and has correct values!")
+    else:
+        error_msg = """There is a variable named 'months', but it is assigned these values:\n{}
+Please ensure that the values are strings with the month names from the table above."""
+        print(error_msg.format(months))
+except NameError:
+    print("Could not find a list named 'months', please ensure that your list containing\n",
+          "the month names has been assigned to the variable name 'months'.")
+
+try:
+    if precip == correct_month_precip:
+        print("List of month precip values successfully assigned and has correct converted values!")
+    else:
+        error_msg = """There is a variable named 'precip', but it is assigned these values:\n{}
+Please ensure that the values are the values from the table above, 
+but converted to be mm instead of inches"""
+        print(error_msg.format(precip))
+except NameError:
+    print("Could not find a list named 'precip', please ensure that your list containing\n",
+          "the converted month precip values has been assigned to the variable name 'precip'.")
+
+try:
+    plot_test = mpc.PlotTester(ax)
+    try:
+        plot_test.assert_plot_type(
+            "bar",
+            "Plot is not a bar type, make sure that the original code you copied wasn't modified to change the plot type!")
+        print("Plot is a bar type.")
+    except AssertionError as error:
+        print(error)
+
+    try:
+        needed_titles = [["Boulder"], [
+            "average", "mean"], ["month"], ["precip"]]
+        plot_test.assert_title_contains(
+            strings_expected=needed_titles,
+            message_default="Please make sure that the title contains all needed keywords specified in the instructions")
+        print("Plot has all of the needed keywords in the title.")
+    except AssertionError as error:
+        print(error)
+
+    try:
+        needed_xaxis_words = [["precip"], ["mm", "millimeters"]]
+        plot_test.assert_axis_label_contains(
+            strings_expected=needed_xaxis_words,
+            message_default="Please make sure that the x axis contains all needed keywords specified in the instructions")
+        print("Plot has all of the needed keywords in the x axis.")
+    except AssertionError as error:
+        print(error)
+
+    try:
+        needed_yaxis_words = ["month"]
+        plot_test.assert_axis_label_contains(
+            strings_expected=needed_yaxis_words,
+            message_default="Please make sure that the y axis contains all needed keywords specified in the instructions")
+        print("Plot has all of the needed keywords in the y axis.")
+    except AssertionError as error:
+        print(error)
+except NameError:
+    print("Can't find variable 'ax', please make sure you copy and pasted the code correctly into the cell above.")

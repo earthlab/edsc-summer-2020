@@ -80,28 +80,28 @@ jan_precip * 25.4
 
 # ### Interactive Activity
 #
-# Below, you are given two variables. 
-# ```
-# a = 5
-# b = 2
-# ```
-# Create a thrid variable, `c`, which is equal to 8. To do this, only use the given variables (`a` and `b`) and arithmetic operators!
+# In the cell below, create two variables: 
+# * `march_precip_in` that is equal to `1.85`
+# * `in_to_mm` that is equal to `25.4`
+#
+# Using only these variables and arithmetic operators, create a third variable `march_precip_mm`, which contains the average March precipitation for Boulder converted to millimeters (mm). 
 
-a = 5
-b = 2
-# Using a and b, create a variable named c which is equal to 8
+# +
+# Create march_precip_mm equal to March precip in millimeters
+# -
 
-
-# The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
 
 # Test to make sure that the variable was assigned correctly
 try:
-    if c == 8:
-        print("Correctly assigned c to be 8!")
+    if march_precip_mm == 46.99:
+        print("Correctly assigned march_precip_mm to be 46.99!")
     else:
-        print("c doesn't equal 8, it instead equals {}. Make sure your arithmetic operators are accurate and correctly assigned to the variable.".format(c))
+        print("march_precip_mm doesn't equal 46.99, it instead equals {}. Make sure your arithmetic operators are accurate and correctly assigned to the variable.".format(march_precip_mm))
 except NameError:
-    print("We couldn't find any variable named c, make sure that you correctly assigned the variable and ran the cell above.")
+    print("We couldn't find any variable named march_precip_mm, make sure that you correctly assigned the variable and ran the cell above.")
 
 # ## Assignment Operators
 #
@@ -143,25 +143,29 @@ months
 
 # ### Interactive Activity
 #
-# Below, you are given two variables, `total_precip_nyc` and `december_precip_nyc`. Add `december_precip_nyc` to `total_precip_nyc` using the `+=` operator.
+# In the cell below, create two variables: 
+# * `annual_avg_precip_nyc` that is equal to `42.65` (and is missing the december average precipitation)
+# * `dec_avg_precip_nyc` that is equal to `3.58`
+#
+# Using the `+=` operator, add `december_precip_nyc` to `annual_avg_precip_nyc`, so that `annual_avg_precip_nyc` represents the complete annual average precipitation in New York City. 
 
 # +
-total_precip_nyc = 42.65
-december_precip_nyc = 3.5
-
-# Below this line, combine the two variables
+# Add december_precip_nyc to annual_avg_precip_nyc using += operator
 # -
 
-# The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
 
-# + tags=["hide"]
 # Tests to ensure the lists were added correctly
-
-if total_precip_nyc == 46.15:
-    print("Variables added correctly!")
-else:
-    print("Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(total_precip_nyc))
-# -
+try:
+    if annual_avg_precip_nyc == 46.23:
+        print("Variables added correctly!")
+    else:
+        print("Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(
+            annual_avg_precip_nyc))
+except NameError:
+    print("Could not find a variable named 'annual_avg_precip_nyc'. Check that your spelling is correct in your assignment of the variable!")
 
 # ## Print Output
 #
@@ -203,9 +207,11 @@ print("January precipitation:", jan_precip)
 
 # ## Relational Operators
 #
-# Often in python you need to compare two values against each other. For these checks, you can check a statement, such as `3 < 4` and get returned one of two values from python: `True` or `False`. These are called boolean values, and can be very powerful in scripts. A boolean is simply one bit of data that is either 1 (True), or 0 (False). Like strings or integers, booleans are there own data type.
+# Often in **Python**, you need to compare two values against each other. To do this, you can check a statement, such as `3 < 4`, and get returned one of two values from **Python**: `True` or `False`. These are called boolean values and can be very powerful in scripting workflows. 
 #
-# In **Python**, there are <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/#relational-operators" target="_blank">many relational operations</a> that can be completed, including operators for: 
+# A boolean is simply one bit of data that is either 1 (True), or 0 (False). Like strings or integers, booleans are their own data type.
+#
+# In **Python**, there are <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/#relational-operators" target="_blank">many relational operations</a> that can be used, including operators for: 
 # * equal (`==`)
 # * not equal (`!=`)
 # * greater than (`>`)
@@ -235,44 +241,70 @@ type(True)
 
 3 >= 4
 
-# ## Identity Operators
-#
-# An identity operator, such as `is`, will check if two variables are referring to the same object. It is similar to the `==` operator, except that it will not only check that the values of two variables are identical, but it will check that they are referring to the exact same thing. It's a subtle distinction, but can be very useful. 
+# Similar to other types of variable types, `bool` values can be assigned to a variable. You do not need to put the operation in parenthesis, as is done below, but it helps with the legibility of the code.
 
 # +
-temps1 = [70, 68, 74]
-temps2 = [70, 68, 74]
-temps3 = temps1
+is_greater = (3 > 2)
 
-temps1 is temps3
+is_greater
 # -
 
-temps1 == temps3
+# ## Identity Operators
+#
+# An identity operator, such as `is`, will check if two variables are referring to the same object. 
+#
+# It is similar to the `==` operator, except that it will not only check that the values of two variables are identical, but it will check that they are referring to the exact same thing in **Python**. It's a subtle distinction, but can be very useful. 
 
-temps1 == temps2
+# +
+# Create variables to compare
+temp_1 = [70, 68, 74]
+temp_2 = [70, 68, 74]
 
-# Here we can see the distinction. Even though `temps1` and `temps2` are identical to one another, they are technically not the same list. But, since `temps3` was set to equal `temps1`, they are the exact same object. 
+# Create temp_3 from temp_1
+temp_3 = temp_1
+# -
 
-temps1 is temps2
+# Test that temp_3 the same as temp_1
+temp_1 is temp_3
 
-# `is` can be combined with `not` to check that two items are NOT the same
+# While temp_1 and temp_2 contain the same values...
+temp_1 == temp_2
 
-temps1 is not temps2
+# They have been created independently
+temp_1 is temp_2
+
+# With this example, you can easily see the distinction between `==` and `is`. 
+#
+# Even though `temp_1` and `temp_2` are identical to one another, they are technically not the same list. 
+#
+# However, since `temp_3` was set to equal `temp_1`, they are exactly the same. 
+
+# You can also combine `is` with `not` to check that two variables are NOT the same. 
+
+temp_1 is not temp_2
+
+# Like all other types of boolean values, the outputs of these operations can be assigned to variables as well.
+
+# +
+is_the_same = (temp_1 is temp_2)
+
+is_the_same
+# -
 
 # ## Membership Operators
 #
-# A membership operator, such as `in`, will check if one item contains another item. This can be useful with strings, lists, or other data storage objects such as dataframes. 
+# A membership operator, such as `in`, will check if one item contains another item. This can be useful with strings, lists, or other data storage objects that you will learn about in later lessons, such as dataframes. 
 
 # +
 precip = "Precipitation"
 
-
 'Precip' in precip
 # -
 
-68 in temps1
+68 in temp_1
 
-69 not in temps1
+# You can also combine in with not to check for non-membership
+69 not in temp_1
 
 # ## Logical Operators
 #
@@ -285,40 +317,41 @@ precip = "Precipitation"
 # Both `False and False` and `False or False` will return `False`. 
 
 # True and True
-68 in temps1 and 70 in temps1
+68 in temp_1 and 70 in temp_1
 
 # True and False
-68 in temps1 and 69 in temps1
+68 in temp_1 and 69 in temp_1
 
 # True or True
-68 in temps1 or 70 in temps1
+68 in temp_1 or 70 in temp_1
 
 # True or False
-68 in temps1 or 69 in temps1
+68 in temp_1 or 69 in temp_1
 
 # ### Interactive Activity
 #
 # Below, there are variables assigned to the output of either relational, identity, membership, or logical operations. Currently, each operation is returning `False`. Modify the operations so that they will all return `True`.
 
 # +
-# Relational operation currently returning False, change the below operation so it returns True
-relational = 3 <= 2
+# Modify relational operation so the assigned variable returns True
+relational = (3 <= 2)
 
-# Identity operation currently returning False, change the below operation so it returns True
-identity = 4 is 3
+# Modify identity operation so the assigned variable returns True
+identity = (4 is 3)
 
-# Membership operation currently returning False, change the below operation so it returns True
-membership = 72 in temps1
+# Modify membership operation so the assigned variable returns True
+membership = (72 in temp_1)
 
-# Logical operation currently returning False, change the below operation so it returns True
-logical = True and False
+# Modify logical operation so the assigned variable returns True
+logical = (68 in temp_1 and 69 in temp_1)
 # -
 
-# The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
 
-# + tags=["hide"]
+# +
 # Tests to see if the operations have been modified correctly
-
 operations = [relational, identity, membership, logical]
 operation_names = ["relational", "identity", "membership", "logical"]
 

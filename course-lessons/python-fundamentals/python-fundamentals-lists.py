@@ -111,51 +111,48 @@ len(months)
 
 # ### Interactive Activity
 #
-# Create a list! Make a list called `multi_type_list` that has a length of 5, contains a string, a float, and an integer, and has a string at index `1`. 
+# Create a list! Make a list called `precip_by_location` that has a length of 3 and contains a string for `New York City` at index `2`, a float for the [average annual precipitation in New York City](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996) (46.23 inches), and a string for the units (`inches`). 
+#
+# Note that this means the float value for precipitation and the string value for units can be in any location, but the string for `New York City` needs to be at index `2`. 
 
 # +
 # Create your list below this line!
 # -
 
-# The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
 
-# + tags=["hide"]
-# Tests to ensure the multi_type_list was created properly. 
+# Run this cell to ensure precip_by_location was created correctly
 try:
-    if isinstance(multi_type_list, list):
-        print("mutli_type_list is a list!")
-        if len(multi_type_list) == 5:
-            print("mutli_type_list has the correct length!")
-            if isinstance(multi_type_list[1], str):
-                print("mutli_type_list contains a string value at index 1!")
-            else: 
-                print("mutli_type_list does not contain a string value at index 1.\n",
-                      "Make sure to add a string value at list index 1.\n", 
+    if isinstance(precip_by_location, list):
+        print("precip_by_location is a list!")
+        if len(precip_by_location) == 3:
+            print("precip_by_location has the correct length!")
+            if isinstance(precip_by_location[2], str):
+                print("precip_by_location contains a string value at index 2!")
+            else:
+                print("precip_by_location does not contain a string value at index 2.\n",
+                      "Make sure to add a string value at list index 2.\n",
                       "Remember python list indexing starts at 0!")
         else:
-            print("multi_type_list does not have the correct length.\n",
-                  "Make sure that the list has exactly 5 values in it.")
-        if any([isinstance(i, str) for i in multi_type_list]):
-            print("mutli_type_list contains a string value!")
+            print("precip_by_location does not have the correct length.\n",
+                  "Make sure that the list has exactly 3 values in it.")
+        if any([isinstance(i, str) for i in precip_by_location]):
+            print("precip_by_location contains a string value!")
         else:
-            print("mutli_type_list does not contain a string value.\n",
+            print("precip_by_location does not contain a string value.\n",
                   "Make sure to make one of the values in your list a string.")
-        if any([isinstance(i, int) for i in multi_type_list]):
-            print("mutli_type_list contains an integer value!")
+        if any([isinstance(i, float) for i in precip_by_location]):
+            print("precip_by_location contains a float value!")
         else:
-            print("mutli_type_list does not contain an integer value.\n",
-                  "Make sure to make one of the values in your list an integer.")
-        if any([isinstance(i, float) for i in multi_type_list]):
-            print("mutli_type_list contains a float value!")
-        else:
-            print("mutli_type_list does not contain a float value.\n",
+            print("precip_by_location does not contain a float value.\n",
                   "Make sure to make one of the values in your list a float.")
     else:
-        print("mutli_type_list is not a list. Make sure that you formatted the list\n",
-              "correctly and spelled the variable name right.")
+        print("precip_by_location is not a list. Make sure that you formatted the list\n",
+              "correctly and spelled the variable name correctly.")
 except NameError:
-    print("'multi_type_list' is not defined. Make sure you spelled the variable name right!")
-# -
+    print("'precip_by_location' is not defined. Make sure you spelled the variable name correctly!")
 
 # ## Query List Items Using Index
 #
@@ -193,6 +190,36 @@ months[1] = "Feb"
 
 months
 # -
+
+# ## Insert Items into Lists
+#
+# You can also use the list index to insert new items into a list by specifying at which index location you want to new value to be. The index locations for the other values in the list will be automatically updated. 
+#
+# For example, if you want to insert a value at the beginning of the list, you can use:
+#
+# `list_name.insert(0, value)`
+#
+# In the example below, the months list is incomplete, and the value for January is inserted at the beginning of the list. This automatically updates the index locations for the existing items, such as `February`, which began as index `0` and becomes index `1` when `January` is inserting at the beginning of the list.  
+
+# +
+# Month list missing the first value for January
+months = ["February", "March"]
+
+# Check index value at 0
+months[0]
+
+# +
+# Modify list to add January at the beginning
+months.insert(0, "January")
+
+months
+# -
+
+# Check index value at 0 in modified list
+months[0]
+
+# February is now at index 1
+months[1]
 
 # ## Delete Items From List
 #
@@ -269,20 +296,32 @@ months
 
 # ### Interactive Activity
 #
-# Let's use these skills we just learned to modify an existing list. Below is a list called `modify_me`. Modify the list from what it is now, `[1, 3.2, 5, 9, "hi!"]`, to `["first!", 1, 3.2, 8, 9, "hello!", "last!"]`. There are a lot of ways to go about this, so don't be afraid to be creative! 
+# Use the skills you just learned to modify the list that you created previously. 
+#
+# Modify `precip_by_location` to look like: 
+#
+# `[1, 20.23, 'inches', 'Boulder', 'Colorado']`
+#
+# There are a lot of ways to go about this, so don't be afraid to be creative! 
 
-# Use the operators we learned to modify the list below! 
-modify_me = [1, 3.2, 5, 9, "hi!"]
-# Add your code below this line. Don't modify line above, and don't manually type out the answer. 
-# Use the operators from the lesson! 
+# +
+# Use the list operators you learned to modify precip_by_location
+# -
 
-# The cell below is a set of automatic tests to see if you correctly completed the activity in the cell above. They will provide you with feedback on the activity. Please do not modify the cell below! 
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
 
-# + tags=["hide"]
-# Tests to ensure the modify_me list was modified correctly
-answer = ["first!", 1, 3.2, 8, 9, "hello!", "last!"]
+# +
+# Run this cell to ensure the list was modified correctly
+answer = [1, 20.23, 'inches', 'Boulder', 'Colorado']
 
-if modify_me == answer:
-    print("You correctly modified the list, good job!")
-else: 
-    print("Your list didn't match the expected list. Here is the list you produced: {}".format(modify_me))
+try:
+    if precip_by_location == answer:
+        print("You correctly modified the list, good job!")
+    else:
+        print("Your list didn't match the expected list. Here is the list you produced: {}".format(
+            precip_by_location))
+except NameError:
+    print("Couldn't find list named precip_by_location, make sure the cells where you assigned the \n",
+          "list have been run properly.")
