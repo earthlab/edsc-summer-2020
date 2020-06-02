@@ -165,6 +165,7 @@ check to see why that may be!""".format(
 
     return return_message
 
+
 # TESTS FOR THE EXERCISE NOTEBOOK
 def exercise_test_months_list(months):
     """Testing that the months list created is correct"""
