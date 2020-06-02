@@ -89,7 +89,7 @@ jan_precip * 25.4
 # Using only these variables and arithmetic operators, create a third variable `march_precip_mm`, which contains the average March precipitation for Boulder converted to millimeters (mm). 
 
 # Create march_precip_mm equal to March precip in millimeters
-march_precip_mm = 46.998
+
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
@@ -153,6 +153,7 @@ months
 # Using the `+=` operator, add `december_precip_nyc` to `annual_avg_precip_nyc`, so that `annual_avg_precip_nyc` represents the complete annual average precipitation in New York City. 
 
 # Add december_precip_nyc to annual_avg_precip_nyc using += operator
+
 
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
