@@ -29,11 +29,11 @@
 #
 # ## What are Operators in Python?
 #
-# Operators are symbols in Python that carry out a specific computation, or operation. The value or condition that the operator operates on is called the operand.
+# Operators are symbols in Python that carry out a specific computation, or operation. The value or condition that the operator operates on is called the operand. 
 #
-# The operand can be a variable (e.g. `jan_precip_in` which has some value, say, 0.70) or data structure like a list (e.g. `months`). The operand can also be an expression or statement (e.g. checking that list `months` contains the value `January`).
+# The operand can be a variable (e.g. `jan_precip_in` which has some value, say, 0.70) or data structure like a list (e.g. `months`). The operand can also be an expression or statement (e.g. checking that list `months` contains the value `January`). 
 #
-# There are <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/" target="_blank">many different types of operators</a> in **Python** including:
+# There are <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/" target="_blank">many different types of operators</a> in **Python** including: 
 #
 # | Operator | Usage | Example |
 # |:-----------------------------------|:-----------------------------------|:-----------------------------------|
@@ -46,14 +46,14 @@
 
 # ## Arithmetic Operators
 #
-# In **Python**, there are <a href="https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex" target="_blank">many arithmetic operations</a> that can be completed, including operators for:
+# In **Python**, there are <a href="https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex" target="_blank">many arithmetic operations</a> that can be completed, including operators for: 
 # * addition (`+`)
 # * subtraction (`-`)
 # * multiplication (`*`)
 # * division (`/`)
 # * exponents (`**`)
 #
-# Review the cells below and notice that the output is automatically printed without the need to tell **Python** to display the output.
+# Review the cells below and notice that the output is automatically printed without the need to tell **Python** to display the output. 
 
 # +
 a = 2
@@ -82,17 +82,17 @@ jan_precip * 25.4
 
 # ### Interactive Activity
 #
-# In the cell below, create two variables:
+# In the cell below, create two variables: 
 # * `march_precip_in` that is equal to `1.85`
 # * `in_to_mm` that is equal to `25.4`
 #
-# Using only these variables and arithmetic operators, create a third variable `march_precip_mm`, which contains the average March precipitation for Boulder converted to millimeters (mm).
+# Using only these variables and arithmetic operators, create a third variable `march_precip_mm`, which contains the average March precipitation for Boulder converted to millimeters (mm). 
 
 # +
 # Create march_precip_mm equal to March precip in millimeters
 # -
 
-# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity.
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
 # Be sure to run the cell below to check your code (please do not modify the cell!).
 
@@ -101,33 +101,27 @@ try:
     if march_precip_mm == 46.99:
         print("Correctly assigned march_precip_mm to be 46.99!")
     else:
-        print(
-            "march_precip_mm doesn't equal 46.99, it instead equals {}. Make sure your arithmetic operators are accurate and correctly assigned to the variable.".format(
-                march_precip_mm
-            )
-        )
+        print("march_precip_mm doesn't equal 46.99, it instead equals {}. Make sure your arithmetic operators are accurate and correctly assigned to the variable.".format(march_precip_mm))
 except NameError:
-    print(
-        "We couldn't find any variable named march_precip_mm, make sure that you correctly assigned the variable and ran the cell above."
-    )
+    print("We couldn't find any variable named march_precip_mm, make sure that you correctly assigned the variable and ran the cell above.")
 
 # ## Assignment Operators
 #
-# While arithmetic operators are very useful for calculations, they do not change the original values.
+# While arithmetic operators are very useful for calculations, they do not change the original values. 
 #
-# For example, the variable `jan_precip` continues to store the value `0.7` (the measurement in inches), even after the calculations completed above.
+# For example, the variable `jan_precip` continues to store the value `0.7` (the measurement in inches), even after the calculations completed above. 
 
 jan_precip
 
-# If you want to assign a new value as a result of a calculation, you can use an assignment operator, which combines the arithmetic operator (e.g. `*`) with the `=` to set a new value.
+# If you want to assign a new value as a result of a calculation, you can use an assignment operator, which combines the arithmetic operator (e.g. `*`) with the `=` to set a new value. 
 #
-# For example, you can combine `*` and `=` to multiple a value and set the result equal to itself plus the new value.
+# For example, you can combine `*` and `=` to multiple a value and set the result equal to itself plus the new value. 
 
 jan_precip *= 25.4
 
-# Recall that on the previous page on working with lists, you also used an assignment operator to add items to the end of a list.
+# Recall that on the previous page on working with lists, you also used an assignment operator to add items to the end of a list. 
 #
-# This is a special case of the addition assignment operator `+=` because it is not actually completing a mathematical operation on the list.  It simply adds the values as new items to the end of the list.
+# This is a special case of the addition assignment operator `+=` because it is not actually completing a mathematical operation on the list.  It simply adds the values as new items to the end of the list. 
 
 # +
 months = ["January", "February"]
@@ -140,28 +134,28 @@ months += ["March", "April"]
 months
 # -
 
-# However, not all assignment operators can be used on all object types. For example, the following code will result in an error because lists cannot have mathematical operations executed on them.
+# However, not all assignment operators can be used on all object types. For example, the following code will result in an error because lists cannot have mathematical operations executed on them.  
 #
 # ```python
 # boulder_precip_in = [0.70, 0.75, 1.85]
 # boulder_precip_in *= 25.4
 # ```
 #
-# You can review the <a href="https://docs.python.org/3/library/stdtypes.html#" target="_blank">Python docs on types and operations</a> to see what kinds of operations can be run on different object types.
+# You can review the <a href="https://docs.python.org/3/library/stdtypes.html#" target="_blank">Python docs on types and operations</a> to see what kinds of operations can be run on different object types. 
 
 # ### Interactive Activity
 #
-# In the cell below, create two variables:
+# In the cell below, create two variables: 
 # * `annual_avg_precip_nyc` that is equal to `42.65` (and is missing the december average precipitation)
 # * `dec_avg_precip_nyc` that is equal to `3.58`
 #
-# Using the `+=` operator, add `december_precip_nyc` to `annual_avg_precip_nyc`, so that `annual_avg_precip_nyc` represents the complete annual average precipitation in New York City.
+# Using the `+=` operator, add `december_precip_nyc` to `annual_avg_precip_nyc`, so that `annual_avg_precip_nyc` represents the complete annual average precipitation in New York City. 
 
 # +
 # Add december_precip_nyc to annual_avg_precip_nyc using += operator
 # -
 
-# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity.
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
 # Be sure to run the cell below to check your code (please do not modify the cell!).
 
@@ -170,15 +164,10 @@ try:
     if annual_avg_precip_nyc == 46.23:
         print("Variables added correctly!")
     else:
-        print(
-            "Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(
-                annual_avg_precip_nyc
-            )
-        )
+        print("Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(
+            annual_avg_precip_nyc))
 except NameError:
-    print(
-        "Could not find a variable named 'annual_avg_precip_nyc'. Check that your spelling is correct in your assignment of the variable!"
-    )
+    print("Could not find a variable named 'annual_avg_precip_nyc'. Check that your spelling is correct in your assignment of the variable!")
 
 # ## Print Output
 #
@@ -190,9 +179,9 @@ jan_precip = 0.70
 jan_precip *= 25.4
 # -
 
-# To see the new value, you can call the variable name (e.g. `jan_precip`), or you can use the print statement (e.g. `print(jan_precip)`) to display the new value.
+# To see the new value, you can call the variable name (e.g. `jan_precip`), or you can use the print statement (e.g. `print(jan_precip)`) to display the new value. 
 #
-# Using the print statement can be very helpful because then you can print multiple values.
+# Using the print statement can be very helpful because then you can print multiple values. 
 #
 # For example, notice calling only the variable names (e.g. `a`, `jan_precip`, `b`), you are only shown the value of the last variable.
 
@@ -200,7 +189,7 @@ a
 jan_precip
 b
 
-# Using `print()`, you can print as many things as you want.
+# Using `print()`, you can print as many things as you want. 
 
 print(a)
 print(jan_precip)
@@ -208,23 +197,23 @@ print(b)
 
 # You can even combine the variables with a text string in a print statement by including a text string `"text"` within the print statement.
 #
-# To do this, simply separate the text string from the object that is being printed using a comma `,`.
+# To do this, simply separate the text string from the object that is being printed using a comma `,`. 
 
 print("January precipitation:", jan_precip)
 
-# Notice that the word `print` does not show up the output. Instead, you simply see the result, without the parentheses or quotations for the text string.
+# Notice that the word `print` does not show up the output. Instead, you simply see the result, without the parentheses or quotations for the text string. 
 #
-# **You have now deliberately used your first Python function!** Functions in **Python** are commands that can take inputs that are used to produce output.
+# **You have now deliberately used your first Python function!** Functions in **Python** are commands that can take inputs that are used to produce output. 
 #
-# You will learn more about functions later in these exercises, and you will use the `print` function a lot, as it can be very handy for viewing results and for communicating the status of your code.
+# You will learn more about functions later in these exercises, and you will use the `print` function a lot, as it can be very handy for viewing results and for communicating the status of your code. 
 
 # ## Relational Operators
 #
-# Often in **Python**, you need to compare two values against each other. To do this, you can check a statement, such as `3 < 4`, and get returned one of two values from **Python**: `True` or `False`. These are called boolean values and can be very powerful in scripting workflows.
+# Often in **Python**, you need to compare two values against each other. To do this, you can check a statement, such as `3 < 4`, and get returned one of two values from **Python**: `True` or `False`. These are called boolean values and can be very powerful in scripting workflows. 
 #
 # A boolean is simply one bit of data that is either 1 (True), or 0 (False). Like strings or integers, booleans are their own data type.
 #
-# In **Python**, there are <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/#relational-operators" target="_blank">many relational operations</a> that can be used, including operators for:
+# In **Python**, there are <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/#relational-operators" target="_blank">many relational operations</a> that can be used, including operators for: 
 # * equal (`==`)
 # * not equal (`!=`)
 # * greater than (`>`)
@@ -236,7 +225,7 @@ print("January precipitation:", jan_precip)
 
 type(True)
 
-# Relational operations return a boolean value.
+# Relational operations return a boolean value. 
 
 3 < 4
 
@@ -257,16 +246,16 @@ type(True)
 # Similar to other types of variable types, `bool` values can be assigned to a variable. You do not need to put the operation in parenthesis, as is done below, but it helps with the legibility of the code.
 
 # +
-is_greater = 3 > 2
+is_greater = (3 > 2)
 
 is_greater
 # -
 
 # ## Identity Operators
 #
-# An identity operator, such as `is`, will check if two variables are referring to the same object.
+# An identity operator, such as `is`, will check if two variables are referring to the same object. 
 #
-# It is similar to the `==` operator, except that it will not only check that the values of two variables are identical, but it will check that they are referring to the exact same thing in **Python**. It's a subtle distinction, but can be very useful.
+# It is similar to the `==` operator, except that it will not only check that the values of two variables are identical, but it will check that they are referring to the exact same thing in **Python**. It's a subtle distinction, but can be very useful. 
 
 # +
 # Create variables to compare
@@ -286,32 +275,32 @@ temp_1 == temp_2
 # They have been created independently
 temp_1 is temp_2
 
-# With this example, you can easily see the distinction between `==` and `is`.
+# With this example, you can easily see the distinction between `==` and `is`. 
 #
-# Even though `temp_1` and `temp_2` are identical to one another, they are technically not the same list.
+# Even though `temp_1` and `temp_2` are identical to one another, they are technically not the same list. 
 #
-# However, since `temp_3` was set to equal `temp_1`, they are exactly the same.
+# However, since `temp_3` was set to equal `temp_1`, they are exactly the same. 
 
-# You can also combine `is` with `not` to check that two variables are NOT the same.
+# You can also combine `is` with `not` to check that two variables are NOT the same. 
 
 temp_1 is not temp_2
 
 # Like all other types of boolean values, the outputs of these operations can be assigned to variables as well.
 
 # +
-is_the_same = temp_1 is temp_2
+is_the_same = (temp_1 is temp_2)
 
 is_the_same
 # -
 
 # ## Membership Operators
 #
-# A membership operator, such as `in`, will check if one item contains another item. This can be useful with strings, lists, or other data storage objects that you will learn about in later lessons, such as dataframes.
+# A membership operator, such as `in`, will check if one item contains another item. This can be useful with strings, lists, or other data storage objects that you will learn about in later lessons, such as dataframes. 
 
 # +
 precip = "Precipitation"
 
-"Precip" in precip
+'Precip' in precip
 # -
 
 68 in temp_1
@@ -321,13 +310,13 @@ precip = "Precipitation"
 
 # ## Logical Operators
 #
-# Logical operators can be used to check combinations of booleans. The most common logical operators are `and` and `or`.
+# Logical operators can be used to check combinations of booleans. The most common logical operators are `and` and `or`. 
 #
-# `and` will check that both of the statements being checked are true. `True and True` will return `True`, but `True and False` will return `False`.
+# `and` will check that both of the statements being checked are true. `True and True` will return `True`, but `True and False` will return `False`. 
 #
-# `or` will check that one of the statements being checked are true. Unlike `and`, `True or True` will return `True`, and `True or False` will return `True` as well.
+# `or` will check that one of the statements being checked are true. Unlike `and`, `True or True` will return `True`, and `True or False` will return `True` as well. 
 #
-# Both `False and False` and `False or False` will return `False`.
+# Both `False and False` and `False or False` will return `False`. 
 
 # True and True
 68 in temp_1 and 70 in temp_1
@@ -347,19 +336,19 @@ precip = "Precipitation"
 
 # +
 # Modify relational operation so the assigned variable returns True
-relational = 3 <= 2
+relational = (3 <= 2)
 
 # Modify identity operation so the assigned variable returns True
-identity = 4 is 3
+identity = (4 is 3)
 
 # Modify membership operation so the assigned variable returns True
-membership = 72 in temp_1
+membership = (72 in temp_1)
 
 # Modify logical operation so the assigned variable returns True
-logical = 68 in temp_1 and 69 in temp_1
+logical = (68 in temp_1 and 69 in temp_1)
 # -
 
-# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity.
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
 # Be sure to run the cell below to check your code (please do not modify the cell!).
 
@@ -373,11 +362,8 @@ if all(operations):
 else:
     for i, operation in enumerate(operations):
         if not operation:
-            print(
-                "Your {} operation is still returning False, check to see why that may be!".format(
-                    operation_names[i]
-                )
-            )
+            print("Your {} operation is still returning False, check to see why that may be!".format(
+                operation_names[i]))
 # -
 
 #  <div class="notice--info" markdown="1">
@@ -388,4 +374,4 @@ else:
 #
 # * <a href="https://python-reference.readthedocs.io/en/latest/docs/operators/" target="_blank">Reference docs on operators</a>
 #
-# </div>
+# </div>   
