@@ -5,17 +5,22 @@
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.5'
-#       jupytext_version: 1.4.2
+#       format_version: '1.4'
+#       jupytext_version: 1.2.4
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
 #     name: python3
 # ---
 
+# <img style="float: left;" src="earth-lab-logo-rgb.png" width="150" height="150">
+#
+# # Earth Data Science Corps Summer 2020
+#
 # ![Colored Bar](colored-bar.png)
+#
+# ## Introduction to Python
 
-# # TODO: add a top bar with the logo just like we have in our homework assignments. do this for each notebook please!
 #
 # <div class='notice--success' markdown="1">
 #
@@ -23,10 +28,9 @@
 #
 # At the end of this activity, you will be able to:
 #
-# * Explain how **Python** uses variables to store data.
-# * Write **Python** code to:
-#     * create variables that store single data values (e.g. numeric values, text strings). 
-#     * check the type of a variable (e.g. integer, string).  
+# * Explain variables are used in **Python** to store information.
+# * Use **Python** code to create variables that store single data values including numbers and text strings. 
+# * Check the data type of a variable using **Python**
 # </div>
 #  
 
@@ -52,13 +56,24 @@ my_variable = 5
 # In this cell type my_variable and run the cell!
 # -
 
-# This syntax for creating variables the same whether you are assigning a numeric value (e.g. `a = 3`) or a text string value (e.g. `a = "word"` which uses `""` to indicate a text string value). This differs from some programming languages that require the variable to be explicitly assigned a data type when it is created.
+# This syntax for creating variables is the same whether you are assigning a numeric or text value to a variable. For example below you assign the variable name `a` the value of 3 which is a number:  
+#
+# `a = 3`
+#
+# Here is an example of assigning the same variable name `a` a text string value 
+#
+# `a = "a word"`.
+#
+# Notice that strings (character values) use double quotes `""` to indicate a text string value. 
+#
+#
+# <i class="fa fa-star"></i> **Data Tip:** Some programming languages require a variable to be explicitly assigned a data type when it is created. You do not need to worry about this when using `Python`, however! 
+# {: .notice--success }
+#
 #
 # ### Expressive Programming: Easy to Understand Variable Names Makes Your Code Easier to Read
 #
-# # TODO: Add link to naming conventions for directories -- if we have it to the first sentence below?? 
-#
-# Just like you want to use expressive naming conventions (names that represent what is stored within the directory) for directories on your computer, you also want to use short, clear names for your variables to make your code easier to read. Best practices for variable names include:
+# Just like you want to use <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/open-reproducible-science/get-started-open-reproducible-science/best-practices-for-organizing-open-reproducible-science/"> expressive naming conventions (names that represent what is stored within the directory)</a> for directories on your computer, you also want to use short, clear names for your variables to make your code easier to read. Best practices for variable names include:
 #
 # When naming variables, you want to avoid: 
 #
@@ -67,17 +82,19 @@ my_variable = 5
 # * long variable names
 # * words that do not represent what the variable contains (example: `my_variable` vs `precip_data`)
 #
-# When naming a variable you want to keep the name short but specific enough that someone reading your code can understand what it contains. It is good practice to use underscores (e.g. `boulder_precip_in`) to create multi-word variable names that provide specifics regarding the variable's content. The underscore makes the variable name easier to read and follows python PEP8 best practices for code readability. 
+# When naming a variable you want to keep the name short but specific enough that someone reading your code can understand what it contains. It is good practice to use underscores (e.g. `boulder_precip_in`) to create multi-word variable names that provide specifics regarding the variable's content. The underscore makes the variable name easier to read and follows python <a href="https://www.python.org/dev/peps/pep-0008/#naming-conventions" target="_blank">PEP8 best practices for code readability</a>. 
 #
-# # TODO -- add a list of good and less good variable names here (get them fromt he expressive code lessons and link to expressive code lesson as well)
+#
+# <i class="fa fa-star"></i> **Data Tip:** Read more about expressive variable names and clean code <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/write-efficient-python-code/intro-to-clean-code/expressive-variable-names-make-code-easier-to-read/">in this earth data science lesson.</a>
+# {: .notice--success }
 #
 #
 # ### Variables Are Available In Your Coding Environment Once Defined 
 #
 # A key characteristic of variables is that once you create a variable in your coding environment (that is to say you run the actual line of code that defines the variable), it is available throughout your code. So for example if you create a variable at the top of a Jupyter Notebook, the value of associated with that variable will remain the same and can be reused in cells lower down in the notebook.
 #
-# # TODO: make this statement below a data tip and add a code example of reassigning the variable to another value
-# You can overwrite an existing variable if you create a new variable with the same name. 
+# <i class="fa fa-star"></i> **Data Tip:** You can overwrite an existing variable if you create a new variable with the same name. For example if you assign `a = 5` in one cell and then assign `a = "dog"` in the next cell, the final value of `a` will be `"dog"`.
+# {: .notice--success }
 #
 # While there are occasions in which you might want to overwrite an existing variable to assign a new value to it, you want to make sure that you give variables both clear and distinct names to avoid *accidentally* overwriting variable values.  
 
@@ -89,8 +106,14 @@ temperature
 temperature = "doctor"
 temperature
 
+#
+# ## About Data Types in Python
+#
 # Python data types are important to understand when coding. Below you will learn 
-# more about the different types of variables that you can store. 
+# more about the different types of variables that you can store including:
+#
+# * Numbers (integers and floats)
+# * Strings (letters / characters and words)
 #
 # ## Numeric Variables in Python
 #
@@ -98,7 +121,8 @@ temperature
 # integers (`int`) which represent whole numbers and floating point numbers 
 # which represent decimal values (`float`).  
 #
-# For more advanced math applications, you can also use variables to work with <a href="https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex" target="_blank">complex numbers (see Python documentation for more details)</a>. 
+# <i class="fa fa-star"></i> **Data Tip:** For more advanced math applications, you can also use variables to work with <a href="https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex" target="_blank">complex numbers (see Python documentation for more details)</a>.
+# {: .notice--success }
 #
 # As described previously, you do not need to define which numeric type you want to use to create a variable. 
 #
@@ -158,25 +182,76 @@ city_state
 city_description = "Boulder, CO is the home of the University of Colorado, Boulder campus."
 
 city_description
-# -
-
-# ### Interactive Activity
-#
-# Assign values to variables! In the cell below, create a variable called `precip_int` that has an integer as its value. Then, create another variable called `precip_float` that has a float as its value. Last, create another variable called `location` that has a string as its value. 
-#
-# For these variables, use the [average annual precipitation in New York City](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
-#
-# Assign this precipitation value to variables as an integer (`precip_int`) and a float (`precip_float`). Then, assign the city name `New York City` to a string variable (`location`). 
 
 # +
-# Assign your variable values below this comment line!
+<div class="notice--warning" markdown="1">
+
+## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Interactive Activity
+
+You can 
+It's time for you to create some variables of your own! In the cell below, create the following: 
+
+1. a variable called `precip_int` that stores an integer value
+2. a variable called `precip_float` that stores a float
+3. a variable called `location` that has a string as its value. 
+
+For these variables, use the [average annual precipitation in New York City](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
+
+Assign this precipitation value to variables as an integer (`precip_int`) and a float (`precip_float`). Then, assign the city name `New York City` to a string variable (`location`). 
+
+</div>
+# -
+
+# <div class="notice--warning" markdown="1">
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Interactive Activity - What Does Float() Do?
+#
+# Run the code in the cell below. What does the `float()` function do to the value stored in the variable named `a`?
+#
+# </div>
+
+# +
+# Activity 1: run the code below - what does the float() function do? 
+a = 75
+b = float(a)
+print(a, b)
+
+# What data type is variable b? (hint: use the type() function to find out)
+
+
+# -
+
+# <div class="notice--warning" markdown="1">
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Interactive Activity  - Create Some Variables
+#
+# It's time for you to create some variables of your own! In the cell below, create the following: 
+#
+# 1. a variable called `precip_int` that stores an integer value representing the average annual precipitation in New York City.
+# 2. a variable called `precip_float` that stores a float value representing the average annual precipitation in New York City. 
+# 3. a variable called `location` that stores the string New York City which is the name of the location for this precipipitation value.
+#
+# HINT: you can coerce a floating point value to a integer using the `int()` function. Using int() to convert your floating point value to an integer. The variable name should be precip_int. 
+#
+# Try the code below to see how this works:
+#
+# ```
+# a = 75.643
+# b = int(a)
+# print(a, b)
+# ```
+#
+# NOTE: The [average annual precipitation in New York City as seen on this website is ](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which   46.23 inches. 
+#
+# </div>
+
+# +
+# Activity 2: Assign your variable values below this comment line!
 # -
 
 # The cell below includes a set of tests to see if you correctly assigned the variables in the cell above. They will provide you with feedback on each variable to ensure it was correctly assigned. 
 #
 # Be sure to run the cell below to check your variables (please do not modify the cell!).
-#
-# # TODO -- could we have a little script that runs below rather than that code? it seems complex for a new coder to have to look at? 
 
 # +
 # Run this cell to ensure variables were correctly assigned
@@ -242,7 +317,7 @@ except NameError:
 
 # ## Check Variable Type
 #
-# After you create a variable, you can check the type using the following syntax:
+# In the activities above, you used the `type()` function to determine what type of data are stored in a variable. 
 #
 # `type(variable_name)`
 #
@@ -295,24 +370,24 @@ city_precip*2
 #
 # A good reminder that it is important to make sure that you are defining variables with the appropriate syntax to distinguish between numeric and string types. 
 
-# ## Interactive Activity
+# <div class="notice--warning" markdown="1">
 #
-# In the cells below, create three variables.
-# In the first cell create a variable of type `int`.
-# In the second cell create a variable of type `float`.
-# In the third cell below create a variable of type `string`.
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge - Data Types & Math
 #
-# After you create the variable use `type()` to test that the variable is of 
-# the correct type! 
+# In the cell below, run the following code which divides variable a by variable b (`a/b`). 
+#
+# ```
+# a = 5
+# b = 3
+# c = a/b
+# ```
+#
+# Use the `type()` function to determine what type of value is stored in each variable defined (a, b and c).
+#
+#
+# </div>
 
-# Create a variable of type int in this cell
-# The output of `type(your-object-name-here)` below the cell should be the word  "int"
+# +
+# Run the code above in this cell. Then determin the type of each variable (a, b, c)
 
-
-# Create a variable of type float in this cell
-# The output of `type(your-object-name-here)` below the cell should be the word  "float"
-
-
-# Create a variable of type string in this cell
-# The output of `type(your-object-name-here)` below the cell should be the word "str"
 
