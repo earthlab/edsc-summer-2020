@@ -1,6 +1,6 @@
-# import matplotcheck.base as mpc
+import matplotcheck.base as mpc
 
-
+# TESTS FOR THE VARIABLES NOTEBOOK
 def variables_test_int(precip_int):
     """Testing that the integer variable was correctly assigned."""
     return_message = ""
@@ -63,6 +63,7 @@ to be a value surrounded by quotes."""
     return return_message
 
 
+# TESTS FOR THE LISTS NOTEBOOK
 def lists_test_precip_by_location(precip_by_location):
     """Test to ensure precip_by_location list contains all of the laid
     out requirements provided in the notebook."""
@@ -121,6 +122,7 @@ the list you produced:
     return return_message
 
 
+# TESTS FOR THE OPERATORS NOTEBOOK
 def operators_test_march_precip(march_precip_mm):
     """Test to make sure that march_precip_mm was assigned correctly"""
     if march_precip_mm == 46.99:
@@ -160,5 +162,110 @@ def operators_test_operation_modifications(relational, identity, membership, log
 check to see why that may be!""".format(
                     operation_names[i]
                 )
+
+    return return_message
+
+# TESTS FOR THE EXERCISE NOTEBOOK
+def exercise_test_months_list(months):
+    """Testing that the months list created is correct"""
+    correct_month_names = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec",
+    ]
+
+    if months == correct_month_names:
+        return """List of month names successfully assigned and has correct values!"""
+    else:
+        error_msg = """There is a variable named 'months', but it is assigned
+these values: {}
+Please ensure that the values are strings with the month names
+from the table above."""
+        return error_msg.format(months)
+
+
+def exercise_test_precip_list(precip):
+    """Testing that the precip list created is correct"""
+    correct_month_precip = [
+        17.779999999999998,
+        19.049999999999997,
+        46.99,
+        74.422,
+        77.46999999999998,
+        51.308,
+        49.022,
+        41.148,
+        46.736,
+        33.274,
+        35.306,
+        21.336,
+    ]
+
+    if precip == correct_month_precip:
+        return "List of month precip values successfully assigned and has correct converted values!"
+    else:
+        error_msg = """There is a variable named 'precip', but it is assigned
+these values:\n{}
+Please ensure that the values are the values from the table above,
+but converted to be mm instead of inches"""
+        return error_msg.format(precip)
+
+
+def exercise_test_plot(ax):
+    """Testing the plot made by the student."""
+    plot_test = mpc.PlotTester(ax)
+
+    return_message = ""
+
+    try:
+        plot_test.assert_plot_type(
+            "bar",
+            """Plot is not a bar type, make sure that the original code you
+copied wasn't modified to change the plot type!""",
+        )
+        return_message += "Plot is a bar type."
+    except AssertionError as error:
+        return_message += str(error)
+
+    try:
+        needed_title_words = [["Boulder"], ["average", "mean"], ["month"], ["precip"]]
+        plot_test.assert_title_contains(
+            strings_expected=needed_title_words,
+            message_default="Please make sure that the title contains all needed keywords specified in the instructions",
+        )
+        return_message += "\nPlot has all of the needed keywords in the title."
+    except AssertionError as error:
+        return_message += "\n" + str(error)
+
+    try:
+        needed_xaxis_words = ["month"]
+        plot_test.assert_axis_label_contains(
+            axis="x",
+            strings_expected=needed_xaxis_words,
+            message_default="Please make sure that the x axis contains all needed keywords specified in the instructions",
+        )
+        return_message += "\nPlot has all of the needed keywords in the x axis."
+    except AssertionError as error:
+        return_message += "\n" + str(error)
+
+    try:
+        needed_yaxis_words = [["precip"], ["mm", "millimeters"]]
+        plot_test.assert_axis_label_contains(
+            axis="y",
+            strings_expected=needed_yaxis_words,
+            message_default="Please make sure that the y axis contains all needed keywords specified in the instructions",
+        )
+        return_message += "\nPlot has all of the needed keywords in the y axis."
+    except AssertionError as error:
+        return_message += "\n" + str(error)
 
     return return_message

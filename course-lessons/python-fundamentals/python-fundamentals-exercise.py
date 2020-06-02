@@ -12,7 +12,13 @@
 #     name: python3
 # ---
 
+# <img style="float: left;" src="earth-lab-logo-rgb.png" width="150" height="150">
+#
+# # Earth Data Science Corps Summer 2020
+#
 # ![Colored Bar](colored-bar.png)
+#
+# ## Introduction to Python
 
 # <div class="notice--warning" markdown="1">
 #
@@ -97,7 +103,6 @@
 # Copy/paste the code from the cell above to this cell
 # Modify values as instructed
 
-
 # -
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
@@ -108,74 +113,21 @@
 # This code is here to check your plot
 # Please put the code for your plot in the previous cell
 import matplotcheck.base as mpc
-
-correct_month_names = ["Jan", "Feb", "Mar", "Apr", "May",
-                       "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
-correct_month_precip = [17.779999999999998, 19.049999999999997, 46.99, 74.422,
-                        77.46999999999998, 51.308, 49.022, 41.148, 46.736, 33.274, 35.306, 21.336]
+import notebook_tests_fundamentals
 
 try:
-    if months == correct_month_names:
-        print("List of month names successfully assigned and has correct values!")
-    else:
-        error_msg = """There is a variable named 'months', but it is assigned these values:\n{}
-Please ensure that the values are strings with the month names from the table above."""
-        print(error_msg.format(months))
+    print(notebook_tests_fundamentals.exercise_test_months_list(months))
 except NameError:
-    print("Could not find a list named 'months', please ensure that your list containing\n",
-          "the month names has been assigned to the variable name 'months'.")
+    print("""Could not find a list named 'months', please ensure that your list containing
+the month names has been assigned to the variable name 'months'.""")
 
 try:
-    if precip == correct_month_precip:
-        print("List of month precip values successfully assigned and has correct converted values!")
-    else:
-        error_msg = """There is a variable named 'precip', but it is assigned these values:\n{}
-Please ensure that the values are the values from the table above, 
-but converted to be mm instead of inches"""
-        print(error_msg.format(precip))
+    print(notebook_tests_fundamentals.exercise_test_precip_list(precip))
 except NameError:
-    print("Could not find a list named 'precip', please ensure that your list containing\n",
-          "the converted month precip values has been assigned to the variable name 'precip'.")
+    print("""Could not find a list named 'precip', please ensure that your list containing
+the converted month precip values has been assigned to the variable name 'precip'.""")
 
 try:
-    plot_test = mpc.PlotTester(ax)
-    try:
-        plot_test.assert_plot_type(
-            "bar",
-            "Plot is not a bar type, make sure that the original code you copied wasn't modified to change the plot type!")
-        print("Plot is a bar type.")
-    except AssertionError as error:
-        print(error)
-
-    try:
-        needed_title_words = [["Boulder"], [
-            "average", "mean"], ["month"], ["precip"]]
-        plot_test.assert_title_contains(
-            strings_expected=needed_title_words,
-            message_default="Please make sure that the title contains all needed keywords specified in the instructions")
-        print("Plot has all of the needed keywords in the title.")
-    except AssertionError as error:
-        print(error)
-
-    try:
-        needed_xaxis_words = ["month"]
-        plot_test.assert_axis_label_contains(
-            axis = 'x',
-            strings_expected=needed_xaxis_words,
-            message_default="Please make sure that the x axis contains all needed keywords specified in the instructions")
-        print("Plot has all of the needed keywords in the x axis.")
-    except AssertionError as error:
-        print(error)
-
-    try:
-        needed_yaxis_words = [["precip"], ["mm", "millimeters"]]
-        plot_test.assert_axis_label_contains(
-            axis = 'y',
-            strings_expected=needed_yaxis_words,
-            message_default="Please make sure that the y axis contains all needed keywords specified in the instructions")
-        print("Plot has all of the needed keywords in the y axis.")
-    except AssertionError as error:
-        print(error)
-
+    print(notebook_tests_fundamentals.exercise_test_plot(ax))
 except NameError:
-    print("Can't find variable 'ax', please make sure you copy and pasted the code correctly into the cell above.")
+    print("Could not find variable 'ax', please make sure you copy and pasted the code correctly into the cell above.")
