@@ -5,8 +5,8 @@
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.2.4
+#       format_version: '1.5'
+#       jupytext_version: 1.4.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -182,25 +182,24 @@ city_state
 city_description = "Boulder, CO is the home of the University of Colorado, Boulder campus."
 
 city_description
-
-# +
-<div class="notice--warning" markdown="1">
-
-## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Interactive Activity
-
-You can 
-It's time for you to create some variables of your own! In the cell below, create the following: 
-
-1. a variable called `precip_int` that stores an integer value
-2. a variable called `precip_float` that stores a float
-3. a variable called `location` that has a string as its value. 
-
-For these variables, use the [average annual precipitation in New York City](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
-
-Assign this precipitation value to variables as an integer (`precip_int`) and a float (`precip_float`). Then, assign the city name `New York City` to a string variable (`location`). 
-
-</div>
 # -
+
+# <div class="notice--warning" markdown="1">
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Interactive Activity
+#
+# You can 
+# It's time for you to create some variables of your own! In the cell below, create the following: 
+#
+# 1. a variable called `precip_int` that stores an integer value
+# 2. a variable called `precip_float` that stores a float
+# 3. a variable called `location` that has a string as its value. 
+#
+# For these variables, use the [average annual precipitation in New York City](https://www.usclimatedata.com/climate/new-york/new-york/united-states/usny0996), which is 46.23 inches. 
+#
+# Assign this precipitation value to variables as an integer (`precip_int`) and a float (`precip_float`). Then, assign the city name `New York City` to a string variable (`location`). 
+#
+# </div>
 
 # <div class="notice--warning" markdown="1">
 #
@@ -245,9 +244,8 @@ print(a, b)
 #
 # </div>
 
-# +
 # Activity 2: Assign your variable values below this comment line!
-# -
+
 
 # The cell below includes a set of tests to see if you correctly assigned the variables in the cell above. They will provide you with feedback on each variable to ensure it was correctly assigned. 
 #
@@ -256,63 +254,28 @@ print(a, b)
 # +
 # Run this cell to ensure variables were correctly assigned
 
+import notebook_tests_fundamentals
+
 # Integer tests
 try:
-    print("Variable precip_int has been assigned the value " +
-          str(precip_int) + ".")
-    if isinstance(precip_int, int):
-        print("Variable precip_int is an integer, good job!")
-        if precip_int == 46:
-            print("Variable precip_int equals 46, good job!")
-        else:
-            print("Variable precip_int exists and is an integer, but has the wrong value.\n",
-                  "Make sure you assigned the value of precip_int to be a whole number closest\n",
-                  "to the average annual rainfall in NYC.")
-    else:
-        print("Variable precip_int exists, but is not an integer.\n",
-              "Make sure you assigned the value of precip_int to be a whole number.")
-
+    print(notebook_tests_fundamentals.variables_test_int(precip_int))
 except NameError:
-    print("Can't find a variable named precip_int, make sure you've\n",
-          "correctly spelled the variable name and assigned it a value!")
+    print("""Can't find a variable named precip_int, make sure you've correctly spelled the 
+variable name and assigned it a value!""")
 
 # Float tests
 try:
-    print("Variable precip_float has been assigned the value " +
-          str(precip_float) + ".")
-    if isinstance(precip_float, float):
-        print("Variable precip_float is a float, good job!")
-        if precip_float == 46.23:
-            print("Variable precip_float equals 46.23, good job!")
-        else:
-            print("Variable precip_float exists and is a float, but has the wrong value.\n",
-                  "Make sure you assigned the value of precip_float to be equivalent\n",
-                  "to the average annual rainfall in NYC.")
-    else:
-        print("Variable precip_float exists, but is not a float.\n",
-              "Make sure you assigned the value of precip_float to be a number with a decimal value.")
+    print(notebook_tests_fundamentals.variables_test_float(precip_float))
 except NameError:
-    print("Can't find a variable named precip_float, make sure you've\n",
-          "correctly spelled the variable name and assigned it a value!")
+    print("""Can't find a variable named precip_float, make sure you've correctly spelled the 
+variable name and assigned it a value!""")
 
 # String tests
 try:
-    print("Variable location has been assigned the value " +
-          str(location) + ".")
-    if isinstance(location, str):
-        print("Variable location is a string, good job!")
-        if location == "New York City":
-            print("Variable location equals New York City, good job!")
-        else:
-            print("Variable location exists and is a string, but has the wrong value.\n",
-                  "Make sure you assigned the value of location to be \n",
-                  "a string of the location: New York City.")
-    else:
-        print("Variable location exists, but is not a string.\n",
-              "Make sure you assigned the value of location to be a value surrounded by quotes.")
+    print(notebook_tests_fundamentals.variables_test_string(location))
 except NameError:
-    print("Can't find a variable named location, make sure you've\n",
-          "correctly spelled the variable name and assigned it a value!")
+    print("""Can't find a variable named location, make sure you've correctly spelled the 
+variable name and assigned it a value!""")
 # -
 
 # ## Check Variable Type

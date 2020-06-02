@@ -1,87 +1,66 @@
 # import matplotcheck.base as mpc
 
 
-#
-# def variables_test_int(precip_int):
-#     try:
-#         return (
-#             "Variable precip_int has been assigned the value " + str(precip_int) + "."
-#         )
-#         if isinstance(precip_int, int):
-#             return "Variable precip_int is an integer, good job!"
-#             if precip_int == 46:
-#                 return "Variable precip_int equals 46, good job!"
-#             else:
-#                 return (
-#                     "Variable precip_int exists and is an integer, but has the wrong value.\n",
-#                     "Make sure you assigned the value of precip_int to be a whole number closest\n",
-#                     "to the average annual rainfall in NYC.",
-#                 )
-#         else:
-#             return (
-#                 "Variable precip_int exists, but is not an integer.\n",
-#                 "Make sure you assigned the value of precip_int to be a whole number.",
-#             )
-#
-#     except NameError:
-#         return (
-#             "Can't find a variable named precip_int, make sure you've\n",
-#             "correctly spelled the variable name and assigned it a value!",
-#         )
-#
-#
-# def variables_test_float(precip_float):
-#     try:
-#         return (
-#             "Variable precip_float has been assigned the value "
-#             + str(precip_float)
-#             + "."
-#         )
-#         if isinstance(precip_float, float):
-#             return "Variable precip_float is a float, good job!"
-#             if precip_float == 46.23:
-#                 return "Variable precip_float equals 46.23, good job!"
-#             else:
-#                 return (
-#                     "Variable precip_float exists and is a float, but has the wrong value.\n",
-#                     "Make sure you assigned the value of precip_float to be equivalent\n",
-#                     "to the average annual rainfall in NYC.",
-#                 )
-#         else:
-#             return (
-#                 "Variable precip_float exists, but is not a float.\n",
-#                 "Make sure you assigned the value of precip_float to be a number with a decimal value.",
-#             )
-#     except NameError:
-#         return (
-#             "Can't find a variable named precip_float, make sure you've\n",
-#             "correctly spelled the variable name and assigned it a value!",
-#         )
-#
-#
-# def variables_test_string(location):
-#     try:
-#         return "Variable location has been assigned the value " + str(location) + "."
-#         if isinstance(location, str):
-#             return "Variable location is a string, good job!"
-#             if location == "New York City":
-#                 return "Variable location equals New York City, good job!"
-#             else:
-#                 return (
-#                     "Variable location exists and is a string, but has the wrong value.\n",
-#                     "Make sure you assigned the value of location to be \n",
-#                     "a string of the location: New York City.",
-#                 )
-#         else:
-#             return (
-#                 "Variable location exists, but is not a string.\n",
-#                 "Make sure you assigned the value of location to be a value surrounded by quotes.",
-#             )
-#     except NameError:
-#         return (
-#             "Can't find a variable named location, make sure you've\n",
-#             "correctly spelled the variable name and assigned it a value!",
-#         )
+def variables_test_int(precip_int):
+    """Testing that the integer variable was correctly assigned."""
+    return_message = ""
+
+    if isinstance(precip_int, int):
+        return_message += "Variable precip_int is an integer, good job!\n"
+        if precip_int == 46:
+            return_message += "Variable precip_int equals 46, good job!"
+        else:
+            return_message += """Variable precip_int exists and is an integer,
+but has the wrong value.
+Make sure you assigned the value of precip_int to be a whole number closest
+to the average annual rainfall in NYC."""
+    else:
+        return_message += """Variable precip_int exists, but is not an integer.
+Make sure you assigned the value of precip_int to be a whole number."""
+
+    return return_message
+
+
+def variables_test_float(precip_float):
+    """Testing that the float variable was correctly assigned."""
+    return_message = ""
+
+    if isinstance(precip_float, float):
+        return_message += "Variable precip_float is a float, good job!\n"
+        if precip_float == 46.23:
+            return_message += "Variable precip_float equals 46.23, good job!"
+        else:
+            return_message += """Variable precip_float exists and is a float,
+but has the wrong value.
+Make sure you assigned the value of precip_float to be equivalent
+to the average annual rainfall in NYC."""
+    else:
+        return_message += """Variable precip_float exists, but is not a float.
+Make sure you assigned the value of precip_float to be a number
+with a decimal value."""
+
+    return return_message
+
+
+def variables_test_string(location):
+    """Testing that the string variable was correctly assigned."""
+    return_message = ""
+
+    if isinstance(location, str):
+        return_message += "Variable location is a string, good job!\n"
+        if location == "New York City":
+            return_message += "Variable location equals New York City!"
+        else:
+            return_message += """Variable location exists and is a string,
+but has the wrong value.
+Make sure you assigned the value of location to be
+a string of the location: New York City."""
+    else:
+        return_message += """Variable location exists, but is not a string.
+Make sure you assigned the value of location
+to be a value surrounded by quotes."""
+
+    return return_message
 
 
 def lists_test_precip_by_location(precip_by_location):
@@ -121,6 +100,7 @@ Make sure to make one of the values in your list a float."""
         return_message += """
 precip_by_location is not a list. Make sure that you formatted the list
 correctly and spelled the variable name correctly."""
+
     return return_message
 
 
@@ -132,11 +112,12 @@ def lists_test_precip_by_location_modify(precip_by_location):
     if precip_by_location == answer:
         return_message = "You correctly modified the list, good job!"
     else:
-        return_message = """
-Your list didn't match the expected list. Here is the list you produced:
+        return_message = """Your list didn't match the expected list. Here is
+the list you produced:
 {}""".format(
             precip_by_location
         )
+
     return return_message
 
 
@@ -145,8 +126,7 @@ def operators_test_march_precip(march_precip_mm):
     if march_precip_mm == 46.99:
         return "Correctly assigned march_precip_mm to be 46.99!"
     else:
-        return """
-march_precip_mm doesn't equal 46.99, it instead equals {}.
+        return """march_precip_mm doesn't equal 46.99, it instead equals {}.
 Make sure your arithmetic operators are accurate and correctly assigned
 to the variable.""".format(
             march_precip_mm
@@ -158,8 +138,8 @@ def operators_test_nyc_precip(annual_avg_precip_nyc):
     if annual_avg_precip_nyc == 46.23:
         return "Variables added correctly!"
     else:
-        return """
-Variables not added correctly, the variable total_precip_nyc is assigned
+        return """Variables not added correctly, the variable total_precip_nyc
+is assigned
 {}.""".format(
             annual_avg_precip_nyc
         )
@@ -171,15 +151,14 @@ def operators_test_operation_modifications(relational, identity, membership, log
     operation_names = ["relational", "identity", "membership", "logical"]
 
     return_message = ""
-
     if all(operations):
         return_message = "All operations are now returning True, good job!"
     else:
         for i, operation in enumerate(operations):
             if not operation:
-                return_message += """
-Your {} operation is still returning False,
+                return_message += """Your {} operation is still returning False,
 check to see why that may be!""".format(
                     operation_names[i]
                 )
+
     return return_message
