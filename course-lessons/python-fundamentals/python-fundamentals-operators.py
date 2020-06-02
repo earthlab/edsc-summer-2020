@@ -88,22 +88,23 @@ jan_precip * 25.4
 #
 # Using only these variables and arithmetic operators, create a third variable `march_precip_mm`, which contains the average March precipitation for Boulder converted to millimeters (mm). 
 
-# +
 # Create march_precip_mm equal to March precip in millimeters
-# -
+march_precip_mm = 46.998
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
 # Be sure to run the cell below to check your code (please do not modify the cell!).
 
+# +
 # Test to make sure that the variable was assigned correctly
+
+import notebook_tests_fundamentals
+
 try:
-    if march_precip_mm == 46.99:
-        print("Correctly assigned march_precip_mm to be 46.99!")
-    else:
-        print("march_precip_mm doesn't equal 46.99, it instead equals {}. Make sure your arithmetic operators are accurate and correctly assigned to the variable.".format(march_precip_mm))
+    print(notebook_tests_fundamentals.operators_test_march_precip(march_precip_mm))
 except NameError:
     print("We couldn't find any variable named march_precip_mm, make sure that you correctly assigned the variable and ran the cell above.")
+# -
 
 # ## Assignment Operators
 #
@@ -151,9 +152,8 @@ months
 #
 # Using the `+=` operator, add `december_precip_nyc` to `annual_avg_precip_nyc`, so that `annual_avg_precip_nyc` represents the complete annual average precipitation in New York City. 
 
-# +
 # Add december_precip_nyc to annual_avg_precip_nyc using += operator
-# -
+
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
@@ -161,11 +161,7 @@ months
 
 # Tests to ensure the lists were added correctly
 try:
-    if annual_avg_precip_nyc == 46.23:
-        print("Variables added correctly!")
-    else:
-        print("Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(
-            annual_avg_precip_nyc))
+    print(notebook_tests_fundamentals.operators_test_nyc_precip(annual_avg_precip_nyc))
 except NameError:
     print("Could not find a variable named 'annual_avg_precip_nyc'. Check that your spelling is correct in your assignment of the variable!")
 
@@ -354,16 +350,8 @@ logical = (68 in temp_1 and 69 in temp_1)
 
 # +
 # Tests to see if the operations have been modified correctly
-operations = [relational, identity, membership, logical]
-operation_names = ["relational", "identity", "membership", "logical"]
 
-if all(operations):
-    print("All operations are now returning True, good job!")
-else:
-    for i, operation in enumerate(operations):
-        if not operation:
-            print("Your {} operation is still returning False, check to see why that may be!".format(
-                operation_names[i]))
+print(notebook_tests_fundamentals.operators_test_operation_modifications(relational, identity, membership, logical))
 # -
 
 #  <div class="notice--info" markdown="1">

@@ -1,60 +1,6 @@
 # import matplotcheck.base as mpc
 
 
-def lists_test_precip_by_location(precip_by_location):
-    """Test to ensure precip_by_location list contains all of the laid
-    out requirements provided in the notebook."""
-    return_message = ""
-    if isinstance(precip_by_location, list):
-        return_message += "precip_by_location is a list!"
-        if len(precip_by_location) == 3:
-            return_message += "\nprecip_by_location has the correct length!"
-            if isinstance(precip_by_location[2], str):
-                return_message += (
-                    "\nprecip_by_location contains a string value at index 2!"
-                )
-            else:
-                return_message += """
-precip_by_location does not contain a string value at index 2.
-Make sure to add a string value at list index 2.
-Remember python list indexing starts at 0!"""
-        else:
-            return_message += """
-precip_by_location does not have the correct length.
-Make sure that the list has exactly 3 values in it."""
-        if any([isinstance(i, str) for i in precip_by_location]):
-            return_message += "\nprecip_by_location contains a string value!"
-        else:
-            return_message += """
-precip_by_location does not contain a string value.
-Make sure to make one of the values in your list a string."""
-        if any([isinstance(i, float) for i in precip_by_location]):
-            return_message += "\nprecip_by_location contains a float value!"
-        else:
-            return_message += """
-precip_by_location does not contain a float value.
-Make sure to make one of the values in your list a float."""
-    else:
-        return_message += """
-precip_by_location is not a list. Make sure that you formatted the list
-correctly and spelled the variable name correctly."""
-    return return_message
-
-
-def lists_test_precip_by_location_modify(precip_by_location):
-    """Test to ensure that precip_by_location was correctly modified."""
-    answer = [1, 20.23, "inches", "Boulder", "Colorado"]
-    return_message = ""
-
-    if precip_by_location == answer:
-        return_message = "You correctly modified the list, good job!"
-    else:
-        return_message = """
-Your list didn't match the expected list. Here is the list you produced:
-{}""".format(
-            precip_by_location
-        )
-
 #
 # def variables_test_int(precip_int):
 #     try:
@@ -136,39 +82,104 @@ Your list didn't match the expected list. Here is the list you produced:
 #             "Can't find a variable named location, make sure you've\n",
 #             "correctly spelled the variable name and assigned it a value!",
 #         )
-#
-#
-# def operators_test_march_precip(march_precip_mm):
-#     # Test to make sure that the variable was assigned correctly
-#     try:
-#         if march_precip_mm == 46.99:
-#             return "Correctly assigned march_precip_mm to be 46.99!"
-#         else:
-#             return "march_precip_mm doesn't equal 46.99, it instead equals {}. Make sure your arithmetic operators are accurate and correctly assigned to the variable.".format(
-#                 march_precip_mm
-#             )
-#     except NameError:
-#         return "We couldn't find any variable named march_precip_mm, make sure that you correctly assigned the variable and ran the cell above."
-#
-#
-# def operators_test_nyc_precip(annual_avg_precip_nyc):
-#     try:
-#         if annual_avg_precip_nyc == 46.23:
-#             return "Variables added correctly!"
-#         else:
-#             return "Variables not added correctly, the variable total_precip_nyc is assigned {}.".format(
-#                 annual_avg_precip_nyc
-#             )
-#     except NameError:
-#         return "Could not find a variable named 'annual_avg_precip_nyc'. Check that your spelling is correct in your assignment of the variable!"
-#
-#
-# def operators_test_operation_modifications(operations, operation_names):
-#     if all(operations):
-#         return "All operations are now returning True, good job!"
-#     else:
-#         for i, operation in enumerate(operations):
-#             if not operation:
-#                 return "Your {} operation is still returning False, check to see why that may be!".format(
-#                     operation_names[i]
-#                 )
+
+
+def lists_test_precip_by_location(precip_by_location):
+    """Test to ensure precip_by_location list contains all of the laid
+    out requirements provided in the notebook."""
+    return_message = ""
+    if isinstance(precip_by_location, list):
+        return_message += "precip_by_location is a list!"
+        if len(precip_by_location) == 3:
+            return_message += "\nprecip_by_location has the correct length!"
+            if isinstance(precip_by_location[2], str):
+                return_message += (
+                    "\nprecip_by_location contains a string value at index 2!"
+                )
+            else:
+                return_message += """
+precip_by_location does not contain a string value at index 2.
+Make sure to add a string value at list index 2.
+Remember python list indexing starts at 0!"""
+        else:
+            return_message += """
+precip_by_location does not have the correct length.
+Make sure that the list has exactly 3 values in it."""
+        if any([isinstance(i, str) for i in precip_by_location]):
+            return_message += "\nprecip_by_location contains a string value!"
+        else:
+            return_message += """
+precip_by_location does not contain a string value.
+Make sure to make one of the values in your list a string."""
+        if any([isinstance(i, float) for i in precip_by_location]):
+            return_message += "\nprecip_by_location contains a float value!"
+        else:
+            return_message += """
+precip_by_location does not contain a float value.
+Make sure to make one of the values in your list a float."""
+    else:
+        return_message += """
+precip_by_location is not a list. Make sure that you formatted the list
+correctly and spelled the variable name correctly."""
+    return return_message
+
+
+def lists_test_precip_by_location_modify(precip_by_location):
+    """Test to ensure that precip_by_location was correctly modified."""
+    answer = [1, 20.23, "inches", "Boulder", "Colorado"]
+    return_message = ""
+
+    if precip_by_location == answer:
+        return_message = "You correctly modified the list, good job!"
+    else:
+        return_message = """
+Your list didn't match the expected list. Here is the list you produced:
+{}""".format(
+            precip_by_location
+        )
+    return return_message
+
+
+def operators_test_march_precip(march_precip_mm):
+    """Test to make sure that march_precip_mm was assigned correctly"""
+    if march_precip_mm == 46.99:
+        return "Correctly assigned march_precip_mm to be 46.99!"
+    else:
+        return """
+march_precip_mm doesn't equal 46.99, it instead equals {}.
+Make sure your arithmetic operators are accurate and correctly assigned
+to the variable.""".format(
+            march_precip_mm
+        )
+
+
+def operators_test_nyc_precip(annual_avg_precip_nyc):
+    """Test to make sure that annual_avg_precip_nyc was assigned correctly"""
+    if annual_avg_precip_nyc == 46.23:
+        return "Variables added correctly!"
+    else:
+        return """
+Variables not added correctly, the variable total_precip_nyc is assigned
+{}.""".format(
+            annual_avg_precip_nyc
+        )
+
+
+def operators_test_operation_modifications(relational, identity, membership, logical):
+    """Tests to see if the operations have been modified correctly"""
+    operations = [relational, identity, membership, logical]
+    operation_names = ["relational", "identity", "membership", "logical"]
+
+    return_message = ""
+
+    if all(operations):
+        return_message = "All operations are now returning True, good job!"
+    else:
+        for i, operation in enumerate(operations):
+            if not operation:
+                return_message += """
+Your {} operation is still returning False,
+check to see why that may be!""".format(
+                    operation_names[i]
+                )
+    return return_message
