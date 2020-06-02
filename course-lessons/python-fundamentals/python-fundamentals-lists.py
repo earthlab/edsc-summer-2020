@@ -117,44 +117,23 @@ len(months)
 #
 # Note that this means the float value for precipitation and the string value for units can be in any location, but the string for `New York City` needs to be at index `2`. 
 
-# +
 # Create your list below this line!
-# -
+
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
 # Be sure to run the cell below to check your code (please do not modify the cell!).
 
+# +
 # Run this cell to ensure precip_by_location was created correctly
+
+import notebook_tests_fundamentals
+
 try:
-    if isinstance(precip_by_location, list):
-        print("precip_by_location is a list!")
-        if len(precip_by_location) == 3:
-            print("precip_by_location has the correct length!")
-            if isinstance(precip_by_location[2], str):
-                print("precip_by_location contains a string value at index 2!")
-            else:
-                print("precip_by_location does not contain a string value at index 2.\n",
-                      "Make sure to add a string value at list index 2.\n",
-                      "Remember python list indexing starts at 0!")
-        else:
-            print("precip_by_location does not have the correct length.\n",
-                  "Make sure that the list has exactly 3 values in it.")
-        if any([isinstance(i, str) for i in precip_by_location]):
-            print("precip_by_location contains a string value!")
-        else:
-            print("precip_by_location does not contain a string value.\n",
-                  "Make sure to make one of the values in your list a string.")
-        if any([isinstance(i, float) for i in precip_by_location]):
-            print("precip_by_location contains a float value!")
-        else:
-            print("precip_by_location does not contain a float value.\n",
-                  "Make sure to make one of the values in your list a float.")
-    else:
-        print("precip_by_location is not a list. Make sure that you formatted the list\n",
-              "correctly and spelled the variable name correctly.")
+    print(notebook_tests_fundamentals.lists_test_precip_by_location(precip_by_location))
 except NameError:
-    print("'precip_by_location' is not defined. Make sure you spelled the variable name correctly!")
+        print("'precip_by_location' is not defined. Make sure you spelled the variable name correctly!")
+# -
 
 # ## Query List Items Using Index
 #
@@ -314,16 +293,10 @@ months
 #
 # Be sure to run the cell below to check your code (please do not modify the cell!).
 
-# +
 # Run this cell to ensure the list was modified correctly
-answer = [1, 20.23, 'inches', 'Boulder', 'Colorado']
-
 try:
-    if precip_by_location == answer:
-        print("You correctly modified the list, good job!")
-    else:
-        print("Your list didn't match the expected list. Here is the list you produced: {}".format(
-            precip_by_location))
-except NameError:
-    print("Couldn't find list named precip_by_location, make sure the cells where you assigned the \n",
-          "list have been run properly.")
+    print(notebook_tests_fundamentals.lists_test_precip_by_location_modify(precip_by_location))
+except:
+    print("""
+Couldn't find list named precip_by_location, make sure the cells where you assigned the
+list have been run properly.""")
