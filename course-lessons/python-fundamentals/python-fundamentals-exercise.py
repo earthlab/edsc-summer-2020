@@ -139,39 +139,6 @@ except NameError:
 # %%
 # Turn your two new lists in a single list with two sublists called all_boulder_data.
 
-correct_month_names = [
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "june",
-    "july",
-    "aug",
-    "sept",
-    "oct",
-    "nov",
-    "dec",
-]
-
-correct_month_precip_in = [
-    0.70,
-    0.75,
-    1.85,
-    2.93,
-    3.05,
-    2.02,
-    1.93,
-    1.62,
-    1.84,
-    1.31,
-    1.39,
-    0.84,
-]
-
-correct_month_precip_mm = [i * 25.4 for i in correct_month_precip_in]
-
-all_boulder_data = [correct_month_names, correct_month_precip_mm]
 
 
 # %% [markdown]
