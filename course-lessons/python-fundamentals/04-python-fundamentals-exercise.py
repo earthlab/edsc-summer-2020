@@ -53,7 +53,7 @@
 #
 # Both lists should contain the data in the table above in the order they are in - in the table above!
 #
-# To make this easier, here are all of the data formatted to make it easier to create your list! 
+# Here are all of the data formatted to make it easier for you to create your list! 
 #
 # `0.70, 0.75,  1.85 , 2.93, 3.05 , 2.02, 1.93, 1.62, 1.84, 1.31, 1.39, 0.84`
 #
@@ -103,9 +103,15 @@ except NameError:
 #
 # Reassign that copy to the new variable called `boulder_precip_mm`.
 #
-# Finally, you can replace each value in your new list using indexing. Refer back to the lesson on lists if you don't remember how to replace a value in a list. 
+# Finally, you can replace each value in your new list using indexing. Refer 
+# back to the lesson on lists if you don't remember how to replace a value in 
+# a list. 
 #
-# To convert inches to millimeters, you need to multiply the inches by `25.4`. To make your code more legible, you may want to create a variable that stores the value of `25.4` that you can use to modify each value in the list you are creating. 
+# To convert inches to millimeters, you need to multiply the inches by `25.4` 
+# (1" = 25.4 mm). To make your code more legible, you may want to create a 
+# variable at the top of your notebook that stores the conversion value of `25.4`.
+# A well named conversion variable will make your code easier to manage and 
+# easier to read.
 
 # %%
 # Add code here that creates a new list by copying the old list to create a new variable
@@ -140,6 +146,7 @@ except NameError:
 
 # %%
 # Turn your two new lists in a single list with two sublists called all_boulder_data.
+
 
 
 
@@ -220,7 +227,7 @@ except NameError:
 # %% [markdown]
 # <div class="notice--warning" markdown="1">
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> BONUS Challenge: List Comprehensions
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> BONUS Challenge: List Comprehensions in PYthon
 #
 # Above you performed many tasks manually. Included in those manual steps was one 
 # where you converted each individual value in your list from inches to mm.
@@ -240,13 +247,14 @@ except NameError:
 # ```
 #
 # `my_new_list` will equal each value in `my_old_list` multiplied by 2, so `my_new_list` 
-# will be equivalant to `[2, 4, 6]`. You can run this code and see the output for yourself!
+# will be equivalent to `[2, 4, 6]`. You can run this code and see the output for yourself!
 #
 # Try to experiment with writing more efficient code. Convert your 
 # `boulder_precip_inches` list of values to a new list called 
-# `boulder_precip_mm` using a list comprehension using the syntax above! 
+# `boulder_precip_mm` using a list comprehension. Used the syntax above to
+# help you create this list comprehension.
 #
-# For more information on changing values within a list, you can check out <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/write-efficient-python-code/loops/" target="_blank">Earth Lab's lesson introducing loops in Python,</a> and you can go to <a href="https://www.pythonforbeginners.com/basics/list-comprehensions-in-python" target="_blank">this more in depth explanation on list comprehensions in Python.</a>
+# For more information on loops and changing values within a list, you can check out <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/write-efficient-python-code/loops/" target="_blank">Earth Lab's lesson introducing loops in Python,</a> and you can go to <a href="https://www.pythonforbeginners.com/basics/list-comprehensions-in-python" target="_blank">this more in depth explanation on list comprehensions in Python.</a>
 # </div>
 
 # %%
