@@ -198,7 +198,7 @@ months
 #
 #
 #
-# <i class="fa fa-star"></i> **Data Tip:**You can review the <a href="https://docs.python.org/3/library/stdtypes.html#" target="_blank">Python docs on types and operations</a> to see what kinds of operations can be run on different object types. 
+# <i class="fa fa-star"></i> **Data Tip:** You can review the <a href="https://docs.python.org/3/library/stdtypes.html#" target="_blank">Python docs on types and operations</a> to see what kinds of operations can be run on different object types. 
 # {: .notice--success }
 
 # <div class="notice--warning" markdown="1">
@@ -213,8 +213,7 @@ months
 #
 # </div>
 
-# Add december_precip_nyc to annual_avg_precip_nyc using += operator
-
+# Add `december_precip_nyc` to `annual_avg_precip_nyc` using the `+=` operator.
 
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
@@ -415,7 +414,7 @@ temp_1 = [70, 68, 74]
 
 # <div class='notice--success alert alert-info' markdown="1">
 #
-# #### Note on Memory Allocation
+# <i class="fa fa-star"></i> **Data Tip:** Memory Allocation in Python
 #
 # To understand the difference between `is` and `==`, first you need to know a little bit about how Python stores data. In Python, when a variable is declared, there's a certain place on your computer that is reserved to store that data. This place has a memory address. In Python, you can see the memory id of a variable using the `id()` function. This will print out a long integer that is how Python identifies the object. It's what Python uses to find the variable in the computer's memory. 
 #
