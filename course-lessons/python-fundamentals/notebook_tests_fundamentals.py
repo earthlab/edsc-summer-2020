@@ -167,58 +167,109 @@ check to see why that may be!""".format(
 
 
 # TESTS FOR THE EXERCISE NOTEBOOK
-def exercise_test_months_list(months):
-    """Testing that the months list created is correct"""
-    correct_month_names = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "June",
-        "July",
-        "Aug",
-        "Sept",
-        "Oct",
-        "Nov",
-        "Dec",
-    ]
 
-    if months == correct_month_names:
-        return """List of month names successfully assigned and has correct values!"""
+# Answer lists for exercise
+
+correct_month_names = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "june",
+    "july",
+    "aug",
+    "sept",
+    "oct",
+    "nov",
+    "dec",
+]
+
+correct_month_precip_in = [
+    0.70,
+    0.75,
+    1.85,
+    2.93,
+    3.05,
+    2.02,
+    1.93,
+    1.62,
+    1.84,
+    1.31,
+    1.39,
+    0.84,
+]
+
+correct_month_precip_mm = [i * 25.4 for i in correct_month_precip_in]
+
+correct_list_of_lists = [correct_month_names, correct_month_precip_mm]
+
+
+def exercise_test_months_list(boulder_precip_months):
+    """Testing that the boulder_precip_months list created is correct"""
+    if boulder_precip_months == correct_month_names:
+        return """List 'boulder_precip_months' successfully assigned and has correct values!"""
     else:
-        error_msg = """There is a variable named 'months', but it is assigned
-these values: {}
-Please ensure that the values are strings with the month names
-from the table above."""
-        return error_msg.format(months)
+        if not all([type(i) == str for i in boulder_precip_months]):
+            return """The list 'boulder_precip_months' was successfully created,
+but not all of the values in the list are strings."""
+        else:
+            error_msg = """The list 'boulder_precip_months' was successfully
+created, but it is assigned these values: \n{}
+Please ensure that the values are strings with the month names from the table
+above."""
+            return error_msg.format(boulder_precip_months)
 
 
-def exercise_test_precip_list(precip):
-    """Testing that the precip list created is correct"""
-    correct_month_precip = [
-        17.779999999999998,
-        19.049999999999997,
-        46.99,
-        74.422,
-        77.46999999999998,
-        51.308,
-        49.022,
-        41.148,
-        46.736,
-        33.274,
-        35.306,
-        21.336,
-    ]
-
-    if precip == correct_month_precip:
-        return "List of month precip values successfully assigned and has correct converted values!"
+def exercise_test_precip_inches_list(boulder_precip_inches):
+    """Testing that the boulder_precip_inches list was created is correct"""
+    if boulder_precip_inches == correct_month_precip_in:
+        return (
+            "List 'boulder_precip_inches' successfully assigned and has correct values!"
+        )
     else:
-        error_msg = """There is a variable named 'precip', but it is assigned
-these values:\n{}
+        if not all([type(i) == float for i in boulder_precip_inches]):
+            return """The list 'boulder_precip_inches' was successfully created,
+but not all of the values in the list are float values."""
+        else:
+            error_msg = """The list 'boulder_precip_inches' was successfully
+created, but it is assigned these values:\n{}
+Please ensure that the values are the values from the table above."""
+            return error_msg.format(boulder_precip_inches)
+
+
+def exercise_test_precip_mm_list(boulder_precip_mm):
+    """Testing that the boulder_precip_mm list created is correct"""
+    if boulder_precip_mm == correct_month_precip_mm:
+        return "List 'boulder_precip_mm' was successfully assigned and has the correct converted values!"
+    else:
+        if not all([type(i) == float for i in boulder_precip_mm]):
+            return """The list 'boulder_precip_mm' was successfully created,
+but not all of the values in the list are float values."""
+        else:
+            error_msg = """There is a variable named 'boulder_precip_mm', but
+it is assigned these values:\n{}
 Please ensure that the values are the values from the table above,
-but converted to be mm instead of inches"""
-        return error_msg.format(precip)
+but converted to be mm instead of inches. Hint: Multiply the original values by
+25.4."""
+            return error_msg.format(boulder_precip_mm)
+
+
+def exercise_test_list_of_lists(all_boulder_data):
+    """Testing that the all_boulder_data list created is correct"""
+    if all_boulder_data == correct_list_of_lists:
+        return "List 'all_boulder_data' was successfully assigned and has the correct converted values!"
+    else:
+        if not all([type(i) == list for i in all_boulder_data]):
+            return """The list 'all_boulder_data' was successfully created,
+but not all of the values in the list are lists."""
+        else:
+            error_msg = """There is a variable named 'all_boulder_data', but
+it is assigned these values:\n{}
+Please ensure that the values are the lists you created above.
+Also make sure you put the names list in index 0 and the list of precipitation
+values at index 1 of the all_boulder_data list."""
+            return error_msg.format(all_boulder_data)
 
 
 def exercise_test_plot(ax):

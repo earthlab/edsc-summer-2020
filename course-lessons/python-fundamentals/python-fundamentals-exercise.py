@@ -70,8 +70,25 @@
 # Create your lists in this cell!
 
 
+# %% [markdown]
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
+
 # %%
-# TODO: add tests here that each item is in fact a list and that the one contains strings and the other contains floats
+# Test to make sure that the lists was assigned correctly
+
+import notebook_tests_fundamentals
+
+try:
+    print(notebook_tests_fundamentals.exercise_test_months_list(boulder_precip_months))
+except NameError:
+    print("We couldn't find any list named boulder_precip_months, make sure that you correctly assigned the list and ran the cell above.")
+
+try:
+    print(notebook_tests_fundamentals.exercise_test_precip_inches_list(boulder_precip_inches))
+except NameError:
+    print("We couldn't find any list named boulder_precip_inches, make sure that you correctly assigned the list and ran the cell above.")   
 
 # %% [markdown]
 # ### Convert Precipitation Data From Inches to mm Within the List 
@@ -97,6 +114,19 @@
 
 
 # %% [markdown]
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
+#
+# Be sure to run the cell below to check your code (please do not modify the cell!).
+
+# %%
+# Test to make sure that the converted list was assigned correctly
+
+try:
+    print(notebook_tests_fundamentals.exercise_test_precip_mm_list(boulder_precip_mm))
+except NameError:
+    print("We couldn't find any list named boulder_precip_mm, make sure that you correctly assigned the list and ran the cell above.")   
+
+# %% [markdown]
 # ### Create a List of Lists
 #
 # You can make a list of lists (a list which contains multiple sublists) using the following syntax:
@@ -109,29 +139,53 @@
 # %%
 # Turn your two new lists in a single list with two sublists called all_boulder_data.
 
+correct_month_names = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "june",
+    "july",
+    "aug",
+    "sept",
+    "oct",
+    "nov",
+    "dec",
+]
+
+correct_month_precip_in = [
+    0.70,
+    0.75,
+    1.85,
+    2.93,
+    3.05,
+    2.02,
+    1.93,
+    1.62,
+    1.84,
+    1.31,
+    1.39,
+    0.84,
+]
+
+correct_month_precip_mm = [i * 25.4 for i in correct_month_precip_in]
+
+all_boulder_data = [correct_month_names, correct_month_precip_mm]
+
 
 # %% [markdown]
+# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
-# ## THIS IS THE ORIGINAL ACTIVITY -- we can potentially delete it
-# Test your `Python` skills to:
-#
-# 1. Create variables for monthly average precipitation values (inches) for Boulder, CO for January through December (i.e. one variable for `jan`, one for `feb`, etc through `dec`).
-#
-# 2. Use the appropriate arithmetic operator to convert the monthly variables for `jan` through `dec` from inches to millimeters (1 inch = 25.4 mm).
-#
-# 3. Create a list called `precip` that contains the converted monthly average precipitation values in millimeters. (After step 2, you should have monthly variables with converted values. Consider how you can create a list using these variables, rather than typing out the values.)
-#
-# 4. Create a list called  `months` that contains the abbreviated month names from the table above. 
+# Be sure to run the cell below to check your code (please do not modify the cell!).
 
 # %%
-# Create monthly precipitation variables
+# Test to make sure that the list of lists was assigned correctly
 
-
-# Convert monthly precipitation variables from inches to mm
-
-
-# Create lists: one list of month names and one of precip (mm)
-
+try:
+    print(notebook_tests_fundamentals.exercise_test_list_of_lists(all_boulder_data))
+except NameError:
+    print("We couldn't find any list named all_boulder_data, make sure that you correctly assigned the list and ran the cell above.")   
 
 # %% [markdown]
 # <div class="notice--warning" markdown="1">
@@ -160,7 +214,7 @@
 # ```
 #
 # Customize this plot by completing the following tasks:
-# 1. Replace `listname_x_axis` and `listname_y_axis` with the names of the lists that you created (`months` and `precip`).
+# 1. Replace `listname_x_axis` and `listname_y_axis` with the names of the lists that you created (`boulder_precip_months` and `boulder_precip_mm` from the `all_boulder_data` list).
 # 2. Change the <a href="https://matplotlib.org/mpl_examples/color/named_colors.hires.png" target="_blank">color of the plot</a> to a blue color such as aqua.
 # 3. Update the text for the titles and axes labels. 
 # 4. Modify the values in `figsize=(6, 6)` to change the size of your plot. 
@@ -187,20 +241,6 @@
 # %%
 # This code is here to check your plot
 # Please put the code for your plot in the previous cell
-import matplotcheck.base as mpc
-import notebook_tests_fundamentals
-
-try:
-    print(notebook_tests_fundamentals.exercise_test_months_list(months))
-except NameError:
-    print("""Could not find a list named 'months', please ensure that your list containing
-the month names has been assigned to the variable name 'months'.""")
-
-try:
-    print(notebook_tests_fundamentals.exercise_test_precip_list(precip))
-except NameError:
-    print("""Could not find a list named 'precip', please ensure that your list containing
-the converted month precip values has been assigned to the variable name 'precip'.""")
 
 try:
     print(notebook_tests_fundamentals.exercise_test_plot(ax))
