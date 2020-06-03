@@ -104,6 +104,8 @@ except NameError:
 # Reassign that copy to the new variable called `boulder_precip_mm`.
 #
 # Finally, you can replace each value in your new list using indexing. Refer back to the lesson on lists if you don't remember how to replace a value in a list. 
+#
+# To convert inches to millimeters, you need to multiply the inches by `25.4`. To make your code more legible, you may want to create a variable that stores the value of `25.4` that you can use to modify each value in the list you are creating. 
 
 # %%
 # Add code here that creates a new list by copying the old list to create a new variable
@@ -138,6 +140,7 @@ except NameError:
 
 # %%
 # Turn your two new lists in a single list with two sublists called all_boulder_data.
+
 
 
 
@@ -222,7 +225,9 @@ except NameError:
 # Above you performed many tasks manually. Included in those manual steps was one 
 # where you converted each individual value in your list from inches to mm.
 # In Python, list comprehensions are a great way to perform operations on a sequence 
-# of values stored within a list. The syntax for a list comprehension is below. 
+# of values stored within a list. 
+#
+# The syntax for a list comprehension is below. 
 # Essentially what is happening below, is that Python is iterating through each value
 # in the old list (`for i in my_old_list`) and multiplying it by 2 (`i*2`). In each 
 # loop, the value `i` represents the next value in the list. IN the example below i will 
@@ -232,12 +237,16 @@ except NameError:
 # ```python
 # my_old_list = [1, 2, 3]
 # my_new_list = [i *2 for i in my_old_list] 
-# my_new_list
 # ```
+#
+# `my_new_list` will equal each value in `my_old_list` multiplied by 2, so `my_new_list` 
+# will be equivalant to `[2, 4, 6]`. You can run this code and see the output for yourself!
 #
 # Try to experiment with writing more efficient code. Convert your 
 # `boulder_precip_inches` list of values to a new list called 
 # `boulder_precip_mm` using a list comprehension using the syntax above! 
+#
+# For more information on changing values within a list, you can check out <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/write-efficient-python-code/loops/" target="_blank">Earth Lab's lesson introducing loops in Python,</a> and you can go to <a href="https://www.pythonforbeginners.com/basics/list-comprehensions-in-python" target="_blank">this more in depth explanation on list comprehensions in Python.</a>
 # </div>
 
 # %%
