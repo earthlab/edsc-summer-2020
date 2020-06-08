@@ -18,7 +18,7 @@
 #
 # ![Colored Bar](colored-bar.png)
 #
-# ## Introduction to Vector Data
+# ## Introduction to Using Spatial Vector Data in Open Source Python
 
 # <div class='notice--success' markdown="1">
 #
@@ -33,22 +33,23 @@
 #
 # * Describe the characteristics of 3 key vector data structures: points, lines and polygons.
 # * Open a shapefile in **Python** using **geopandas** - `gpd.read_file()`.
-# * View the CRS and other spatial metadata of a vector spatial layer in **Python**
-# * Access and view the attributes of a vector spatial layer in **Python**.
+# * Plot a shapfile in **Python** using **geopandas** - `gpd.plot()`.
 #
+# </div>
 #
-# ## About Vector Data
+# Add this reading as a to do for all of the info below so we are not duplicating information 
+# Reading: https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/ 
+
+# ## About Spatial Vector Data
 #
 # Vector data are composed of discrete geometric locations (x, y values) known as **vertices** that define the "shape" of the spatial object. The organization of the vertices determines the type of vector that you are working 
 # with. There are three types of vector data: 
 #
-# * **Points:** Each individual point is defined by a single x, y coordinate. There can be many points in a vector point file. Examples of point data include: sampling locations, the location of individual trees or the location of plots.
+# * **Points:** Each individual point is defined by a single x, y coordinate. Examples of point data include: sampling locations, the location of individual trees or the location of plots.
 #
 # * **Lines:** Lines are composed of many (at least 2) vertices, or points, that are connected. For instance, a road or a stream may be represented by a line. This line is composed of a series of segments, each "bend" in the road or stream represents a vertex that has defined `x, y` location.
 #
-# * **Polygons:** A polygon consists of 3 or more vertices that are connected and "closed". Thus the outlines of plot boundaries, lakes, oceans, and states or countries are often represented by polygons. Occasionally, a polygon can have a hole in the middle of it (like a doughnut), this is something to be aware of but not an issue you will deal with in this tutorial.
-#
-#
+# * **Polygons:** A polygon consists of 3 or more vertices that are connected and "closed". Thus the outlines of plot boundaries, lakes, oceans, and states or countries are often represented by polygons. 
 # <figure>
 #     <a href="https://www.earthdatascience.org/images/earth-analytics/spatial-data/points-lines-polygons-vector-data-types.png">
 #     <img src="https://www.earthdatascience.org/images/earth-analytics/spatial-data/points-lines-polygons-vector-data-types.png" alt="There are 3 types of vector objects: points, lines or polygons. Each object type has a different structure. Image Source: Colin Williams (NEON)."></a>
@@ -57,52 +58,41 @@
 # </figure>
 #
 #
-# <i class="fa fa-star"></i> **Data Tip:** Sometimes, boundary layers such as states and countries, are stored as lines rather than polygons. However, these boundaries, when represented as a line, will not create a closed object with a defined "area" that can be "filled".
-# {: .notice--warning }
+# ## Introduction to the Shapefile Data Format Which Stores Points, Lines, and Polygons
 #
+# Geospatial data in vector format are often stored in a `shapefile` 
+# format. Because the structure of points, lines, and polygons are 
+# different, each individual shapefile can only contain one vector 
+# type (all points, all lines or all polygons). You will not find 
+# a mixture of point, line and polygon objects in a single shapefile.
 #
-# ## Shapefiles: Points, Lines, and Polygons
-#
-# Geospatial data in vector format are often stored in a `shapefile` format. Because the structure of points, lines, and polygons are different, each individual shapefile can only contain one vector type (all points, all lines 
-# or all polygons). You will not find a mixture of point, line and polygon objects in a single shapefile.
-#
-# Objects stored in a shapefile often have a set of associated `attributes` that describe the data. For example, a line shapefile that contains the locations of streams, might contain the associated stream name, stream "order" and other 
+# Objects stored in a shapefile often have a set of associated 
+# `attributes` that describe the data. For example, a line 
+# shapefile that contains the locations of streams, might 
+# contain the associated stream name, stream "order" and other 
 # information about each stream line object.
 #
-# * More about shapefiles can found on <a href="https://en.wikipedia.org/wiki/Shapefile" target="_blank">Wikipedia</a>.
+# * More about shapefiles can found on 
+# <a href="https://en.wikipedia.org/wiki/Shapefile" target="_blank">Wikipedia</a>.
+
+# ## Common Data Stored as Spatial Vector Data
 #
+# Vector data is a very common way to store multiple types of data. Some common examples include:
 #
-# ## One Dataset - Many Files
+# - census data
+# - roads
+# - political boundaries
+# - water bodies and river systems
+# - ecological boundaries
+# - city locations
+# - specific object locations (i.e., stream gauges)
 #
-# A text file is often self contained. For example, one `.csv` file is composed of one unique file. Many spatial formats are composed of several files. A shapefile is created by 3 or more files, all of which must retain the same NAME and be
-# stored in the same file directory, in order for you to be able to work with them.
-#
-# ### Shapefile Structure
-#
-# There are 3 key files associated with any and all shapefiles:
-#
-# * **`.shp`:** the file that contains the geometry for all features.
-# * **`.shx`:** the file that indexes the geometry.
-# * **`.dbf`:** the file that stores feature attributes in a tabular format.
-#
-# These files need to have the **same name** and to be stored in the same directory (folder) to open properly in a GIS, `R` or **Python** tool.
-#
-# Sometimes, a shapefile will have other associated files including:
-#
-# * `.prj`: the file that contains information on projection format including
-# the coordinate system and projection information. It is a plain text file
-# describing the projection using well-known text (WKT) format.
-# * `.sbn` and `.sbx`: the files that are a spatial index of the features.
-# * `.shp.xml`: the file that is the geospatial metadata in XML format, (e.g. ISO 19115 or XML format).
-#
-# ## Data Management - Sharing Shapefiles
-#
-# When you work with a shapefile, you must keep all of the key associated file types together. And when you share a shapefile with a colleague, it is important to zip up all of these files into one package before you send it to
-# them!
-#
+# This is a very cursory and incomplete list, but helps demonstrate how versatile this data format can be. 
+
 # ## Import Shapefiles
 #
-# You will use the **geopandas** library to work with vector data in **Python**. You will also use `matplotlib.pyplot` to plot your data. 
+# You will use the **geopandas** library to work with vector data in 
+# **Python**. You will also use `matplotlib.pyplot` to plot your data. 
 
 # +
 # Import packages
@@ -112,27 +102,39 @@ import geopandas as gpd
 import earthpy as et
 
 # Get data and set working directory
-data = et.data.get_data('spatial-vector-lidar')
+et.data.get_data(
+    url='https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip')
+et.data.get_data(
+    url='https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_boundary_lines_land.zip')
+et.data.get_data(
+    url='https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_populated_places_simple.zip')
 os.chdir(os.path.join(et.io.HOME, 'earth-analytics'))
 # -
 
 # The shapefiles that you will import are:
 #
-# * A polygon shapefile representing our field site boundary,
-# * A line shapefile representing roads, and
-# * A point shapefile representing the location of field sites at the <a href="http://www.neonscience.org/science-design/field-sites/harvard-forest" target="_blank"> San Joachin field site</a>.
+# * A polygon shapefile representing outlines of countries globally.
+# * A line shapefile representing political boundaries of countries globally.
+# * A point shapefile representing the location of highly populated places globally.
 #
-# The first shapefile that you will open contains the point locations of plots where trees have been measured. To import shapefiles you use the `geopandas` function `read_file()`. Notice that you call the `read_file()` function using `gpd.read_file()` to tell python to look for the function within the `geopandas` library.
+# To import shapefiles you use the `geopandas` function `read_file()`. Notice that you call the `read_file()` function using `gpd.read_file()` to tell python to look for the function within the `geopandas` library.
 #
 
 # +
 # Define path to file
-plot_centroid_path = os.path.join("data", "spatial-vector-lidar",
-                                  "california", "neon-sjer-site",
-                                  "vector_data", "SJER_plot_centroids.shp")
+countries_path = os.path.join("data", "earthpy-downloads",
+                              "ne_10m_admin_0_countries", "ne_10m_admin_0_countries.shp")
+
+bounday_lines_path = os.path.join("data", "earthpy-downloads",
+                                  "ne_50m_admin_0_boundary_lines_land", "ne_50m_admin_0_boundary_lines_land.shp")
 
 # Import shapefile using geopandas
-sjer_plot_locations = gpd.read_file(plot_centroid_path)
+
+# Opening polygon shapefile
+countries = gpd.read_file(countries_path)
+
+# Opening line shapefile
+boundary_lines = gpd.read_file(bounday_lines_path)
 # -
 
 #
@@ -143,11 +145,7 @@ sjer_plot_locations = gpd.read_file(plot_centroid_path)
 # in the spreadsheet has a set of columns associated with it that describe the row
 # element. In the case of a shapefile, each row represents a spatial object - for
 # example, a road, represented as a line in a line shapefile, will have one "row"
-# of attributes associated with it. These attributes can include different types
-# of information that describe objects stored within a shapefile. Thus, our road,
-# may have a name, length, number of lanes, speed limit, type of road and other
-# attributes stored with it.
-#
+# of attributes associated with it.
 #
 # <figure>
 #     <a href="https://www.earthdatascience.org/images/earth-analytics/spatial-data/spatial-attribute-tables.png">
@@ -166,32 +164,51 @@ sjer_plot_locations = gpd.read_file(plot_centroid_path)
 # </figure>
 #
 #
-# You can view the attribute table associated with our geopandas `GeoDataFrame` by simply typing the object name into the console (e.g., `sjer_plot_locations`). 
+# You can view the attribute table associated with our geopandas `GeoDataFrame` by typing the object name into the console (e.g., `countries`). 
 #
-# Or you can use the `.head(3)` function to only display the first 3 rows of the attribute table. The number in the `.head()` function represents the total number of rows that will be returned by the function. 
+# Or you can use the `.head(3)` method to display the first 3 rows of the attribute table. Adding a number fo the head method like this: `.head(6)` will specify how many rows of data python displays. 
+#
 
 # View top 6 rows of attribute table
-sjer_plot_locations.head(6)
+countries.head(6)
 
 # View the geometry type of each row
-sjer_plot_locations.geom_type
+countries.geom_type
+
+# <div class='notice--success alert alert-info' markdown="1">
+#
+# <i class="fa fa-star"></i> **Data Tip:** Vector Metadata
+#
+# The spatial and attribute data are not the only important aspects of a shapefile. The metadata of a shapefile are also very important. The metadata includes data on the Coordinate Reference System (CRS), the extent, and much more. For more information on what the metadata is, and how to access it, see the full lesson on vector data on the Earth Lab website, [here](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/).</div>
+
+# ## Plotting Vector Data with GeoPandas
+#
+# Once your vector data is successfully loaded into a GeoDataFrame with GeoPandas, it's very easy to plot the data with the GeoPandas function `plot()`. This helps to visually demonstrate the data stored in a GeoDataFrame. Below is the data we opened above plotted out. 
+
+# +
+# Using matplotlib to plot the two GeoDataFrames on the same axes (ax)
+fig, ax = plt.subplots()
+
+countries.plot(ax=ax)
+boundary_lines.plot(ax=ax, color='red');
+ax.set(title="Countries plotted with political boundaries overlaid.");
+# -
 
 # <div class="notice--warning" markdown="1">
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge : Open Spatial Data in Python
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge : Open and Plot Spatial Data in Python
 #
-# Much like was done above, you're going to open your own spatial data with `geopandas`! Below we've provided a path to a dataset that contains spatial data similar to what we opened above. Open the spatial data with `geopandas`. Name the dataset `soap_plot_locations`. Once the dataset is opened, check the `geom_type`, and view the first few rows of the dataset using `dataset.head()`.
+# Much like was done above, you're going to open your own spatial data with `geopandas`! Below we've provided a path to a dataset that contains spatial data similar to what we opened above. Open the spatial data with `geopandas`. Name the dataset `populated_places`. Once the dataset is opened, check the `geom_type`, and view the first few rows of the dataset using `dataset.head()`. 
 #
 # </div>
 
 # +
-student_plot_centroid_path = os.path.join("data", "spatial-vector-lidar",
-                                          "california", "neon-soap-site",
-                                          "vector_data", "SOAP_centroids.shp")
+populated_places_path = os.path.join("data", "earthpy-downloads",
+                                     "ne_50m_populated_places_simple", "ne_50m_populated_places_simple.shp")
 
 # Open your dataset below this line. Make sure to view the geom_type and the first few rows of the dataset
 
-soap_plot_locations = gpd.read_file(student_plot_centroid_path)
+
 # -
 
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
@@ -204,106 +221,68 @@ soap_plot_locations = gpd.read_file(student_plot_centroid_path)
 import notebook_tests_data_types
 
 try:
-    print(notebook_tests_data_types.test_geopandas_dataframe_creation(soap_plot_locations))
+    print(notebook_tests_data_types.test_geopandas_dataframe_creation(
+        populated_places)
+    )
 except NameError:
-        print("'soap_plot_locations' is not defined. Make sure you spelled the variable name correctly!")
+    print("'populated_places' is not defined. Make sure you spelled the variable name correctly!")
 # -
 
-# In this case, you have several attributes associated with our points including:
+# Now that the data is open, you can plot is using the `plot()` function. Copy the code below, but enter in your variable name to see the data you've opened plotted. Make sure to customize the title of the code, and change the color of your data to make the map more legible. 
 #
-# * Plot_ID, Point, easting, geometry, northing, plot_type 
+# ```
+# fig, ax = plt.subplots()
 #
-# <i class="fa fa-star"></i> **Data Tip:** The acronym, OGR, refers to the OpenGIS Simple Features Reference Implementation. <a href="https://trac.osgeo.org/gdal/wiki/FAQGeneral" target="_blank"> Learn more about OGR.</a>
-# {: .notice--warning }
-#
-#
-# ### The Geopandas Data Structure
-#
-# Notice that the geopandas data structure is a `dataframe` that contains a `geometry` column where the x, y point location values are stored. All of the other shapefile feature attributes are contained in columns, similar to what you may be used to if you've used a GIS tool such as ArcGIS or QGIS.
-#
-# ## Shapefile Metadata & Attributes
-#
-# When you import the `SJER_plot_centroids` shapefile layer into `Python` the `gpd.read_file()` function automatically stores information about the data as attributes. You are particularly interested in the geospatial **metadata**, describing the format, `CRS`, `extent`, and other components of the vector data, and the **attributes** which describe properties associated with each individual vector object.
-#
-#
-# ## Spatial Metadata
-#
-# Key metadata for all shapefiles include:
-#
-# 1. **Object Type:** the class of the imported object.
-# 2. **Coordinate Reference System (CRS):** the projection of the data.
-# 3. **Extent:** the spatial extent (geographic area that the shapefile covers) of the shapefile. Note that the spatial extent for a shapefile represents the extent for ALL spatial objects in the shapefile.
-#
-# You can view these shapefile metadata using the `.crs` and `.total_bounds` attributes:
+# countries.boundary.plot(ax=ax)
+# your_dataframe_here.plot(ax=ax, color='blue');
+# ax.set(title="Put Title Here");
+# ```
 
-# View object type
-type(sjer_plot_locations)
 
-# View CRS of object
-sjer_plot_locations.crs
-
-# The CRS for the data is epsg code: `32611`. You will learn about CRS formats and structures in a later lesson but for now a quick google search reveals that this CRS is: <a href="http://spatialreference.org/ref/epsg/wgs-84-utm-zone-11n/" target="_blank">UTM zone 11 North - WGS84</a>.
-
-# View the spatial extent
-sjer_plot_locations.total_bounds
-
-# <figure>
-#     <a href="https://www.earthdatascience.org/images/earth-analytics/spatial-data/spatial-extent.png">
-#     <img src="https://www.earthdatascience.org/images/earth-analytics/spatial-data/spatial-extent.png" alt="The spatial extent of a shapefile or geopandas GeoDataFrame represents the geographic edge or location that is the furthest north, south east and west. Thus is represents the overall geographic coverage of the spatial object. Image Source: National Ecological Observatory Network (NEON)."></a>
-#     <figcaption>The spatial extent of a shapefile or geopandas GeoDataFrame represents
-#     the geographic "edge" or location that is the furthest north, south east and
-#     west. Thus is represents the overall geographic coverage of the spatial object.
-#     Image Source: National Ecological Observatory Network (NEON)
-#     </figcaption>
-# </figure>
-
-# ## How Many Features Are In Your Shapefile? 
-#
-# You can view the number of features (counted by the number of rows in the attribute table) and feature attributes (number of columns) in our data using the pandas `.shape` method. Note that the data are returned as a vector of two values:
-#
-# (rows, columns) 
-#
-# Also note that the number of columns includes a column where the geometry (the x, y coordinate locations) are stored. 
-
-sjer_plot_locations.shape
 
 # <div class="notice--warning" markdown="1">
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge : Get Metadata from GeoPandas
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> BONUS Challenge: Clipping Vector Data in Python
 #
-# Now you can get the same metadata, but for your `soap_plot_locations`. Assign the `crs` of your data to `soap_crs`, assign the bounds of your data to `soap_bounds`, and assign the shape of your data to `soap_shape`. You can `print()` those variables out to see how they differ from the metadata of the other dataset, and how they are similar as well! 
+# You may have noticed that the data above is difficult to read since there are so many points in the point data layer. One of the most common analytical techniques used in earth data science is clipping vector data. A clip is a spatial operation that will take a dataset, and limit it spatially to the extent of another dataset. 
+#
+# <figure>
+#     <a href="https://www.earthdatascience.org/images/earth-analytics/spatial-data/vector-clip.png">
+#     <img src="https://www.earthdatascience.org/images/earth-analytics/spatial-data/vector-clip.png" alt="When you clip a vector data set with another layer, you remove points, lines or polygons that are outside of the spatial extent of the area that you use to clip the data. This images shows a circular clip region - you will be using a rectangular region in this example. Image Source: ESRI"></a>
+#     <figcaption>When you clip a vector data set with another layer, you remove points, lines or polygons that are outside of the spatial extent of the area that you use to clip the data. This images shows a circular clip region - you will be using a rectangular region in this example. Image Source: ESRI
+#     </figcaption>
+# </figure>
+#
+# For further reading on what clipping is, you can refer to the clipping page on the Earth Lab website, [here](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/vector-data-processing/clip-vector-data-in-python-geopandas-shapely/). Fear not, we will go over clipping and other spatial data operations soon! 
+#
+# For this bonus challenge, you will clip the data you've opened, `populated_places`, to the extent of a single country. To clip the data, you will use the `clip()` function in `geopandas`. The syntax of the function is `gpd.clip(data_to_clip, boundary_to_clip_to)`. You can assign the output of this function to a variable, and it will be a GeoDataFrame of the output of the operation. In the below example, `cities_in_mexico` would be a GeoDataFrame containing all of the points in `populated_places` that were within the boundary of the polygon `mexico_boundary`. 
+#
+# ```
+# cities_in_mexico = gpd.clip(populated_places, mexico_boundary)
+#
+# ```
+#
+# We subsetted the `countries` dataset and made a GeoDataFrame that is just the boundary of Indonesia. Use that GeoDataFrame to clip `populated_places` to Indonesia. Name the output `cities_in_indonesia`. 
 #
 # </div>
 
 # +
-# Open your dataset below this line. Make sure to view the geom_type and the first few rows of the dataset
+# Subsetting the countries dataframe to make Indonesian boundary to clip populated_places to. 
+indonesia_boundary = countries.loc[countries['SOVEREIGNT'] == 'Indonesia']
 
-soap_crs = soap_plot_locations.crs
-
-soap_bounds = soap_plot_locations.total_bounds
-
-soap_shape = soap_plot_locations.shape
+# Below this line clip the populated_places data to the Indonesian boundary created above.
 
 # -
 
-# The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
-#
-# Be sure to run the cell below to check your code (please do not modify the cell!).
+# Now run the next cell to see if you properly clipped the data!
 
 # +
-# Run this cell to ensure soap_crs, soap_bounds, and soap_shape were created correctly
+try:
+    fig, ax = plt.subplots()
 
-try:
-    print(notebook_tests_data_types.test_geopandas_dataframe_crs(soap_crs))
-except NameError as e:
-        print(e, "'soap_crs' is not defined. Make sure you spelled the variable name correctly!")
-        
-try:
-    print(notebook_tests_data_types.test_geopandas_dataframe_bounds(soap_bounds))
+    indonesia_boundary.plot(ax=ax)
+    cities_in_indonesia.plot(ax=ax, color='purple')
+    ax.set(title="Major Cities in Indonesia");
+    
 except NameError:
-        print("'soap_bounds' is not defined. Make sure you spelled the variable name correctly!")
-        
-try:
-    print(notebook_tests_data_types.test_geopandas_dataframe_shape(soap_shape))
-except NameError:
-        print("'soap_shape' is not defined. Make sure you spelled the variable name correctly!")
+    print("Variable 'cities_in_indonesia' not found. Please make sure you assigned it correctly!")
