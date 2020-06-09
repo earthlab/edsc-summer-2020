@@ -1,10 +1,11 @@
 # ---
 # jupyter:
 #   jupytext:
+#     formats: ipynb,py:percent
 #     text_representation:
 #       extension: .py
-#       format_name: light
-#       format_version: '1.5'
+#       format_name: percent
+#       format_version: '1.3'
 #       jupytext_version: 1.4.2
 #   kernelspec:
 #     display_name: Python 3
@@ -12,6 +13,7 @@
 #     name: python3
 # ---
 
+# %% [markdown]
 # <img style="float: left;" src="earth-lab-logo-rgb.png" width="150" height="150">
 #
 # # Earth Data Science Corps Summer 2020
@@ -20,11 +22,14 @@
 #
 # ## Introduction to Using Spatial Vector Data in Open Source Python
 
+# %% [markdown]
 # <div class='notice--success' markdown="1">
 #
 # ## <i class="fa fa-ship" aria-hidden="true"></i> Fundamentals of Vector Data in Python 
 #
-# In this lesson, you will learn fundamental concepts related to working with vector data in **Python**, including understanding the spatial attributes of vector data, how to open vector data and access its metadata.
+# In this lesson, you will be introduced to the spatial vector data structure
+# and the shapefile file format (`.shp`). You will also learn how to open, explore and plot
+# vector data using the `Geopandas` package in **Python**.
 #
 #
 # ## <i class="fa fa-graduation-cap" aria-hidden="true"></i> Learning Objectives
@@ -37,9 +42,11 @@
 #
 # </div>
 #
+# # TODO: work this into the text
 # Add this reading as a to do for all of the info below so we are not duplicating information 
 # Reading: https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/ 
 
+# %% [markdown]
 # ## About Spatial Vector Data
 #
 # Vector data are composed of discrete geometric locations (x, y values) known as **vertices** that define the "shape" of the spatial object. The organization of the vertices determines the type of vector that you are working 
@@ -58,10 +65,10 @@
 # </figure>
 #
 #
-# ## Introduction to the Shapefile Data Format Which Stores Points, Lines, and Polygons
+# ## Introduction to the Shapefile File Format Which Stores Points, Lines, and Polygons
 #
 # Geospatial data in vector format are often stored in a `shapefile` 
-# format. Because the structure of points, lines, and polygons are 
+# format (`.shp`). Because the structure of points, lines, and polygons are 
 # different, each individual shapefile can only contain one vector 
 # type (all points, all lines or all polygons). You will not find 
 # a mixture of point, line and polygon objects in a single shapefile.
@@ -72,71 +79,260 @@
 # contain the associated stream name, stream "order" and other 
 # information about each stream line object.
 #
-# * More about shapefiles can found on 
+# <i class="fa fa-star"></i> **Data Tip:** More about shapefiles can found on 
 # <a href="https://en.wikipedia.org/wiki/Shapefile" target="_blank">Wikipedia</a>.
-
-# ## Common Data Stored as Spatial Vector Data
+# {: .notice--success }
 #
-# Vector data is a very common way to store multiple types of data. Some common examples include:
+# ## GeoJson Files and other Vector Formats
+# The shapefile is not the only way that vector data are stored. Geospatial data 
+# can also be delivered in a GeoJson format, or even a tabular format where the 
+# spatial information is contained in columns. 
 #
-# - census data
-# - roads
+# ## What Data Are Stored As Spatial Vector?  
+#
+# Some examples of data that often are provided in a vector format include:
+#
+# - census data including municipal boundaries
+# - roads, powerlines and other infrastructure boundaries
 # - political boundaries
+# - building outlines
 # - water bodies and river systems
 # - ecological boundaries
 # - city locations
-# - specific object locations (i.e., stream gauges)
+# - object locations including plots, stream gages, and building locations
 #
-# This is a very cursory and incomplete list, but helps demonstrate how versatile this data format can be. 
 
-# ## Import Shapefiles
+# %% [markdown]
+# ## Import Shapefile Data Into Python Using Geopandas
 #
 # You will use the **geopandas** library to work with vector data in 
-# **Python**. You will also use `matplotlib.pyplot` to plot your data. 
+# **Python**. **Geopandas** is built on top of the Python pandas library.
+# It stores spatial data in a tabular, `dataframe` format. 
 
-# +
+# %%
 # Import packages
 import os
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import earthpy as et
 
-# Get data and set working directory
-et.data.get_data(
-    url='https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip')
+# %% [markdown]
+# To begin, set your working directory to `earth-analytics and then download a 
+# single shapefile. You will start with working with the natural earth 
+# country boundary lines layer.
+#
+# <i class="fa fa-star"></i> **Data Tip:**  Note that below you are using earthpy 
+# to download a dataset from naturalearthdata.com. Earthpy creates the earth-analytics
+# directory for you when you use it. You set the working directory
+# after you download the data as a precaution to ensure that the earth-analytics
+# directory already exists on your computer. This is not a standard order of 
+# operations but we are demonstrating it here to ensure the notebook runs on 
+# all computers! 
+# {: .notice--success }
+
+# %%
+# Download the data and set working directory
 et.data.get_data(
     url='https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_boundary_lines_land.zip')
+
+
+# Set working directory - earthpy creates earth-analytics for you in your home dir
+os.chdir(os.path.join(et.io.HOME, 'earth-analytics'))
+
+# %% [markdown]
+# Next, you open the data using Geopandas. You can view the first 5 rows of the 
+# data using `.head()` in the same way you used `.head()` for pandas dataframes. 
+
+# %%
+coastlines_url = "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/physical/ne_50m_coastline.zip"
+
+et.data.get_data(url=coastlines_url)
+
+coastlines_path = os.path.join("data", "earthpy-downloads",
+                               "ne_50m_coastline",
+                               "ne_50m_coastline.shp")
+
+coastlines = gpd.read_file(coastlines_path)
+coastlines.head()
+
+# %% [markdown]
+# ### GeoPandas Creates GeoDataFrames Which Have the Same Structure As Pandas DataFrames
+#
+# The structure of a **Geopandas** `GeoDataFrame` is very similar to a 
+# pandas dataframe. A few differences include 
+#
+#
+# * the `GeoDataFrame` contains a geometry column which stores spatial information. The geometry column in your GeoDataFrame stores the boundary information (the lines that make up each 
+# shape in your data). This allows you to plot points, lines or polygons. 
+# * the`GeoDataFrame` stores spatial attributes such as coordinate reference systems and spatial extents
+#
+# Similar to pandas you can plot the data using `.plot()`
+
+# %%
+# Plot the data
+f, ax1 = plt.subplots(figsize=(12, 6))
+coastlines.plot(ax=ax1)
+# Add a title to your plot
+ax1.set(title="Global Coastline Boundaries")
+plt.show()
+
+# %% [markdown]
+# ### Check the Spatial Vector Data Type
+# You can look at the data to figure out what type of data are stored in the 
+# shapefiles (points, line or polygons). But you can also get that information 
+# by calling `.geom_type`
+
+# %%
+# Is the geometry type point, line or polygon?
+coastlines.geom_type
+
+# %% [markdown]
+# Also similar to pandas, you can view descriptive information about the 
+# `GeoDataFrame` using `.info()`. This includes the number of columns, rows 
+# and the header name and type of each column.
+
+# %%
+coastlines.info()
+
+# %% [markdown]
+# ## Open Vector Point Data
+#
+# Next, you will open up another shapefile using Geopandas.  
+
+# %%
+# Open a second layer
 et.data.get_data(
     url='https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_populated_places_simple.zip')
-os.chdir(os.path.join(et.io.HOME, 'earth-analytics'))
-# -
 
-# The shapefiles that you will import are:
+# Create a path to the populated places shapefile
+populated_places_path = os.path.join("data", "earthpy-downloads",
+                                     "ne_50m_populated_places_simple",
+                                     "ne_50m_populated_places_simple.shp")
+
+cities = gpd.read_file(populated_places_path)
+cities.head()
+
+# %% [markdown]
+# <div class="notice--warning" markdown="1">
 #
-# * A polygon shapefile representing outlines of countries globally.
-# * A line shapefile representing political boundaries of countries globally.
-# * A point shapefile representing the location of highly populated places globally.
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge:  What Geometry Type Are Your Data
 #
-# To import shapefiles you use the `geopandas` function `read_file()`. Notice that you call the `read_file()` function using `gpd.read_file()` to tell python to look for the function within the `geopandas` library.
+# Check the geometry type of the cities object that you opened above in the cell below. 
+#
+# </div>
 #
 
-# +
-# Define path to file
-countries_path = os.path.join("data", "earthpy-downloads",
-                              "ne_10m_admin_0_countries", "ne_10m_admin_0_countries.shp")
+# %%
+# Add the code here to check the geometry type of the cities object that you created above
 
-bounday_lines_path = os.path.join("data", "earthpy-downloads",
-                                  "ne_50m_admin_0_boundary_lines_land", "ne_50m_admin_0_boundary_lines_land.shp")
+# %% [markdown]
+# ## Creating Maps Using Multiple Shapefiles
+#
+# You can create maps using multiple shapefiles with Geopandas in a similar way
+# that you may do this using a graphical user interface (GUI) tool like ArcGIS 
+# or QGIS (open source alternative to ArcGIS).
+#
+# To do this you will need to open a second file. The populated places file is 
+# used below!
 
-# Import shapefile using geopandas
+# %% [markdown]
+# To plot two datasets together, you will first create a matplotlib figure object. 
+# Notice in the example below that you define the figure `ax` in the first line. 
+# You then tell GeoPandas to plot the data on that particular figure using the 
+# parameter `ax=`
+#
+# the code looks like this:
+#
+# `boundary_lines.plot(ax=ax1)`
+#
 
-# Opening polygon shapefile
-countries = gpd.read_file(countries_path)
+# %%
+f, ax1 = plt.subplots(figsize=(10, 6))
+coastlines.plot(ax=ax1)
+plt.show()
 
-# Opening line shapefile
-boundary_lines = gpd.read_file(bounday_lines_path)
-# -
+# %% [markdown]
+# To add another layer to your map, you can add a second `.plot()` call and 
+# specify the `ax=` to be `ax1` again. This tells Python to layer the two 
+# datasets in the same figure. 
 
+# %%
+# Create a map or plot with two data layers
+f, ax1 = plt.subplots(figsize=(10, 6))
+coastlines.plot(ax=ax1,
+                color="black")
+cities.plot(ax=ax1)
+
+# Add a title
+ax1.set(title="Map of Cities and Global Lines")
+plt.show()
+
+# %% [markdown]
+# If you don't specify the axis when you plot, each layer will be plotted on a 
+# new figure! See the example below
+
+# %%
+f, ax1 = plt.subplots(figsize=(10, 6))
+coastlines.plot(ax=ax1)
+cities.plot()
+plt.show()
+
+# %% [markdown]
+# <div class="notice--warning" markdown="1">
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge: Create a Global Map
+#
+# The code below will download one additional file for you that contains global country 
+# boundaries. Your goal is to create a map that contains 3 layers:
+#
+# 1. the cities or populated places layer that you opened above
+# 2. the coastlines layer that you opened above and
+# 3. the countries layer that you you will open using the code below
+#
+# Do the following:
+# 1. Copy the code below that downloads the countries layer, into the cell below. 
+# 2. Next use geopandas `read_file()` to open the countries layer as a `GeoDataFrame`.
+# 3. Create a map of all three layers - in the same figure. The countries should be the bottom layer, the cities and lines should be on top of that layer.  
+#
+# ```python
+# country_data_url = "https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip"
+# et.data.get_data(url=country_data_url)
+#
+# # Create a path to the countries shapefile
+# countries_path = os.path.join("data", "earthpy-downloads",
+#                               "ne_10m_admin_0_countries", 
+#                               "ne_10m_admin_0_countries.shp")
+#
+# ### Challenge BONUS: customize your map
+#
+# If you have time customize your map as follows:
+#     
+# * Adjust the linewidth of lines with `linewidth=4`
+# * Adjust the edge color of polygons using: `edgecolor="grey"`
+# * Adjust the color of your objects (the line color, or point color) using: `color='springgreen'`. 
+#     
+# Finally add a title to your map using
+# ax1.set(title="my title here")
+# ```
+#
+# </div>
+#
+
+# %%
+# Write the code for your map in this cell
+
+# %% [markdown]
+#
+# <div class="notice--success" markdown="1">
+# <i class="fa fa-star"></i> **Data Tip:** There are many options to customize plots in Python. Below are 
+# a few lessons that cover some of this information!
+#
+# * https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-vector-plots/python-customize-map-legends-geopandas/
+#
+# * https://geopandas.org/gallery/plotting_with_geoplot.html
+# </div>
+
+# %% [markdown]
 #
 # ## Spatial Data Attributes
 #
@@ -164,58 +360,77 @@ boundary_lines = gpd.read_file(bounday_lines_path)
 # </figure>
 #
 #
-# You can view the attribute table associated with our geopandas `GeoDataFrame` by typing the object name into the console (e.g., `countries`). 
-#
-# Or you can use the `.head(3)` method to display the first 3 rows of the attribute table. Adding a number fo the head method like this: `.head(6)` will specify how many rows of data python displays. 
-#
+# The attributes for a shapefile imported into a GeoDataFrame can be viewed in the GeoDataFrame
+# itself. 
 
-# View top 6 rows of attribute table
-countries.head(6)
+# %%
+# View first 5 rows of GeoDataFrame
+countries.head()
 
-# View the geometry type of each row
-countries.geom_type
+# %%
+countries.POP_EST
 
+# %% [markdown]
 # <div class='notice--success alert alert-info' markdown="1">
 #
 # <i class="fa fa-star"></i> **Data Tip:** Vector Metadata
 #
 # The spatial and attribute data are not the only important aspects of a shapefile. The metadata of a shapefile are also very important. The metadata includes data on the Coordinate Reference System (CRS), the extent, and much more. For more information on what the metadata is, and how to access it, see the full lesson on vector data on the Earth Lab website, [here](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/).</div>
 
-# ## Plotting Vector Data with GeoPandas
-#
-# Once your vector data is successfully loaded into a GeoDataFrame with GeoPandas, it's very easy to plot the data with the GeoPandas function `plot()`. This helps to visually demonstrate the data stored in a GeoDataFrame. Below is the data we opened above plotted out. 
+# %%
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-# +
-# Using matplotlib to plot the two GeoDataFrames on the same axes (ax)
-fig, ax = plt.subplots()
+f, ax1 = plt.subplots(figsize=(10, 6))
 
-countries.plot(ax=ax)
-boundary_lines.plot(ax=ax, color='red');
-ax.set(title="Countries plotted with political boundaries overlaid.");
-# -
+divider = make_axes_locatable(ax1)
+cax = divider.append_axes("right", 
+                          size="5%", 
+                          pad=0.1)
 
+countries.plot(column='POP_EST',
+               legend=True,
+               ax=ax1, cax=cax)
+plt.show()
+
+# %% [markdown]
 # <div class="notice--warning" markdown="1">
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge : Open and Plot Spatial Data in Python
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge: Plot Cities Data
 #
-# Much like was done above, you're going to open your own spatial data with `geopandas`! Below we've provided a path to a dataset that contains spatial data similar to what we opened above. Open the spatial data with `geopandas`. Name the dataset `populated_places`. Once the dataset is opened, check the `geom_type`, and view the first few rows of the dataset using `dataset.head()`. 
+# Plot the cities object so each point is colored according to the max population
+# value. 
 #
+# HINT: see this page for more information on customizing maps in geopandas:
+# https://geopandas.org/mapping.html
 # </div>
 
-# +
-populated_places_path = os.path.join("data", "earthpy-downloads",
-                                     "ne_50m_populated_places_simple", "ne_50m_populated_places_simple.shp")
-
+# %%
 # Open your dataset below this line. Make sure to view the geom_type and the first few rows of the dataset
 
+# %% [markdown]
+# <div class="notice--warning" markdown="1">
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge: Plot Cities Data
+#
+# you can plot your data according to categorical groups similar to what you might do in a tool
+# like ArcGis or QGIS. See what happens when you customize your plot code above.
+#
+# Set the following parameters:
+# * `legend=True` and
+# * `scheme="quantiles`
+#
+# </div>
+#
 
-# -
+# %%
+# Add your plot code here 
 
+# %% [markdown]
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
 #
 # Be sure to run the cell below to check your code (please do not modify the cell!).
 
-# +
+# %%
 # Run this cell to ensure soap_plot_locations was created correctly
 
 import notebook_tests_data_types
@@ -226,20 +441,8 @@ try:
     )
 except NameError:
     print("'populated_places' is not defined. Make sure you spelled the variable name correctly!")
-# -
 
-# Now that the data is open, you can plot is using the `plot()` function. Copy the code below, but enter in your variable name to see the data you've opened plotted. Make sure to customize the title of the code, and change the color of your data to make the map more legible. 
-#
-# ```
-# fig, ax = plt.subplots()
-#
-# countries.boundary.plot(ax=ax)
-# your_dataframe_here.plot(ax=ax, color='blue');
-# ax.set(title="Put Title Here");
-# ```
-
-
-
+# %% [markdown]
 # <div class="notice--warning" markdown="1">
 #
 # ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> BONUS Challenge: Clipping Vector Data in Python
@@ -266,23 +469,27 @@ except NameError:
 #
 # </div>
 
-# +
-# Subsetting the countries dataframe to make Indonesian boundary to clip populated_places to. 
+# %%
+# Subsetting the countries dataframe to make Indonesian boundary to clip populated_places to.
 indonesia_boundary = countries.loc[countries['SOVEREIGNT'] == 'Indonesia']
 
 # Below this line clip the populated_places data to the Indonesian boundary created above.
 
-# -
-
+# %% [markdown]
 # Now run the next cell to see if you properly clipped the data!
 
-# +
+# %%
 try:
     fig, ax = plt.subplots()
 
     indonesia_boundary.plot(ax=ax)
     cities_in_indonesia.plot(ax=ax, color='purple')
-    ax.set(title="Major Cities in Indonesia");
-    
+    ax.set(title="Major Cities in Indonesia")
+
 except NameError:
     print("Variable 'cities_in_indonesia' not found. Please make sure you assigned it correctly!")
+
+# %% [markdown]
+# Plot the clipped data in the cell below.
+
+# %%
