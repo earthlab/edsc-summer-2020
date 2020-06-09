@@ -65,6 +65,19 @@ import earthpy as et
 import earthpy.plot as ep
 # -
 
+# To begin, set your working directory to `earth-analytics` and then download a 
+# raster file. You will start with working with some elevation data from near Boulder
+# that was collected around the 2013 Boulder Floods.
+#
+# <i class="fa fa-star"></i> **Data Tip:**  Note that below you are using **EarthPy** 
+# to download a dataset from naturalearthdata.com. **EarthPy** creates the earth-analytics
+# directory for you when you use it. You set the working directory
+# after you download the data as a precaution to ensure that the earth-analytics
+# directory already exists on your computer. This is not a standard order of 
+# operations but we are demonstrating it here to ensure the notebook runs on 
+# all computers! 
+# {: .notice--success }
+
 # Get data and set working directory
 et.data.get_data("colorado-flood")
 os.chdir(os.path.join(et.io.HOME, 'earth-analytics'))
