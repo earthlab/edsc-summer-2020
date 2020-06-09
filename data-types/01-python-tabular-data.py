@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.3.2
+#       jupytext_version: 1.4.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -21,7 +21,7 @@
 # ![Colored Bar](../colored-bar.png)
 
 # %% [markdown]
-# <div class='notice--success' markdown="1">
+# <div class='notice--success  alert alert-info' markdown="1">
 #
 # ## <i class="fa fa-graduation-cap" aria-hidden="true"></i> Learning Objectives
 #
@@ -34,17 +34,6 @@
 # </div>
 
 # %% [markdown]
-# # TODO - EDIT
-# ## Text files in Python ADDING THIS FROM NATHAN"S FILE. 
-# lauren i think may not have seen that this file was created and started already??
-#
-# ### .txt vs .csv
-#
-# So far, you have been storing data in variables, and making all of the data yourself. When you made a list, you had to either copy/paste the data into the list or rewrite all the data by hand. There are other ways to read data into **Python**! One of the most common ways to read data into **Python** is with text files. 
-#
-# Text files are what they sound like, files filled with text. Generally, text files will have a special character to denotate a new line, or a return, in the file. In **Python**, this is generally the `\n` character. This allows **Python** break up the text to read it line by line. 
-#
-# The most common type of text files are text (.txt) and comma seperated values (.csv) files. Text (.txt) files are the standard text file and can store any unformatted text characters. A .csv file is a type of .txt file, which stores data separated by commas, hence the name. 
 #
 # ## What is Tabular Data?
 #
@@ -54,9 +43,8 @@
 # familiar with spreadsheet tools such as Excel and Google Sheets that can be 
 # used to open tabular data. 
 #
-# ## The Structure of a Text of Tabular Data Set 
 #
-# ### Tabular Data Is Defined by Rows and Columns 
+# ## Tabular Data Structure
 # In the example below, you see a table of values 
 # that represent precipitation for 3 days. The headers in the data include 
 #
@@ -78,7 +66,7 @@
 # Tabular data can be downloaded in many different file formats. Spreadsheet formats 
 # include `.xls` and `xlsx` which can be directly opened in Microsoft 
 # Excel. When you are downloading Earth and Environmental data, you will often 
-# see tabluar data stored in file formats including: 
+# see tablular data stored in file formats including: 
 #
 # * `.csv`: Comma Separated Values - This file has each column separated (delimited) by a comma. 
 # * `.txt`: A basic text file. In a `txt` file, often the delimiter (the thing that separates out each column) can vary. Delimiters are discussed below in more detail. 
@@ -87,6 +75,9 @@
 # They can be then imported into **Python** using **Pandas** for further exploration 
 # and processing. 
 #
+#
+# <div class="notice--success alert alert-info">
+#     
 # <i class="fa fa-star"></i> **Data Tip:** The challenge with graphical user 
 # interface (GUI) based tools like Excel
 # is that they often have limitations when it comes to working with larger files. 
@@ -94,7 +85,7 @@
 # you are often pressing buttons rather than scripting workflows. You can use 
 # Open Source Python to implement any workflow you might implement in Excel 
 # and that workflow can become fully sharable and reproducible! 
-# {: .notice--success }
+# </div>
 #
 # ## Text Files & Delimiters
 #
@@ -129,9 +120,9 @@
 # * 1 (or more) spaces
 #
 # Sometimes you will find other characters used as delimiters but the above-listed options are the most common. 
-#
-# <i class="fa fa-star"></i> **Data Tip:** The `.csv` file format is most often delimited by a comma. Hence the name: Comma Separated value.
-# {: .notice--success }
+# <div class="notice--success alert alert-info">
+# <i class="fa fa-star"></i> **Data Tip:** The `.csv` file format is most often delimited by a comma. Hence the name: 
+# </div>
 #
 #
 #
@@ -142,8 +133,11 @@
 # will also explore some of the cleanup steps that you need to import and begin to work with 
 # the data. 
 #
+#
+# <div class="notice--success alert alert-info">
+#
 # <i class="fa fa-star"></i> **Data Tip:** Not all text files store tabular text (character) based data. The `.asc` file format is a text based format that stores spatial raster data.  
-# {: .notice--success }
+# </div>
 #
 #
 
@@ -163,11 +157,13 @@ import pandas as pd
 # * 12 rows: notice that the first row is numered as `0`. This is because indexing 
 # in Python always starts at 0 rather than 1. 
 #
-# # TODO add link to zero based indexing lesson wherever we talk about it in our textbook -- ask jenny
 #
-# JP: the first mention of indexing in the Intro textbook is on the list lesson; there is not a separate lesson on indexing in Python: /
+# <div class="notice--success alert alert-info" markdown="1">
 #
-# <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/python-code-fundamentals/get-started-using-python/lists/#list-index-in-python" target = "_link" >Textbook Section on Zero-based Indexing in Python </a> 
+# <i class="fa fa-star"></i> **Data Tip:** You can learn more about zero-based indexing in the <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/python-code-fundamentals/get-started-using-python/lists/#list-index-in-python" target = "_link" >chapter on lists in this textbook </a>  
+#
+# </div>
+#
 
 # %%
 # Download and open the .csv file using Pandas
@@ -178,8 +174,8 @@ avg_monthly_precip = pd.read_csv(
 avg_monthly_precip
 
 # %% [markdown]
-# In **Pandas**, this table format is referred to as a dataframe. 
-# You can view some stats about the dataframe including the number of columns 
+# In **Pandas**, this table format is referred to as a `dataframe`. 
+# You can view some stats about the `dataframe` including the number of columns 
 # and rows in the data using `.info()`.
 
 # %%
@@ -200,24 +196,24 @@ ax.set(xlabel='Month',
 plt.show()
 
 # %% [markdown]
-# <div class="notice--warning" markdown="1">
+# <div class="notice--warning alert alert-info" markdown="1">
 #
 # ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> ## Challenge
 #
 # * Use Python to determine the `type` of data stored in `avg_monthly_precip`
 #
-# HINT: you learned how to do this in the variables lessons last week 
-#
+# HINT: you learned how to determine the type of an object in the variables lessons last week. 
 #
 # </div>
 #
 
 # %%
-# Check the type of the variable avg_monthly_precip in this cell  
+# Check the type of the variable avg_monthly_precip in this cell 
+
 
 
 # %% [markdown]
-# <div class="notice--warning" markdown="1">
+# <div class="notice--warning alert alert-info" markdown="1">
 #
 # ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> ## Challenge
 #
@@ -257,8 +253,10 @@ plt.show()
 # </div>
 
 # %%
-# Modify your original plot to be a bar plot using kind=
+# Modify the plot code above in this cell - to create a bar plot using kind=
 # Change the color of the bars using color=
+
+
 
 
 # %% [markdown]
@@ -276,18 +274,22 @@ plt.show()
 #
 # Next you will explore some temperature data that need to be cleaned up. 
 #
-
-# %% [markdown]
-# Data source: https://www.ncdc.noaa.gov/cag/city/time-series/
 #
-# Miami, Florida: https://www.ncdc.noaa.gov/cag/city/time-series/USW00012839-tmax-12-12-1895-2020.csv 
-# Seattle, Washington: https://www.ncdc.noaa.gov/cag/city/time-series/USW00013895-tmax-1-5-1895-2020.csv 
+# <div class="notice--success alert alert-info">
+#
+# <i class="fa fa-star"></i> **Data Tip:** You can visit <a href="https://www.ncdc.noaa.gov/cag/city/time-series/" target = "_link" >the NOAA NCDC website to learn more about the data you are 
+# using below.</a>  
+#     
+# * Miami, Florida CSV: https://www.ncdc.noaa.gov/cag/city/time-series/USW00012839-tmax-12-12-1895-2020.csv 
+# * Seattle, Washington CSV: https://www.ncdc.noaa.gov/cag/city/time-series/USW00013895-tmax-1-5-1895-2020.csv 
+#
+# </div>
 
 # %%
-# Maybe a city dataset would be better here?
-temp_data = "https://www.ncdc.noaa.gov/cag/city/time-series/USW00012839-tmax-12-12-1895-2020.csv" 
+# Open temperature data for Miami, Florida
+miami_temp_url = "https://www.ncdc.noaa.gov/cag/city/time-series/USW00012839-tmax-12-12-1895-2020.csv" 
 
-miami_temp = pd.read_csv(temp_data)
+miami_temp = pd.read_csv(miami_temp_url)
 miami_temp
 
 # %% [markdown]
@@ -315,11 +317,17 @@ miami_temp
 # NA refers to missing data. When you specify a value as NA (NaN or Not a Number 
 # in **Python**), it will not be included in plots or any mathematical operations.
 #
-# # TODO -- add links to missing data in python here...
+# <div class="notice--success alert alert-info">
+#
+# <i class="fa fa-star"></i> **Data Tip:** You can learn more about no data values 
+# in Pandas in the <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/date-time-types-in-pandas-python/" target = "_blank" >intermediate earth data science textbook</a>  
+#     
+# </div>
+#
 
 # %%
 # Open the Miami data skipping the first 3 rows and setting no data values
-miami_temp = pd.read_csv(temp_data,
+miami_temp = pd.read_csv(miami_temp_url,
                         skiprows=3,
                         na_values=-99)
 
@@ -327,7 +335,7 @@ miami_temp = pd.read_csv(temp_data,
 miami_temp.head()
 
 # %% [markdown]
-# <div class="notice--warning" markdown="1">
+# <div class="notice--warning alert alert-info" markdown="1">
 #
 # ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> ## Challenge
 #
@@ -343,7 +351,7 @@ miami_temp.head()
 
 
 # %% [markdown]
-# <div class="notice--warning" markdown="1">
+# <div class="notice--warning alert alert-info" markdown="1">
 #
 # ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> ## Challenge
 #
@@ -358,91 +366,59 @@ miami_temp.head()
 # Add your code to plot the data below
 
 
-# %% [markdown]
-# https://www.ncdc.noaa.gov/cag/county/time-series/CO-013/tavg/all/1/1895-2020?base_prd=true&begbaseyear=1901&endbaseyear=2000 
-#
-#
-# # TODO -- let's use this for a final activity??-- so leave this for now but it's an even more complex challenge. or it can just be an example of another data type.  
-#
-# Turn the below into a semi interactive activity. Essentially we can all open it together. 
-# And then note that there is some info at the top.
-#
-# Discussion points that we can talk about as a group
-#
-# 1. no data
-# 2. additional rows at the top that we may not way
-# 3. units are in there too
-#
-# Activity can be to 1) open the data - be sure to skip the top rows and assign the no data value
-# we can provide them with an example of how to do this
-#
-# Plot -- Value  on the y and Date on the x
-#
 
 # %% [markdown]
-# # TODO: this could be an interactive activity at the end.
 #
-# Let's come back to this as it could go here OR on the final activity page for this chapter?
+# <div class="notice--warning alert alert-info" markdown="1">
 #
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> ## Challenge -- OPTIONAL
 #
-# 1. provide the code they need to download the data.
-# 2. then tell them to open the data and give them the parameters to open it successfully
-# 3. then have them plot the data 
+# COpy the code below into the code cell below this markdown cell. Run the code. 
+# It should download and open a new dataset that has CO2 emissions for a field site
+# in Barrow, Alaska (brw). 
 #
+# The code below will download your data into your working directory. You should 
+# be able to open it using the filename `co2-emissions-barrow.csv`.
 #
-# Maybe we show them how to download the data and describe each step 
-# THen the activity can walk them through handing the bad data and skipping rows and such 
+# ```python
+# # Download greenhouse gas CO2 data
+# import urllib.request
 #
-# 1. they look at the text file 
-# 2. we tell them to plot time_decimal on the x and y = vaue
-# 3. we tell them that this particular function takes many different parameters -- 
+# greenhouse_gas_url = "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/brw/co2_brw_surface-insitu_1_ccgg_MonthlyData.txt"
 #
-# * delimiter, skip rows (trick -- 0 based indexing needs to be considered
-# na_values -- note about missing data 
+# urllib.request.urlretrieve(url=greenhouse_gas_url,
+#                            filename="co2-emissions-barrow.csv")
 #
+# ```
 #
-
-# %%
-# Download greenhouse gas CO2 data
-import urllib.request
-
-greenhouse_gas_url = "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/brw/co2_brw_surface-insitu_1_ccgg_MonthlyData.txt"
-
-urllib.request.urlretrieve(url=greenhouse_gas_url,
-                           filename="co2-emissions-barrow.csv")
-
-greenhouse_gas_data = pd.read_csv("co2-emissions-barrow.csv",
-                                  skiprows=148,
-                                  delimiter=" ",
-                                  na_values="-999.99")
-
-greenhouse_gas_data
-
-# %%
-f, ax = plt.subplots(figsize=(12, 6))
-greenhouse_gas_data.plot(x="time_decimal",
-                         y="value",
-                         title="CO2 emissions For Barrow, Alaska",
-                         ax=ax)
-plt.show()
-
-# %% [markdown]
-# # TODO -- leave this here for now but i think it would be a great final activity dataset for the spatial chapter potentially
-#
-# # this could be a final activity file -- because it includes spatial and tabular -- 
-# https://opendata.arcgis.com/datasets/175425c25d8849b58feb89483ef02961_1.csv 
-#
-
-# %% [markdown]
-# <div class="notice--info" markdown="1">
-#
-# ## Additional Resources
+# Once you have downloaded the data
+# 1. Read the data in using pandas `read_file()`
+# 2. The data has some additional rows of information stored as metadata. You will
+# need to use the `skiprows=` parameter to skip those metadata rows and properly 
+# import the data. HINT: remember when you use `skiprows` to consider 0-based indexing.
+# 3. Finally plot the data using pandas. plot the `"time_decimal"` column on the 
+# x-axis and `"value"` on the y-axis.
 #
 # </div>
 #
+
+# %%
+# Add your code to open and view the data here
+
+
+
+# %%
+#  Add your code to plot the final CO2 data here
+
+
+
+# %% [markdown]
+# <div class="notice--info alert alert-info" markdown="1">
 #
-# # TODO -- add links to relevant textbook chapters including
+# ## Additional Resources
 #
 # * <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/scientific-data-structures-python/pandas-dataframes/" target = "_link" >Chapter on Pandas in the Intro to Earth Data Science textbook </a> 
 # * <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/date-time-types-in-pandas-python/" target = "_link" >Chapter on Time Series with Pandas </a>  
 # * <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/date-time-types-in-pandas-python/#work-with-no-data-values-in-pandas-dataframe" target = "_link" > Textbook Section on Dealing with No Data Values in Pandas </a> 
+# </div>
+#
