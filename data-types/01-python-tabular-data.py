@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.4.2
+#       jupytext_version: 1.3.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -27,8 +27,8 @@
 #
 # At the end of this activity, you will be able to:
 #
-# * Define the structure of tabular data
-# * Describe the difference between the two common types of tabular text file formats: `txt` and `csv` files
+# * Define the structure of tabular data.
+# * Describe the difference between the two common types of tabular text file formats: `txt` and `csv` files.
 # * Be able to list some commonly used scientific data types that often are downloaded in a tabular format. 
 #
 # </div>
@@ -42,14 +42,14 @@
 #
 # So far, you have been storing data in variables, and making all of the data yourself. When you made a list, you had to either copy/paste the data into the list or rewrite all the data by hand. There are other ways to read data into **Python**! One of the most common ways to read data into **Python** is with text files. 
 #
-# Text files are what they sound like, files filled with text. Generally, text files will have a special character to denotate a new line, or a return, in the file. In **Python**, this is generally the `\n` character. This let's **Python** break up the text to read it line by line. 
+# Text files are what they sound like, files filled with text. Generally, text files will have a special character to denotate a new line, or a return, in the file. In **Python**, this is generally the `\n` character. This allows **Python** break up the text to read it line by line. 
 #
-# The most common type of text files are text (.txt) and comma seperated values (.csv) files. .txt files are the standard text file, and can store any unformatted text characters. A .csv file is a type of .txt file, which stores data seperated by commas, hence the name. 
+# The most common type of text files are text (.txt) and comma seperated values (.csv) files. Text (.txt) files are the standard text file and can store any unformatted text characters. A .csv file is a type of .txt file, which stores data separated by commas, hence the name. 
 #
 # ## What is Tabular Data?
 #
 # Tabular data are data that are stored in a row / column format. Columns (and 
-# sometimes rows) are often identified by headers which if named correctly, explain
+# sometimes rows) are often identified by headers, which if named correctly, explain
 # what is in that row or column. You may already be 
 # familiar with spreadsheet tools such as Excel and Google Sheets that can be 
 # used to open tabular data. 
@@ -80,17 +80,17 @@
 # Excel. When you are downloading Earth and Environmental data, you will often 
 # see tabluar data stored in file formats including: 
 #
-# * `.csv`: Comma Separate Values -- This file has each column separated (delimited) by a comma. 
-# * `.txt`: A basic text file. In a `txt` file often the delimiter (the thing that separates out each column can vary. Delimiters are discussed below in more detail. 
+# * `.csv`: Comma Separated Values - This file has each column separated (delimited) by a comma. 
+# * `.txt`: A basic text file. In a `txt` file, often the delimiter (the thing that separates out each column) can vary. Delimiters are discussed below in more detail. 
 #
-# These formats are text based and often can be opened in a text editor like atom or notepad. 
-# They can be then imported into `Python` using `Pandas` for further exploration 
+# These formats are text based and often can be opened in a text editor like Atom or Notepad. 
+# They can be then imported into **Python** using **Pandas** for further exploration 
 # and processing. 
 #
 # <i class="fa fa-star"></i> **Data Tip:** The challenge with graphical user 
 # interface (GUI) based tools like Excel
 # is that they often have limitations when it comes to working with larger files. 
-# Further, it ecomes difficult to recreate workflows implemented in Excel because
+# Further, it becomes difficult to recreate workflows implemented in Excel because
 # you are often pressing buttons rather than scripting workflows. You can use 
 # Open Source Python to implement any workflow you might implement in Excel 
 # and that workflow can become fully sharable and reproducible! 
@@ -134,9 +134,6 @@
 # {: .notice--success }
 #
 #
-# There are many different types of data that can come in a text or tabular format.
-# These data include
-#
 #
 # ## Earth and Environmental Data That Are Stored In Text File Format
 #
@@ -153,8 +150,8 @@
 # %%
 # Import packages
 import os
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 # %% [markdown]
@@ -167,6 +164,10 @@ import matplotlib.pyplot as plt
 # in Python always starts at 0 rather than 1. 
 #
 # # TODO add link to zero based indexing lesson wherever we talk about it in our textbook -- ask jenny
+#
+# JP: the first mention of indexing in the Intro textbook is on the list lesson; there is not a separate lesson on indexing in Python: /
+#
+# <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/python-code-fundamentals/get-started-using-python/lists/#list-index-in-python" target = "_link" >Textbook Section on Zero-based Indexing in Python </a> 
 
 # %%
 # Download and open the .csv file using Pandas
@@ -177,15 +178,15 @@ avg_monthly_precip = pd.read_csv(
 avg_monthly_precip
 
 # %% [markdown]
-# You can view some stats about the data frame including the number of columns 
-# and rows in the data using `.info()`
-#
+# In **Pandas**, this table format is referred to as a dataframe. 
+# You can view some stats about the dataframe including the number of columns 
+# and rows in the data using `.info()`.
 
 # %%
 avg_monthly_precip.info()
 
 # %% [markdown]
-# And finally you can plot the data using `.plot()`
+# Finally, you can easily plot the data using `.plot()`.
 
 # %%
 # Plot the data
@@ -232,7 +233,7 @@ plt.show()
 #
 # Do the following:
 #
-# 1. copy the code below into the code cell below this markdown cell.
+# 1. copy the code below into the code cell below this Markdown cell.
 # 2. Add `kind="bar"` to the `.plot()` method. 
 # 3. Specify the color of each bar using the `color=""` parameter. 
 #
@@ -256,16 +257,9 @@ plt.show()
 # </div>
 
 # %%
-# Modify your original plot to be a bar plot 
+# Modify your original plot to be a bar plot using kind=
 # Change the color of the bars using color=
-f, ax = plt.subplots()
-avg_monthly_precip.plot(x="months",
-                        y="precip",
-                        title="Precipitation (mm) for One Year",
-                        ax=ax)
-ax.set(xlabel='Month',
-       ylabel='Precipitation (mm)')
-plt.show()
+
 
 # %% [markdown]
 # ## Cleaning Tabular Text Files So You Can Open Them in Python
@@ -276,7 +270,7 @@ plt.show()
 # several lines of header text above the data that provide you with useful information
 # about the data itself. This data is referred to as metadata. 
 #
-# Also often times there are data missing from the data that were collected. 
+# Also, often times, there are data missing from the data that were collected. 
 # These missing values will be identified using a specific value that is hopefully
 # documented in the metadata for that file. 
 #
@@ -300,7 +294,7 @@ miami_temp
 # Notice that the data above contain a few extra rows of information. This 
 # information however is important for you to understand. 
 #
-# * `Missing: -99` -- this is the value that represents the no data value. Misisng data might occur if a sensor stops working or a measurement isn't recorded. You will want to remove any missing data values
+# * `Missing: -99` -- this is the value that represents the "no data" value. Misisng data might occur if a sensor stops working or a measurement isn't recorded. You will want to remove any missing data values.
 # * `Units: Degrees Fahrenheit` -- it's always important to first understand the units of the data before you try to interpret what the data are showing!  
 #
 # Below you will use all of the information stored in the header to import your data.
@@ -310,24 +304,25 @@ miami_temp
 # ### Function Parameters in Python
 #
 # A parameter refers to an option that you can specify when running a function 
-# in Python. You can adjust the parameters associated with importing your data 
+# in **Python**. You can adjust the parameters associated with importing your data 
 # in the same way that you adjusted the plot type and colors above. 
 #
 # Below you use: 
 #
-# * `skiprows=`: to tell python to skip the first 3 rows of your data
-# * `na_values=`: to tell python to assign any misisng data values to NA 
+# * `skiprows=`: to tell **Python** to skip the first 3 rows of your data
+# * `na_values=`: to tell **Python** to reassign any missing data values to "NA" 
 #
-# NA refers to missing data. when you specify a value as NA (NaN or Not a Number 
-# in python) it will not be included in plots or any mathematical operations.
+# NA refers to missing data. When you specify a value as NA (NaN or Not a Number 
+# in **Python**), it will not be included in plots or any mathematical operations.
 #
 # # TODO -- add links to missing data in python here...
 
 # %%
-# Open the miami data skipping the first 3 rows and setting no data values
+# Open the Miami data skipping the first 3 rows and setting no data values
 miami_temp = pd.read_csv(temp_data,
                         skiprows=3,
                         na_values=-99)
+
 # View the first 5 rows of the data
 miami_temp.head()
 
@@ -410,7 +405,9 @@ miami_temp.head()
 # %%
 # Download greenhouse gas CO2 data
 import urllib.request
+
 greenhouse_gas_url = "ftp://aftp.cmdl.noaa.gov/data/trace_gases/co2/in-situ/surface/brw/co2_brw_surface-insitu_1_ccgg_MonthlyData.txt"
+
 urllib.request.urlretrieve(url=greenhouse_gas_url,
                            filename="co2-emissions-barrow.csv")
 
@@ -418,7 +415,6 @@ greenhouse_gas_data = pd.read_csv("co2-emissions-barrow.csv",
                                   skiprows=148,
                                   delimiter=" ",
                                   na_values="-999.99")
-
 
 greenhouse_gas_data
 
@@ -447,6 +443,6 @@ plt.show()
 #
 # # TODO -- add links to relevant textbook chapters including
 #
-# * pandas in the intro textbook
-# * time series in the advanced textbook
-# * no data values 
+# * <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/scientific-data-structures-python/pandas-dataframes/" target = "_link" >Chapter on Pandas in the Intro to Earth Data Science textbook </a> 
+# * <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/date-time-types-in-pandas-python/" target = "_link" >Chapter on Time Series with Pandas </a>  
+# * <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/use-time-series-data-in-python/date-time-types-in-pandas-python/#work-with-no-data-values-in-pandas-dataframe" target = "_link" > Textbook Section on Dealing with No Data Values in Pandas </a> 
