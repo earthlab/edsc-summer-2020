@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
 # ---
 # jupyter:
 #   jupytext:
+#     formats: ipynb,py:percent
 #     text_representation:
 #       extension: .py
-#       format_name: light
-#       format_version: '1.5'
+#       format_name: percent
+#       format_version: '1.3'
 #       jupytext_version: 1.4.2
 #   kernelspec:
 #     display_name: Python 3
@@ -12,7 +14,15 @@
 #     name: python3
 # ---
 
-# <div class='notice--success' markdown="1">
+# %% [markdown]
+# <img style="float: left;" src="../earth-lab-logo-rgb.png" width="150" height="150">
+#
+# # Earth Data Science Corps Summer 2020
+#
+# ![Colored Bar](../colored-bar.png)
+
+# %% [markdown]
+# <div class='notice--success alert alert-info' markdown="1">
 #
 # ## <i class="fa fa-ship" aria-hidden="true"></i> Fundamentals of Raster Data in Python 
 #
@@ -24,18 +34,63 @@
 # After completing this lesson, you will be able to:
 #
 # * Open raster data using **Rasterio** in **Python**.
-# * Be able to plot raster data using **EarthPy** in **Python**.
+# * Be able to plot spatial raster data using **EarthPy** in **Python**.
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Suggested Readings 
+#
+#
+# Before starting this lesson, read the **What is a Raster** section of [this page](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-raster-data-python/fundamentals-raster-data/) of the Earth Lab website to familiarize yourself with the concept of raster data. 
 #
 # </div>
 #
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> To Do Before This Lesson
+# ## What is Raster data?
 #
-# Before starting this lesson, read the **What is a Raster** section of [this page](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-raster-data-python/fundamentals-raster-data/) of the Earth Lab website to familiarize yourself with the concept of raster data. 
+# Raster or “gridded” data are stored as a grid of values which are rendered on a map as pixels. Each pixel value represents an area on the Earth’s surface making the data spatial. A raster file is composed of regular grid of cells, all of which are the same size. You've looked at and used rasters before if you've looked at photographs or imagery in a tool like Google Earth. However, the raster files that you will work with are different from photographs in that they are spatially referenced. Each pixel represents an area of land on the ground. That area is defined by the spatial **resolution** of the raster.
+#
+# <figure>
+#    <a href="https://www.earthdatascience.org/images/earth-analytics/raster-data/raster-concept.png" target="_blank">
+#    <img src="https://www.earthdatascience.org/images/earth-analytics/raster-data/raster-concept.png" alt="Raster data concept diagram."></a>
+#    <figcaption>A raster is composed of a regular grid of cells. Each cell is the same
+#    size in the x and y direction. Source: Colin Williams, NEON.
+#    </figcaption>
+# </figure>
 #
 #
+# <div class='notice--success alert alert-info' markdown="1">
 #
-# ## What Data Are Stored In Rasters?  
+# <i class="fa fa-star"></i> **Data Tip:** For more information on rasters, how they work, and the types of data stored in rasters, see [this chapter](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-raster-data-python/fundamentals-raster-data/) on rasters from the Earth Lab's website.</div>
+#
+#
+# ## File Formats That Store Raster Data
+#
+# Much like how vector data has unique file types that store it, raster data is also stored in many ways. The main problem that raster data files have to solve is how to store multiple "layers" of imagery. Since satellites will often take images that are meant to be stacked together, i.e. the red, blue, and green images of an area, raster files have to store those images in one of two ways: multiple files, or hierarchical files. 
+#
+# ### There Are Many Different File Raster File Formats
+# There are many different file types that are used to store 
+# raster data. 
+#
+# #### Raster Data Stored As Single Files 
+#
+# Some datasets such as landsat and NAIP are stored in single files. For landsat, often you will find each band stored as a separate .tif file. NAIP stores all bands in on .tif file. Common file types for raster data stored as a single file include:
+#
+# - **.tif / .tiff**: Stands for Tagged Image File Format. One of the most common ways to store raster data. How some image satellites, such as Landsat, share their data. 
+# - **.asc**: Stands for ASCII Raster Files. This is a text based format that stores raster data. This format is used given it's simple to store and distribute. 
+#
+# #### Hierarchical Data Formats
+#
+# Hierarchical data formats can store many different types of data in one single file. These formats are optimal for larger data sets where you may want to subset or only work with parts of the data at one time. Hierarchical
+# data can be a bit more involved to work with but they tend to make processing more efficient. Common file types for this data storage method include: 
+#
+# - **.hdf / .hdf5**: Stands for Hierarchical Data Format. One of the most common hierarchical was to store raster data. How some image satellites, such as MODIS, share their data. 
+# - **.nc (NetCDF)**: Stands for Network Common Data Form. A common way to store climate data. 
+#
+# <div class='notice--success alert alert-info' markdown="1">
+#
+# <i class="fa fa-star"></i> **Data Tip:** Learn more about working with GeoTiff files in <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/intro-raster-data-python/fundamentals-raster-data/intro-to-the-geotiff-file-format/" target="_blank">this earth data science textbook lesson.</a>. Learn more about working with HDF4 files (the format used to store MODIS data) in <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/hierarchical-data-formats-hdf/intro-to-hdf4/" target="_blank">this earth data science textbook chapter.</a>
+# </div>
+#
+# ## What Types of Data Are Stored In Rasters?  
 #
 # Some examples of data that often are provided in a raster format include:
 #
@@ -45,239 +100,259 @@
 # - Weather data
 # - Bathymetry data
 #
-# In the activities below, we will primarily work with elevation data.
+# Next you will open and work with some raster data. To begin
+# setup your notebook with the required python packages.
 
-# ## Open Raster Data in Python
-#
-# Since rasters are an array of data, instead of a DataFrame of data like vectors, you can't open raster data with **GeoPandas**. You can use the **rasterio** library combined with **numpy** and **matplotlib** to open, manipulate and plot raster data in **Python**.
-
-# +
+# %%
 # Import necessary packages
 import os
 import matplotlib.pyplot as plt
 import numpy as np
 import geopandas as gpd
 import rasterio as rio
-from rasterio.plot import show
 
 # Package created for the earth analytics program
 import earthpy as et
 import earthpy.plot as ep
-# -
-
-# To begin, set your working directory to `earth-analytics` and then download a 
-# raster file. You will start with working with some elevation data from near Boulder
-# that was collected around the 2013 Boulder Floods.
-#
-# <i class="fa fa-star"></i> **Data Tip:**  Note that below you are using **EarthPy** 
-# to download a dataset from naturalearthdata.com. **EarthPy** creates the earth-analytics
-# directory for you when you use it. You set the working directory
-# after you download the data as a precaution to ensure that the earth-analytics
-# directory already exists on your computer. This is not a standard order of 
-# operations but we are demonstrating it here to ensure the notebook runs on 
-# all computers! 
-# {: .notice--success }
 
 # Get data and set working directory
 et.data.get_data("colorado-flood")
-os.chdir(os.path.join(et.io.HOME, 'earth-analytics'))
+os.chdir(os.path.join(et.io.HOME, 'earth-analytics', 'data'))
 
-# Note that you imported the **rasterio** library using the shortname `rio`.
+# %% [markdown]
+# ## Open Raster Data in Open Source Python Using Rasterio
 #
-# Now, you can use the `rio.open("path-to-raster-here")` function to open a raster dataset.
+# You can open raster data in **Python** using `rasterio`. The code below can 
+# be used to open up a raster file:  
 #
-# The raster dataset used in this example is an elevation map of an area effected by the 2013 Boulder Flood **before** the floods took place. 
+# ```python
+# # Create a connection to the file
+# with rio.open(lidar_dem_path) as src:
+#     # Read the data in and call it lidar_dtm (this is the variable name)
+#     lidar_dtm = src.read(1)
+# ```
+#
+# The code does the following:
+#
+# 1. `rio.open()` - rio is the alias for rasterio. In the first cell of this notebook
+# you include rasterio: `import rasterio as rio`. 
+# 2. `open()` creates a connection to the file on your computer
+# 3. on the second line, `src.read()` reads the data into python so that you can 
+# use the data in your code. 
+# 4. `masked=True` in your `.read()` statement will mask all `nodata` values in your array. This means that they will not be plotted and also that they will not be included in math calculations in `Python`.  
+#
+#
+# The data that you will work with below - filename: `pre_DTM.tif` is lidar 
+# (Light Detection and Ranging) derived elevation data. The file format is a 
+# **.tif** file. The data represent a Digital Terrain Model (DTM). You can 
+# <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/data-stories/what-is-lidar-data/lidar-chm-dem-dsm/">learn more about DTMs in this earth data science lesson on lidar data.</a> 
+#
+# <div class='notice--success alert alert-info' markdown="1">
+#
+# <i class="fa fa-star"></i> **Data Tip:** For larger raster data processing
+# it is common to use xarray which is incorporates some of rasterio's functionality but also supports big data processing.
+# </div>
+#
+# Below, you open up the lidar data.
 
-# Define relative path to file
-lidar_dem_path = os.path.join("data", "colorado-flood", "spatial",
-                              "boulder-leehill-rd", "pre-flood", "lidar",
+# %%
+# Create a path to file
+lidar_dtm_path = os.path.join("colorado-flood", 
+                              "spatial",
+                              "boulder-leehill-rd", 
+                              "pre-flood", 
+                              "lidar",
                               "pre_DTM.tif")
-# Open raster data
-lidar_dem = rio.open(lidar_dem_path)
+lidar_dtm_path
 
-# To check your data, you can quickly plot the raster using the **rasterio** function called `show()`. The function argument `title = "Plot title here"` adds a title to the plot.
+# %% [markdown]
+# Next, open up your data.
 
-# + caption="A plot of a Lidar derived digital elevation model for Lee Hill Road in Boulder, CO." label="fig:demplot"
-# Plot the dem using raster.io
+# %%
+# Open and read in the digital terrain model
+# Note that rio is the alias for rasterio
+with rio.open(lidar_dtm_path) as src:
+    lidar_dtm = src.read(1, masked=True)
 
-show(lidar_dem,
-     title="Lidar Digital Elevation Model (DEM) \n Boulder Flood 2013");
-# -
+# View the data - notice the structure is different from what geopandas data
+# which you explored in the last lesson
+lidar_dtm
 
-# ### Opening and Closing File Connections
+# %% [markdown]
+# You may notice that the code above used to 
+# open a raster file is a bit more complex than the code that you used to open 
+# vector files (shapefiles) with geopandas or tabular data with pandas. The 
+# `with rio.open()` statement creates what is called a context manager for opening 
+# files. This allows you to create a connection to the file without modifying 
+# the file itself. You can learn more about context managers in the 
+# <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/intro-raster-data-python/fundamentals-raster-data/open-lidar-raster-python/">raster data in 
+# python chapter in the earth data science intermediate textbook</a>
 #
-# The rasterio library is efficient as it establishes a connection with the 
-# raster file rather than directly reading it into memory. Because it creates a 
-# connection, it is important that you close the connection after it is opened
-# AND after you've finished working with the data!
+# ## Explore Raster Data Values & Structure 
+#
+# Next, have a look at the data. Notice that the data structure of `type()` of 
+# Python object returned by rasterio is a numpy array. Numpy arrays are an
+# efficient way to store and work with raster data in python. You will learn 
+# more about working with numpy arrays 
+# <a href="https://www.earthdatascience.org/courses/intro-to-earth-data-science/scientific-data-structures-python/numpy-arrays/">in the numpy array chapter of the introduction to earth data 
+# science textbook</a>
 #
 
-# Close the connection
-lidar_dem.close()
+# %%
+type(lidar_dtm)
 
-# ```
-# # this returns an error as you have closed the connection to the file. 
-# show(lidar_dem)
-# ```
-#
-# ```
-# ---------------------------------------------------------------------------
-# ValueError                                Traceback (most recent call last)
-# <ipython-input-7-dad244dfd7d3> in <module>()
-#       1 # this returns an error as you have closed the connection to the file.
-# ----> 2 show(lidar_dem)
-#
-# ~/anaconda3/envs/earth-analytics-python/lib/python3.6/site-packages/rasterio/plot.py in show(source, with_bounds, contour, contour_label_kws, ax, title, **kwargs)
-#      80     elif isinstance(source, RasterReader):
-#      81         if source.count == 1:
-# ---> 82             arr = source.read(1, masked=True)
-#      83         else:
-#      84             try:
-#
-# rasterio/_io.pyx in rasterio._io.RasterReader.read (rasterio/_io.c:10647)()
-#
-# rasterio/_io.pyx in rasterio._io.RasterReader._read (rasterio/_io.c:15124)()
-#
-# ValueError: can't read closed raster file
-#
-# ```
+# %%
+# View the min and max values of the array
+print(lidar_dtm.min(), lidar_dtm.max())
 
-# Once the connection is closed, you can no longer work with the data. You'll need 
-# to re-open the connection if you want to work with the data again. Below, the 
-# connection to the file is closed. 
+# %%
+# View the dimensions of the array (rows, columns)
+lidar_dtm.shape
 
-lidar_dem.close()
+# %% [markdown]
+# Finally you can plot your data. For plotting you will use `earthpy.plot_bands`.
 
-# <div class="notice--warning" markdown="1">
+# %%
+ep.plot_bands(lidar_dtm, 
+              scale=False, 
+              cmap='Greys',
+             title="Lidar Digital Terrain Model")
+plt.show()
+
+
+# %% [markdown]
+# <div class="notice--warning alert alert-info" markdown="1">
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge:  Explore Elevation Data Values
+#
+# Look closely at the plot above. What do you think the colors and numbers 
+# represent in the plot? 
+#
+# What units do the numbers represents?
+# </div>
+
+# %% [markdown]
+# <div class="notice--warning alert alert-info" markdown="1">
 #
 # ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge:  Open a Raster Dataset
 #
-# Below, we have proided a path to a similar raster dataset. The raster dataset used in this example is an elevation map of an area effected by the 2013 Boulder Flood **after** the floods took place. Like shown above, open the data, and use the `show()` function to plot the data using **rasterio**. Make sure to close the connection to your file after you have plotted the data!
+# The above lidar DTM that you opened represents a dataset produced before a flood occurred in 2013 in Colorado. A path to a second lidar dataset which is for the same area but from data collected after the flood is below. 
+#
+# Use the code below to create a path to the post-flood data. 
+# Then do the following using the code above as a guide to open and plot 
+# your data:
+#
+# 1. Use `rasterio` to open the data as a numpy array following the code 
+# that you used above
+# 2. View the min and max data values for the output numpy array
+# 3. Create a plot of the data
+#
+# ```python
+# # Add the code here to open, show, and close the raster dataset.
+#
+# lidar_dem_path_post_flood = os.path.join("data", "colorado-flood", "spatial",
+#                                          "boulder-leehill-rd", "post-flood", "lidar",
+#                                          "post_DTM.tif")
+# ```
 #
 # Hint: Don't forget to use `rio.open()` and assign the output to a variable!
 # </div>
 #
 
-# +
-# Add the code here to open, show, and close the raster dataset.
+# %%
+# Add the code to open and plot your data here
 
-lidar_dem_path_post_flood = os.path.join("data", "colorado-flood", "spatial",
-                                         "boulder-leehill-rd", "post-flood", "lidar",
-                                         "post_DTM.tif")
 
-# -
-
-# ## Context Manager to Open/Close Raster Data
+# %% [markdown]
+# ## Imagery - Another Type of Raster Data 
 #
-# A better way to work with raster data in **rasterio** is to use the context manager. This will handle opening and closing the raster file for you. 
+# Another type of raster data that you may see is imagery. 
+# If you have used Google Maps or another mapping tool that has an imagery layer,
+# you are looking at raster data. You can open and plot imagery data using Python 
+# as well.
 #
-# `with rio.open(path-to-file') as src:
-#     src.rasteriofunctionname`
+# Below you download and open up some NAIP data that were collected before a fire that occured
+# close to Nederland, Colorado.
 #
-
-with rio.open(lidar_dem_path) as src:
-    print(src.bounds)
-
-# With a context manager, you create a connection to the file that you'd like to open. 
-# However, once your are outside of the `with` statement, that connection closes. Thus
-# you don't have to worry about opening and closing files using this syntax.
-
-# Note that the src object is now closed
-src
-
-# ### Read Files with Rasterio into Numpy
-#
-# Next let's explore how you read in a raster using rasterio. When you use `.read()`, rasterio imports the data from your raster into a **numpy array**. 
-#
-# A **numpy array** is simply a matrix of values with no particular spatial attributes associated 
-# with them. **Numpy arrays** are, however, a very efficient structure for working with large and 
-# potentially multi-dimensional (layered) matrices.
-
-# +
-with rio.open(lidar_dem_path) as src:
-    # Convert / read the data into a numpy array
-    # masked = True turns `nodata` values to nan
-    lidar_dem_im = src.read(1, masked=True)
-
-    # Create a spatial extent object using rio.plot.plotting
-    spatial_extent = rio.plot.plotting_extent(src)
-
-print("object shape:", lidar_dem_im.shape)
-print("object type:", type(lidar_dem_im))
-# -
-
-# Below you read in the data using `src.read` where
-# `src` is the name of the object that you defined within the context manager and
-# `read(1)` reads in just the first layer in your raster. Specifying the `1` is important as it will force rasterio to import the raster into a 2 dimensional vs a 3 dimensional array. 
-#
-# See the example below
-
-# +
-with rio.open(lidar_dem_path) as src:
-
-    # Convert / read the data into a numpy array:
-    lidar_dem_im2 = src.read(1)
-
-with rio.open(lidar_dem_path) as src:
-
-    # Convert / read the data into a numpy array:
-    lidar_dem_im3 = src.read()
-
-print("Array Shape Using read(1):", lidar_dem_im2.shape)
-
-# Notice that without the (1), your numpy array has a third dimension
-print("Array Shape Using read():", lidar_dem_im3.shape)
-# -
-
-# Also notice that you used the argument `masked=True` in your `.read()` statement. This sets all `nodata` values in your data to `nan` which you will want for plotting!
-
-# <div class="notice--warning" markdown="1">
-#
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge:  Read a Raster into a Numpy Array
-#
-# Let's open the post 2013 Boulder Flood data again but this time you will use a context manager to open the data! Inside the context manager, use the `read()` function to read the numpy array to a variable that we can use later. Make sure that the data is masked, and that the data is two dimensional!
-#
-#
-# </div>
-#
-
-# +
-# Add the code here to open the raster and read the numpy array inside it
-
-lidar_dem_path_post_flood = os.path.join("data", "colorado-flood", "spatial",
-                                         "boulder-leehill-rd", "post-flood", "lidar",
-                                         "post_DTM.tif")
-
-# -
-
-# ## Plot Numpy Array
-#
-# Finally, you can plot your data using `ep.plot_bands()`, a function found in the **EarthPy** package you can use to help plot data stored in **numpy arrays**.
-
-# + caption="A plot of a Lidar derived digital elevation model for Lee Hill Road in Boulder, CO with a grey color map applied." label="fig:demplot"
-ep.plot_bands(lidar_dem_im,
-              cmap='Greys',
-              title="Digital Elevation Model - Pre 2013 Flood");
-# -
-
 # <div class='notice--success alert alert-info' markdown="1">
 #
-# <i class="fa fa-star"></i> **Data Tip:** Color Ramps
-#
-# When plotting raster data, you need to make use of color ramps to visually represent 
-# the data in a way that makes sense. While in vector plots, you can assign each 
-# attribute a color, there are so many discrete values in raster data that it makes sense 
-# to have a gradient of colors used to represent each data point. 
-# To plot you can select <a href="https://matplotlib.org/users/colormaps.html" target="_blank">pre-determined color ramps</a> from **matplotlib**, you can reverse a color ramp by adding `_r` at the end of the color ramps name, for example `cmap = 'viridis_r'`. </div>
+# <i class="fa fa-star"></i> **Data Tip:**  NAIP data is imagery collected by the United 
+# States Department of Agriculture every 2 years across the United 
+# States. Learn more about 
+# NAIP data in <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/multispectral-remote-sensing/intro-naip/">this chapter of the earth data science intermediate 
+# textbook. </a>
+# </div>
 
-# <div class="notice--warning" markdown="1">
+# %%
+# Download NAIP data
+et.data.get_data(url="https://ndownloader.figshare.com/files/23070791")
+
+
+# %%
+# Create a path for the data file - notice it is a .tif file
+naip_pre_fire_path = os.path.join("earthpy-downloads",
+                             "naip-before-after",
+                             "pre-fire",
+                             "crop",
+                             "m_3910505_nw_13_1_20150919_crop.tif")
+
+naip_pre_fire_path
+
+# %%
+# Open the data using rasterio
+with rio.open(naip_pre_fire_path) as naip_prefire_src:
+    naip_pre_fire = naip_prefire_src.read()
+    
+naip_pre_fire
+
+# %% [markdown]
+# Plotting imagery is a bit different because imagery is composed of multiple 
+# bands. While we won't get into the specifics of bands and images in this lesson, 
+# you can see below that an image is composed of multiple layers of information.
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge:  Plot a Raster Dataset
+# You can plot each band individually as you see below using `plot_bands()`. 
+# Or you can plot a color image,
+# similar to the image that your camera stores when you take a picture.
+
+# %%
+# Plot each layer or band of the image separately
+ep.plot_bands(naip_pre_fire, figsize=(10,5))
+plt.show()
+
+# %%
+# Plot color image
+ep.plot_rgb(naip_pre_fire,
+           title="naip data pre-fire")
+plt.show()
+
+# %% [markdown]
+# <div class="notice--warning alert alert-info" markdown="1">
 #
-# Let's plot again but this time you will use the data you opened above! Using the variable you used to capture the numpy array, you can plot that numpy array using `ep.plot_bands()`. As you may have noticed in the plot above, `ep.plot_bands()` has an argument called `cmap`. You can use this to change the color ramp of the **numpy array** being plotted. In your plot, make sure to change the `cmap`, so that it doesn't use the `Greys` color ramp like the example above. Use whichever color ramp you think best represents the elevation data.  
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge:  Plot NAIP Imagery Post Fire 
+#
+# In the cell below, you see a path to a NAIP dataset that was collected 
+# after the fire in Colorado. Use that path to:
+#
+# 1. Open the post fire data
+# 2. Plot a color version of data using `plot_rgb()`
 #
 # </div>
 #
 
-# +
-# Add the code here to plot the numpy array you opened above.
+# %%
+# Add the code here to open the raster and read the numpy array inside it
+# Create a path for the data file - notice it is a .tif file
+naip_post_fire_path = os.path.join("earthpy-downloads",
+                             "naip-before-after",
+                             "post-fire",
+                             "crop",
+                             "m_3910505_nw_13_1_20170902_crop.tif")
+
+naip_post_fire_path
+
+
+# %%
+# Add the code needed to open and plot the NAIP post fire data here
+
+
+
