@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: percent
 #       format_version: '1.3'
-#       jupytext_version: 1.3.2
+#       jupytext_version: 1.4.2
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -23,7 +23,7 @@
 # ## Introduction to Using Spatial Vector Data in Open Source Python
 
 # %% [markdown]
-# <div class='notice--success' markdown="1">
+# <div class='notice--success alert alert-info' markdown="1">
 #
 # ## <i class="fa fa-ship" aria-hidden="true"></i> Fundamentals of Vector Data in Python 
 #
@@ -40,11 +40,15 @@
 # * Open a shapefile in **Python** using **Geopandas** - `gpd.read_file()`.
 # * Plot a shapfile in **Python** using **Geopandas** - `gpd.plot()`.
 #
+#
+# ## Recommended Readings
+#
+# This lesson is an introduction to working with spatial data. If you wish to dive more deeply
+# into working with spatial data, check out the intermediate earth data science textbook
+# <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/" target="_blank">chapter on 
+# spatial vector data.</a>
 # </div>
 #
-# # TODO: work this into the text
-# Add this reading as a to do for all of the info below so we are not duplicating information 
-# Reading: https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/ 
 
 # %% [markdown]
 # ## About Spatial Vector Data
@@ -225,19 +229,20 @@ cities.head()
 # %%
 # Add the code here to check the geometry type of the cities object
 
+
+
 # %% [markdown]
 # ## Creating Maps Using Multiple Shapefiles
 #
 # You can create maps using multiple shapefiles with **Geopandas** in a similar way
 # that you may do so using a graphical user interface (GUI) tool like ArcGIS 
-# or QGIS (open source alternative to ArcGIS).
-#
-# To do this you will need to open a second file. The populated places file is 
-# used below!
+# or QGIS (open source alternative to ArcGIS). To do this you will need to open 
+# a second spatial file. Below you will use the Natural Earth populated places 
+# shapefile to add additional layers to your map.
 
 # %% [markdown]
 # To plot two datasets together, you will first create a **Matplotlib** figure object. 
-# Notice in the example below that you define the figure `ax` in the first line. 
+# Notice in the example below that you define the figure `ax1` in the first line. 
 # You then tell **GeoPandas** to plot the data on that particular figure using the 
 # parameter `ax=`
 #
@@ -323,13 +328,13 @@ plt.show()
 
 # %% [markdown]
 #
-# <div class="notice--success" markdown="1">
+# <div class="notice--success alert alert-info" markdown="1">
 # <i class="fa fa-star"></i> **Data Tip:** There are many options to customize plots in Python. Below are 
 # a few lessons that cover some of this information!
 #
-# * https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-vector-plots/python-customize-map-legends-geopandas/
+# * <a href="https://www.earthdatascience.org/courses/scientists-guide-to-plotting-data-in-python/plot-spatial-data/customize-vector-plots/python-customize-map-legends-geopandas/" target="_blank">Earth data science plotting textbook.</a>
 #
-# * https://geopandas.org/gallery/plotting_with_geoplot.html
+# * <a href="https://geopandas.org/gallery/plotting_with_geoplot.html" target="_blank">Geopandas plotting tutorial</a>
 # </div>
 
 # %% [markdown]
@@ -365,17 +370,22 @@ plt.show()
 
 # %%
 # View first 5 rows of GeoDataFrame
-countries.head()
+cities.head()
 
 # %%
-countries.POP_EST
+# View data just in the pop_max column of the cities object
+cities.pop_max
 
 # %% [markdown]
 # <div class='notice--success alert alert-info' markdown="1">
 #
 # <i class="fa fa-star"></i> **Data Tip:** Vector Metadata
 #
-# The spatial and attribute data are not the only important aspects of a shapefile. The metadata of a shapefile are also very important. The metadata includes data on the Coordinate Reference System (CRS), the extent, and much more. For more information on what the metadata is, and how to access it, see the full lesson on vector data on the Earth Lab website, [here](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/).</div>
+# The spatial and attribute data are not the only important aspects of a shapefile. 
+# The metadata of a shapefile are also very important. The metadata includes data 
+# on the Coordinate Reference System (CRS), the extent, and much more. For more 
+# information on what the metadata is, and how to access it, see the full lesson 
+# on vector data on the Earth Lab website, [here](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/spatial-data-vector-shapefiles/).</div>
 
 # %%
 from mpl_toolkits.axes_grid1 import make_axes_locatable
@@ -393,24 +403,25 @@ countries.plot(column='POP_EST',
 plt.show()
 
 # %% [markdown]
-# <div class="notice--warning" markdown="1">
+# <div class="notice--warning alert alert-info" markdown="1">
 #
 # ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge: Plot Cities Data
 #
 # Plot the cities object so each point is colored according to the max population
 # value. 
 #
-# HINT: see this page for more information on customizing maps in **Geopandas**:
-# https://geopandas.org/mapping.html
+# HINT: checkout <a href="https://geopandas.org/mapping.html" target="_blank">this page on creating maps with Geopandas </a> for more information on customizing maps in **Geopandas**:
+#
 # </div>
 
 # %%
 # Open your dataset below this line. Make sure to view the geom_type and the first few rows of the dataset
 
+
 # %% [markdown]
-# <div class="notice--warning" markdown="1">
+# <div class="notice--warning alert alert-info" markdown="1">
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge: Plot Cities Data
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Challenge: Plot Cities Data Using Quantiles -- Categorical Plot
 #
 # You can plot your data according to categorical groups similar to what you might do in a tool
 # like ArcGIS or QGIS. See what happens when you customize your plot code above.
@@ -424,6 +435,7 @@ plt.show()
 
 # %%
 # Add your plot code here 
+
 
 # %% [markdown]
 # The cell below includes a set of tests to see if you correctly completed the activity in the cell above. They will provide you with feedback that can help you complete the activity. 
@@ -442,11 +454,15 @@ except NameError:
     print("'populated_places' is not defined. Make sure you spelled the variable name correctly!")
 
 # %% [markdown]
-# <div class="notice--warning" markdown="1">
+# ## Optional: Geoprocessing Vector Data Geoprocessing in Python: Clip Data
 #
-# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> BONUS Challenge: Clipping Vector Data in Python
+# Sometimes you have spatial data for a larger area than you need to process.
+# For example you may be working on a project for your state or country. But 
+# perhaps you have data for the entire globe. 
 #
-# You may have noticed that the data above is difficult to read since there are so many points in the point data layer. One of the most common analytical techniques used in earth data science is clipping vector data. A clip is a spatial operation that will take a dataset, and limit it spatially to the extent of another dataset. 
+# You can clip the data spatially to another boundary to make it smaller. Once
+# the data are clipped, your processing operations will be faster. It will also
+# make creating maps of your study area easier and cleaner.
 #
 # <figure>
 #     <a href="https://www.earthdatascience.org/images/earth-analytics/spatial-data/vector-clip.png">
@@ -455,24 +471,78 @@ except NameError:
 #     </figcaption>
 # </figure>
 #
-# For further reading on what clipping is, you can refer to the clipping page on the Earth Lab website, [here](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/vector-data-processing/clip-vector-data-in-python-geopandas-shapely/). Fear not, we will go over clipping and other spatial data operations soon! 
+# In the bonus challenge below, you will clip the cities point data to the boundary of a single 
+# country. This will make the data smaller and easier to use.
 #
-# For this bonus challenge, you will clip the data you've opened, `populated_places`, to the extent of a single country. To clip the data, you will use the `clip()` function in `geopandas`. The syntax of the function is `gpd.clip(data_to_clip, boundary_to_clip_to)`. You can assign the output of this function to a variable, and it will be a GeoDataFrame of the output of the operation. In the below example, `cities_in_mexico` would be a GeoDataFrame containing all of the points in `populated_places` that were within the boundary of the polygon `mexico_boundary`. 
+# <div class='notice--success alert alert-info' markdown="1">
 #
-# ```
-# cities_in_mexico = gpd.clip(populated_places, mexico_boundary)
+# <i class="fa fa-star"></i> **Data Tip:** Vector Metadata
+# Check out the <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/intro-vector-data-python/vector-data-processing/clip-vector-data-in-python-geopandas-shapely/">spatial data lessons in the intermediate earth-analytics textbook for a more in depth
+# look at clipping data.</a> 
+# </div>
 #
-# ```
+# Below you do the following:
 #
-# We subsetted the `countries` dataset and made a GeoDataFrame that is just the boundary of Indonesia. Use that GeoDataFrame to clip `populated_places` to Indonesia. Name the output `cities_in_indonesia`. 
+# 1. you subset the countries layer to just the boundary of the United State of America
+# 2. you then plot the data to look at the newly subsetted data! 
+# 3. Finally you clip the cities data to only include cities that fall within the boundary of the United States
+
+# %%
+# Subset the countries data to just a single 
+united_states_boundary = countries.loc[countries['SOVEREIGNT'] == 'United States of America']
+
+# Notice in the plot below, that only the boundary for the USA is in the new variable
+f, ax = plt.subplots(figsize=(10,6))
+united_states_boundary.plot(ax=ax)
+plt.show()
+
+# %%
+# Clip the cities data to the USA boundary
+# Note -- this operation may take some time to run - be patient
+cities_in_usa = gpd.clip(cities, united_states_boundary)
+
+# Plot your final clipped data
+f, ax = plt.subplots()
+cities_in_usa.plot(ax=ax)
+ax.set(title="Cities clipped to the USA Boundary")
+plt.show()
+
+# %% [markdown]
+# <div class="notice--warning alert alert-info" markdown="1">
+#
+# ## <i class="fa fa-pencil-square-o" aria-hidden="true"></i> BONUS Challenge: Clip Vector Data in Python
+#
+# For this bonus challenge, you will clip the cities data that you opened above 
+# to the extent of a single country - Canada.  
+#
+# `gpd.clip(data_to_clip, boundary_to_clip_to)`. 
+#
+# Follow the example above to perform your clip operation. 
+#
+# To perform the clip you need the following:
+#
+# 1. Create the boudary for Canada by subsetting the countries object
+# 2. Clip the cities layer to the canada boundary layer
+# 3. Plot your final cities clipped layer!
+#
+# When you clip, all of the spatial data outside of the spatial clip boundary (Canada) will not be 
+# included in the output dataset.
 #
 # </div>
 
 # %%
-# Subsetting the countries dataframe to make Indonesian boundary to clip populated_places to.
-indonesia_boundary = countries.loc[countries['SOVEREIGNT'] == 'Indonesia']
+# Subset the countries data to just a single 
 
-# Below this line clip the populated_places data to the Indonesian boundary created above.
+
+# Below this line clip the cities data to the Canada boundary that you created above.
+
+
+
+
+# %%
+# Plot your final clipped data here
+
+
 
 # %% [markdown]
 # Now run the next cell to see if you properly clipped the data!
@@ -487,9 +557,3 @@ try:
 
 except NameError:
     print("Variable 'cities_in_indonesia' not found. Please make sure you assigned it correctly!")
-
-# %% [markdown]
-# Plot the clipped data in the cell below.
-
-# %%
-# Add your plot code here 
