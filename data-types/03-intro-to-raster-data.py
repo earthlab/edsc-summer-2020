@@ -59,18 +59,24 @@
 #
 # <div class='notice--success alert alert-info' markdown="1">
 #
-# <i class="fa fa-star"></i> **Data Tip:** For more information on rasters, how they work, and the types of data stored in rasters, see [this chapter](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-raster-data-python/fundamentals-raster-data/) on rasters from the Earth Lab's website.</div>
+# <i class="fa fa-star"></i> **Data Tip:** For more information on rasters, how they work, and the types of data stored in rasters, see [this chapter](https://www.earthdatascience.org/courses/use-data-open-source-python/intro-raster-data-python/fundamentals-raster-data/) on using raster data from the earth data science intermediate textbook.</div>
+#
+# ## Raster Data Can Have One or More Layers 
+#
+# Raster data can have one or more layers. An elevation model 
+# for example will often just have one layer representing the 
+# elevation of the earth's surface for a particular location. However, 
+# other data including images and time series data, may result in 
+# a raster file that is composed of multiple layers. Different 
+# file types can be used to accomodate different sizes and structures
+# of raster data. 
 #
 #
-# ## File Formats That Store Raster Data
-#
-# Much like how vector data has unique file types that store it, raster data is also stored in many ways. The main problem that raster data files have to solve is how to store multiple "layers" of imagery. Since satellites will often take images that are meant to be stacked together, i.e. the red, blue, and green images of an area, raster files have to store those images in one of two ways: multiple files, or hierarchical files. 
-#
-# ### There Are Many Different File Raster File Formats
+# ## There Are Many Different File Raster File Formats
 # There are many different file types that are used to store 
 # raster data. 
 #
-# #### Raster Data Stored As Single Files 
+# ### Raster Data Stored As Single Files 
 #
 # Some datasets such as landsat and NAIP are stored in single files. For landsat, often you will find each band stored as a separate .tif file. NAIP stores all bands in on .tif file. Common file types for raster data stored as a single file include:
 #
@@ -153,7 +159,7 @@ os.chdir(os.path.join(et.io.HOME, 'earth-analytics', 'data'))
 # it is common to use xarray which is incorporates some of rasterio's functionality but also supports big data processing.
 # </div>
 #
-# Below, you open up the lidar data.
+# Below, you create a path to the file you want to open. 
 
 # %%
 # Create a path to file
