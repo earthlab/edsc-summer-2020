@@ -214,6 +214,7 @@ plt.show()
 
 
 
+
 # %% [markdown]
 # <div class="notice--warning alert alert-info" markdown="1">
 #
@@ -257,6 +258,7 @@ plt.show()
 # %%
 # Modify the plot code above in this cell - to create a bar plot using kind=
 # Change the color of the bars using color=
+
 
 
 
@@ -368,6 +370,7 @@ miami_temp.head()
 
 # %%
 # Add your code to plot the data below
+
 
 
 
